@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
+  
+  #Static
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get 'mentions-legales', to: "pages#terms_and_conditions"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # Jardins
+  get 'jardins',        to: "gardners#index"
+  get 'jardins/:slug',  to: 'gardners#show', as: :gardner
+
+
 end
