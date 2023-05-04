@@ -1,12 +1,28 @@
-<% @gardners.each do |gardner| %>
+<div class="section">
+  <div class="container-large">
+  
+    <%= render "gardners/search" %>
+    
+    <% if @gardners.empty? %>
+      <div class="text-center my-5">Aucun résultat trouvé !</div>
 
-  <div>
-    <%= link_to gardner_path(slug: gardner.slug) do %>
-      <%= gardner.first_name %>
-      <%= gardner.last_name%>
-      <%= gardner.garden_name %>
-      <%= gardner.description %>
-      <%= cl_image_tag gardner.main_image.key, crop: :fill %>
+    <% else %>
+
+      <div class="row mt-5">
+        <div class="col-12 col-lg-6">
+          <%= render "list", gardners: @gardners %>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div style="width: 100%; height: 600px;"
+            data-controller="map" id="map"
+            data-map-markers-value="<%= @markers.to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          </div>
+        </div>
+        </div>
+      </div>
+      
     <% end %>
+
   </div>
-<% end %>
+</div> 

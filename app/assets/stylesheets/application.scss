@@ -6,15 +6,33 @@
 // External libraries
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
+@import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 
 // Your CSS partials
 @import "components/index";
+@import "gardners/index";
 @import "pages/index";
 
 .section {
-  padding: 65px 6vw;
+  padding: 12px 6vw;
 }
 
 .container-large {
-  max-width: 1000px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+img {
+  background-position: center;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+button {
+  border: none !important;
+  background-color:#11ffee00 !important
 }

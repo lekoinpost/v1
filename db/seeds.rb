@@ -15,9 +15,7 @@ gardner_1 = User.new(
   password: 'azerty',
   garden_name: "Chez Alice",
   description: "Nous cultivons des tomates et des abricots",
-  street: '2 cours du Chapeau Rouge',
-  zipcode: '33 000',
-  city: 'Bordeaux',
+  address: '2 cours du Chapeau Rouge, Bordeaux',
   type: "Gardner",
   nb_of_points_for_a_gift: "20"
 )
@@ -32,9 +30,7 @@ gardner_2 = User.new(
   password: 'azerty',
   garden_name: "Bob le composteur",
   description: "Je cherche surtout du compost mûr pour mes pommes de terre",
-  street: '3 place de la Victoire',
-  zipcode: '33 000',
-  city: 'Bordeaux',
+  address: '3 place de la Victoire, Bordeaux',
   type: "Gardner",
   nb_of_points_for_a_gift: "10"
 )
@@ -49,9 +45,7 @@ gardner_3 = User.new(
   password: 'azerty',
   garden_name: "Charlie le green",
   description: "Je suis fermé le weekend mais très flexible en semaine",
-  street: '2 cours Alsace-Lorraine',
-  zipcode: '33 000',
-  city: 'Bordeaux',
+  address: '2 cours Alsace-Lorraine, Bordeaux',
   type: "Gardner",
   nb_of_points_for_a_gift: "15"
 )
@@ -66,9 +60,7 @@ gardner_4 = User.new(
   password: 'azerty',
   garden_name: "David le jardinier",
   description: "Je cherche du compost pour mes courgettes et mes laitues",
-  street: '3 du Loup',
-  zipcode: '33 000',
-  city: 'Bordeaux',
+  address: '3 du Loup, Bordeaux',
   type: "Gardner",
   nb_of_points_for_a_gift: "30"
 )
@@ -83,9 +75,7 @@ gardner_5 = User.new(
   password: 'azerty',
   garden_name: "Le jardin d'Emilie",
   description: "Je cherche du compost mûr pour tomates et mes pommes",
-  street: '22 rue Sainte Catherine',
-  zipcode: '33 000',
-  city: 'Bordeaux',
+  address: '22 rue Sainte Catherine, Bordeaux',
   type: "Gardner",
   nb_of_points_for_a_gift: "10"
 )

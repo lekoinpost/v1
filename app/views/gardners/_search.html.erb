@@ -1,0 +1,26 @@
+<%= simple_form_for("", url: gardners_path(query: params[:query]),
+      method: :get, id:"gardner-search") do |f| %>
+
+  <%= image_tag "icons/location.png", id:"location-icon" %>
+  
+  <div class="d-none" id="address-param" data-selected="<%= params[:address] %>"></div>
+
+  <%= f.input :address, 
+    placeholder: "renseigner une adresse", 
+    label: false, 
+    wrapper_html: {
+      data: {
+        controller: "address-autocomplete", 
+        address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"], 
+        value: params[:address]
+      },
+      class: "flex-grow-1 mb-0"
+    },
+    input_html: {
+      data: {address_autocomplete_target: "address"}, 
+      class: "d-none", 
+      placeholder: "renseigner une adresse"
+    } %>
+
+  <%= f.submit "rechercher", class: 'btn-light' %>
+<% end %>

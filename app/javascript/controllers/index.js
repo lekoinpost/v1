@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import AddressAutocompleteController from "./address_autocomplete_controller"
+application.register("address-autocomplete", AddressAutocompleteController)
+
+import MapController from "./map_controller"
+application.register("map", MapController)
+
+import FaqButtonsController from "./faq_buttons_controller"
+application.register("faq-buttons", FaqButtonsController)
+
+import TogglePasswordVisibiityController from "./toggle_password_visibility_controller"
+application.register("toggle-password-visibility", TogglePasswordVisibiityController)

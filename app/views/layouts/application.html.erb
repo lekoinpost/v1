@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LeKoinpost</title>
+    <title>Le Koinpost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-  
+    
+    <%# Google Fonts %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <%# Mapbox %>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
 
+    <%# Favicon %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
+
+
 
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body>
+    <%= render "shared/navbar" unless action_name == "home"  %>
+    <%= render "shared/flashes" %>
 
     <%= yield %>
   </body>
