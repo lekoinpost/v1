@@ -1,6 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
+  align-items: center;
   background: white;
+  border-bottom: 1px solid #d9d9d9;
+  position: sticky !important;
+  top: 0;
+  z-index: 1020;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +14,12 @@
 
 .navbar-lewagon .navbar-brand img {
   height: 70px;
+}
+
+.navbar-toggler {
+  border: none !important;
+}
+
+.navbar .dropdown-toggle::after {
+  display: none !important
 }

@@ -1,14 +1,50 @@
 class GardnersController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
-  before_action :set_gardner, only: [:show]
+  skip_before_action :authenticate_user!, only: [ :index, :new ]
+  before_action :set_gardner, only: [:show, :create, :edit, :update]
 
   def index
-    @gardners = Gardner.all
+    scope = Gardner.all
+    if params[:address].present?
+      scope = scope.by_address(params[:address])
+    end
+    @pagy, @gardners = pagy_array(scope, items: 9, locale: :fr)
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: 'list.html', locals: { gardners: @gardners } }
+    end
+
+    @markers = scope.geocoded.map do |gardner|
+      {
+        lat: gardner.latitude,
+        lng: gardner.longitude, 
+        info_window_html: render_to_string(partial: "info_window", locals: {gardner: gardner}), 
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
+
+
+
+  end
+
+  def new
+    @gardner = Gardner.new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   def show
+    @appointment = Appointment.new
   end
+
 
   private
 
