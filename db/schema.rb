@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_222943) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_05_092331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,13 +45,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_222943) do
   create_table "appointments", force: :cascade do |t|
     t.bigint "gardner_id", null: false
     t.bigint "giver_id", null: false
-    t.integer "quantiy"
-    t.string "type"
+    t.integer "quantity"
+    t.string "compost_type"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gardner_id"], name: "index_appointments_on_gardner_id"
     t.index ["giver_id"], name: "index_appointments_on_giver_id"
+  end
+
+  create_table "appointments_tables", force: :cascade do |t|
+    t.bigint "giver_id", null: false
+    t.bigint "gardener_id", null: false
+    t.date "date"
+    t.string "quantity"
+    t.string "compost_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gardener_id"], name: "index_appointments_tables_on_gardener_id"
+    t.index ["giver_id"], name: "index_appointments_tables_on_giver_id"
   end
 
   create_table "givers_gardners_points", force: :cascade do |t|
@@ -85,6 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_222943) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.string "products", limit: 30, default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -93,6 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_222943) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "users", column: "gardner_id"
   add_foreign_key "appointments", "users", column: "giver_id"
+  add_foreign_key "appointments_tables", "users", column: "gardener_id"
+  add_foreign_key "appointments_tables", "users", column: "giver_id"
   add_foreign_key "givers_gardners_points", "users", column: "gardner_id"
   add_foreign_key "givers_gardners_points", "users", column: "giver_id"
 end

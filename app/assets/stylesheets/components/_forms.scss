@@ -5,7 +5,8 @@
   border-bottom: 3px solid black;
   background-color: #11ffee00 !important;
   padding-bottom: 8px;
-  color: $dark !important
+  color: $dark !important;
+  font-size: inherit;
 }
 
 .form-control:focus {

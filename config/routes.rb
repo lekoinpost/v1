@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   get 'jardins/:slug',  to: 'gardners#show', as: :gardner
   get 'creer-un-jardin', to: "gardners#new", as: :new_gardner
 
+  # Appointments
+  post 'appointments', to: "appointments#create", as: :create_appointment
+
 end
