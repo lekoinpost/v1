@@ -1,8 +1,10 @@
 require 'open-uri'
 
 puts 'Cleaning database'
+Appointment.destroy_all
+GiverGardnerPoint.destroy_all
 User.destroy_all
-# Appointment.destroy_all
+
 puts 'Cleaned database User, Appointment'
 
 
@@ -89,3 +91,78 @@ gardner_5.main_image.attach(io: main_image, filename: 'main_image.jpeg', content
 gardner_5.save!
 
 puts "Created 5 gardens"
+
+puts "Create 3 users"
+  giver_1 = User.new(
+    first_name: "Felix", 
+    last_name: "Fell", 
+    email: "felice@mail.com", 
+    password: 'azerty',
+    type: "Giver",
+  )
+  giver_1.save!
+
+  giver_2 = User.new(
+    first_name: "Greg", 
+    last_name: "Group", 
+    email: "greg@mail.com", 
+    password: 'azerty',
+    type: "Giver",
+  )
+  giver_2.save!
+
+  giver_3 = User.new(
+    first_name: "Henri", 
+    last_name: "Herr", 
+    email: "henri@mail.com", 
+    password: 'azerty',
+    type: "Giver",
+  )
+  giver_3.save!
+
+puts "Created 3 users"
+
+puts "Create 3 appointments"
+
+  appointment_1 = Appointment.create(
+    giver_id: giver_1.id,
+    gardner_id: gardner_1.id, 
+    quantity: 3, 
+    compost_type: "biodéchets",
+    date: Date.today
+  )
+
+  appointment_2 = Appointment.create(
+    giver_id: giver_1.id,
+    gardner_id: gardner_2.id, 
+    quantity: 3, 
+    compost_type: "biodéchets",
+    date: Date.today
+  )
+
+  appointment_3 = Appointment.create(
+    giver_id: giver_1.id,
+    gardner_id: gardner_3.id, 
+    quantity: 3, 
+    compost_type: "biodéchets",
+    date: Date.yesterday
+  )
+
+  appointment_4 = Appointment.create(
+    giver_id: giver_1.id,
+    gardner_id: gardner_1.id, 
+    quantity: 3, 
+    compost_type: "compost mûr",
+    date: Date.yesterday - 3, 
+    status: "confirmed"
+  )
+
+  appointment_5 = Appointment.new(
+    giver_id: giver_1.id,
+    gardner_id: gardner_1.id, 
+    quantity: 3, 
+    compost_type: "biodéchets",
+    date: Date.today, 
+    status: "confirmed"
+  )
+
