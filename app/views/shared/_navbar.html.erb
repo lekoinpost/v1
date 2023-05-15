@@ -22,14 +22,15 @@
               <%= image_tag "icons/user.png", width: 30, height: 30, class:"ms-3" %>
             </div>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenu">
-              <a class="dropdown-item" href="#">Mon espace</a>
+              <%= link_to "Mes rendez-vous", giver_appointments_path, class:"dropdown-item" %>
+              <%= link_to "Mes récompenses", giver_rewards_path, class:"dropdown-item" %>
               <a class="dropdown-item" href="#">Mes messages</a>
               <%= link_to "Déconnexion", destroy_user_session_path, data: { "turbo-method": :delete } , class: "dropdown-item" %>
             </ul>
           </li>
           <li class="nav-item d-md-none">
-            <%# TO DO : ADD CORRECT LINK %>
-            <%= link_to "Mon espace", root_path, class: "nav-link" %>
+            <%= link_to "Mes rendez-vous", giver_appointments_path, class: "nav-link" %>
+            <%= link_to "Mes récompenses", giver_rewards_path, class: "nav-link" %>
           </li>
           <li class="nav-item d-md-none">
             <%= link_to "Messages", "#", class: "nav-link" %>

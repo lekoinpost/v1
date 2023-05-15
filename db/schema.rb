@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_092331) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_134344) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_092331) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "pending"
     t.index ["gardner_id"], name: "index_appointments_on_gardner_id"
     t.index ["giver_id"], name: "index_appointments_on_giver_id"
   end
@@ -66,14 +67,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_092331) do
     t.index ["giver_id"], name: "index_appointments_tables_on_giver_id"
   end
 
-  create_table "givers_gardners_points", force: :cascade do |t|
+  create_table "giver_gardner_points", force: :cascade do |t|
     t.bigint "gardner_id", null: false
     t.bigint "giver_id", null: false
     t.integer "nb_of_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gardner_id"], name: "index_givers_gardners_points_on_gardner_id"
-    t.index ["giver_id"], name: "index_givers_gardners_points_on_giver_id"
+    t.index ["gardner_id"], name: "index_giver_gardner_points_on_gardner_id"
+    t.index ["giver_id"], name: "index_giver_gardner_points_on_giver_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -108,6 +109,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_092331) do
   add_foreign_key "appointments", "users", column: "giver_id"
   add_foreign_key "appointments_tables", "users", column: "gardener_id"
   add_foreign_key "appointments_tables", "users", column: "giver_id"
-  add_foreign_key "givers_gardners_points", "users", column: "gardner_id"
-  add_foreign_key "givers_gardners_points", "users", column: "giver_id"
+  add_foreign_key "giver_gardner_points", "users", column: "gardner_id"
+  add_foreign_key "giver_gardner_points", "users", column: "giver_id"
 end

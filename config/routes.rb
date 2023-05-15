@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   # Appointments
   post 'appointments', to: "appointments#create", as: :create_appointment
 
+  # Givers
+  get 'mon-espace/mes-recompenses', to: "givers#rewards", as: :giver_rewards
+  get 'mon-espace/mes-rendez-vous', to: "givers#appointments", as: :giver_appointments
 end

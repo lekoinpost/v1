@@ -7,6 +7,7 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
+  
     if @appointment.save
       redirect_to root_path, notice: "Votre demande a bien été envoyée."
     else
@@ -20,5 +21,7 @@ class AppointmentsController < ApplicationController
   def appointment_params
     params.require(:appointment).permit(:giver_id, :gardner_id, :date, :quantity, :compost_type)
   end
+
+  def 
 
 end
