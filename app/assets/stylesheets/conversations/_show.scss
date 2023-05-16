@@ -1,0 +1,55 @@
+.conversation {
+  background-color: #ECECEC;
+  padding: 24px;
+  border-radius: 10px;
+  border-radius: 10px;
+  .message, .message-input-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 12px 12px 4px 12px;
+    margin-bottom: 16px
+  }
+  .date {
+    font-size: 0.9em;
+    padding: 4px 8px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 16px;
+  }
+  .time {
+    font-size: 0.9em;
+    text-align: right;
+  }
+  .message {
+    max-width: 75%;
+  }
+  .sent-message {
+    display: flex;
+    justify-content: end;
+  }
+  .message-input-container {
+    display: flex;
+    align-items: end;
+    padding-bottom: 12px !important
+  }
+  .message-input {
+    margin-bottom: 0px !important;
+    flex-grow: 1;
+    resize: none;
+    overflow: hidden;
+  }
+  
+  .send-btn {
+    border: 2px solid black;
+    padding: 8px;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media(min-width: 992px) {
+  .conversation {
+    max-height: 80vh;
+    overflow-x: scroll;
+  }
+}

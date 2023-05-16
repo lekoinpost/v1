@@ -3,7 +3,7 @@
 @import "show";
 
 
-.gardner-cards {
+.gardener-cards {
   display: grid; 
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
@@ -11,7 +11,7 @@
 }
 
 @media(min-width: 992px) {
-  .gardner-cards {
+  .gardener-cards {
     grid-template-columns: 1fr;
   }
 }

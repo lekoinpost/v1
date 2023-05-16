@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   connect() {
-    console.log("Helloooooo")
+
     const passwordVisibilityButton = document.querySelector(".password-visibility-button");
     const passwordInput = document.querySelector("#user-password");
 

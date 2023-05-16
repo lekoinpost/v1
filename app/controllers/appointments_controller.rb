@@ -11,7 +11,7 @@ class AppointmentsController < ApplicationController
     if @appointment.save
       redirect_to root_path, notice: "Votre demande a bien été envoyée."
     else
-      redirect_to gardner_path(slug: @gardner.slug)
+      redirect_to gardener_path(slug: @gardener.slug)
       raise
     end
   end
@@ -19,7 +19,7 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:giver_id, :gardner_id, :date, :quantity, :compost_type)
+    params.require(:appointment).permit(:giver_id, :gardener_id, :date, :quantity, :compost_type)
   end
 
   def 

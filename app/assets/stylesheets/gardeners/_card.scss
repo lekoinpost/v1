@@ -1,11 +1,11 @@
-.gardner-cards {
+.gardener-cards {
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 12px;
   column-gap: 12px
 }
 
-.gardner-card {
+.gardener-card {
   display: flex;
   min-height: 230px;
   h2 {
@@ -13,11 +13,11 @@
   }
 }
 
-.gardner-card:hover {
+.gardener-card:hover {
   border: 2px solid $dark
 }
 
-.gardner-infos {
+.gardener-infos {
   background-color: $gray;
   padding: 12px;
   display: flex;
@@ -25,7 +25,7 @@
   justify-content: space-between;
 }
 
-.gardner-image {
+.gardener-image {
   background-size: cover;
   background-repeat: no-repeat;
 }

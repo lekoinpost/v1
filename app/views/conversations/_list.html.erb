@@ -1,0 +1,41 @@
+<h2 class="text-center my-4">Ma messagerie</h2>
+<div class="row">
+
+  <div class="col-12 col-md-4">
+    <% if action_name == "show" %>
+      <div class="d-md-none">
+        <div class="conversation-card active">
+          <div class="avatar" class="conversation-avatar" style="background-image: url('<%= cl_image_path active_conversation.appointment.gardener.main_image.key, crop: :fill %>'); background-size: cover">
+          </div>
+          <div class="conversation-infos">
+            <div class="red"><strong><%= active_conversation.appointment.gardener.garden_name %></strong></div>
+            <div><%= I18n.l active_conversation.appointment.date, format: "%a. %e %b " %></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="<%= 'd-none d-md-block' if action_name == 'show' %>">
+      <div class="conversations-cards">
+        <% @conversations.each do |conversation| %>
+          <div class="conversation-card <%= conversation == active_conversation ? 'active' : '' %>">
+            <div class="avatar" class="conversation-avatar" style="background-image: url('<%= cl_image_path conversation.appointment.gardener.main_image.key, crop: :fill %>'); background-size: cover">
+            </div>
+            <div class="conversation-infos">
+              <%= link_to conversation_path(conversation) do %>
+                <div class="red"><strong><%= conversation.appointment.gardener.garden_name %></strong></div>
+                <div><%= I18n.l conversation.appointment.date, format: "%a. %e %b " %></div>
+                <small><em><%= conversation.messages.last.content.truncate(24)%></em></small>
+              <% end %>
+            </div>
+
+          </div> 
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-8">
+    <div class="<%= 'd-none d-md-block' if action_name == 'index' %>">
+      <%= render "card", active_conversation: active_conversation %>
+    </div>
+  </div>
+</div>

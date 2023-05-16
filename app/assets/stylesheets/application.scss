@@ -11,12 +11,18 @@
 
 // Your CSS partials
 @import "appointments/index";
+@import "conversations/index";
 @import "components/index";
-@import "gardners/index";
+@import "gardeners/index";
 @import "pages/index";
 
 .section {
   padding: 12px 6vw;
+}
+
+.container-small {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .container-large {

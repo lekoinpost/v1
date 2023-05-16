@@ -1,11 +1,12 @@
 class Appointment < ApplicationRecord
 
 
-  belongs_to :giver, class_name: "User", dependent: :destroy
-  belongs_to :gardner, class_name: "User", dependent: :destroy
+  belongs_to :giver, class_name: "User"
+  belongs_to :gardener, class_name: "User"
+  has_one :conversation
 
-  after_create :set_giver_gardner_points
-  after_update :update_giver_gardner_points
+  after_create :set_giver_gardener_points, :create_conversation
+  after_update :update_giver_gardener_points
 
   validates :date, :quantity, :compost_type, presence: true
   
@@ -16,26 +17,30 @@ class Appointment < ApplicationRecord
 
 
   def mark_as_confirmed
-    self.update_giver_gardner_points
+    self.update_giver_gardener_points
     self.status = "confirmed"
     self.save
   end
 
-  def set_giver_gardner_points 
-    GiverGardnerPoint.create_or_find_by(giver: self.giver, gardner: self.gardner)
+  def set_giver_gardener_points 
+    GiverGardenerPoint.create_or_find_by(giver: self.giver, gardener: self.gardener)
   end
 
-  def update_giver_gardner_points
+  def update_giver_gardener_points
     # Barème de récompenses :
     # 1kg de biodechets = 1 point 
     # 1kg de compost mur = 3 points
 
     if self.compost_type == "biodéchets"
-      self.set_giver_gardner_points += self.quantity * 1
+      self.set_giver_gardener_points += self.quantity * 1
     elsif self.compost_type == "compost mûr"
-      self.set_giver_gardner_points += self.quantity * 3
+      self.set_giver_gardener_points += self.quantity * 3
     end
     self.save
+  end
+
+  def create_conversation
+    build_conversation.save
   end
 
 end

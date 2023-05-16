@@ -1,4 +1,4 @@
-class Gardner < User
+class Gardener < User
   has_one_attached :main_image
 
   after_create :set_slug
@@ -12,7 +12,7 @@ class Gardner < User
 
   scope :by_address, lambda { |address|
     if address.present?
-      Gardner.near(
+      Gardener.near(
         Geocoder.search(address).first.coordinates,
         20,
         order: :distance

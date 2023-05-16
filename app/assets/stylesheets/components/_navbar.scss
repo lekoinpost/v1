@@ -10,6 +10,7 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  padding: 24px;
 }
 
 .navbar-lewagon .navbar-brand img {
@@ -22,4 +23,9 @@
 
 .navbar .dropdown-toggle::after {
   display: none !important
+}
+
+.navbar .icon {
+  width: 20px;
+  margin-right: 8px;
 }

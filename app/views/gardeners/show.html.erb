@@ -1,23 +1,23 @@
-<div class="section" id="gardner-show">
+<div class="section" id="gardener-show">
   <div class="container-large">
     <div class="row d-flex align-items-stretch mb-5">
-      <div class="col-12 col-md-6 main-image" style="background-image: url('<%= cl_image_path @gardner.main_image.key, crop: :fill %>'); background-size: cover"
+      <div class="col-12 col-md-6 main-image" style="background-image: url('<%= cl_image_path @gardener.main_image.key, crop: :fill %>'); background-size: cover"
       ></div>
       <div class="col-12 col-md-6"> 
-        <div class="gardner-description">
+        <div class="gardener-description">
           <div class="d-flex align-items-center mb-2">
             <%= image_tag "icons/location", width: 30, class:"me-2" %>
-            <%= @gardner.address %>
+            <%= @gardener.address %>
           </div>
           <div class="d-flex align-items-center">
             <%= image_tag "icons/reward", width: 30, class:"me-2" %>
-            XXX / <%= @gardner.nb_of_points_for_a_gift %>
+            XXX / <%= @gardener.nb_of_points_for_a_gift %>
           </div>
-          <div><%= @gardner.description %></div>
-          <h2><%= @gardner.garden_name %></h2>
-          <div class="mb-2"><%= @gardner.first_name %> <%= @gardner.last_name%></div>
+          <div><%= @gardener.description %></div>
+          <h2><%= @gardener.garden_name %></h2>
+          <div class="mb-2"><%= @gardener.first_name %> <%= @gardener.last_name%></div>
           <div>
-            <% @gardner.products.each do |product| %>
+            <% @gardener.products.each do |product| %>
               <div class="product"><%= product %></div>
             <% end %>
           </div>
@@ -33,7 +33,7 @@
         
         <%= f.input :giver_id, as: :hidden, input_html: { value: current_user.id } %>
         
-        <%= f.input :gardner_id, as: :hidden, input_html: { value: @gardner.id } %>
+        <%= f.input :gardener_id, as: :hidden, input_html: { value: @gardener.id } %>
         
         <div data-controller="flatpickr" >
           <div class="d-flex align-items-center justify-content-center">
