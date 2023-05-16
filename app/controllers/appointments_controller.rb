@@ -22,6 +22,4 @@ class AppointmentsController < ApplicationController
     params.require(:appointment).permit(:giver_id, :gardener_id, :date, :quantity, :compost_type)
   end
 
-  def 
-
 end
