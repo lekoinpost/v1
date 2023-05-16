@@ -10,6 +10,8 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import CompostQuantitySpinnerController from "./compost_quantity_spinner_controller"
 application.register("compost-quantity-spinner", CompostQuantitySpinnerController)
 
+import ConversationSubscriptionController from "./conversation_subscription_controller"
+application.register("conversation-subscription", ConversationSubscriptionController)
 
 import FaqButtonsController from "./faq_buttons_controller"
 application.register("faq-buttons", FaqButtonsController)

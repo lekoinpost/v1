@@ -5,7 +5,7 @@ class GiversController < ApplicationController
 
   def index
     scope = Giver.all
-    @pagy, @gardners = pagy_array(scope, items: 9, locale: :fr)
+    @pagy, @gardeners = pagy_array(scope, items: 9, locale: :fr)
 
     respond_to do |format|
       format.html
@@ -15,7 +15,7 @@ class GiversController < ApplicationController
   end
 
   def rewards
-    @givers_gardners_points = GiverGardnerPoint.where(giver_id: @giver.id)
+    @givers_gardeners_points = GiverGardenerPoint.where(giver_id: @giver.id)
   end
 
   def appointments

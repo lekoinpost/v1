@@ -7,12 +7,16 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :email, uniqueness: true
   
+  has_many :appointments
+  has_many :conversations, through: :appointments
+  has_many :messages
+
   def giver?
-    type == 'giver'
+    type == 'Giver'
   end
 
-  def gardner?
-    type == 'gardner'
+  def gardener?
+    type == 'Gardener'
   end
 
 end

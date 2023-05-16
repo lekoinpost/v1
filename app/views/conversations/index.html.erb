@@ -1,0 +1,12 @@
+<div class="section">
+  <% if @conversations.present? %>
+    <div class="d-md-none">
+      <%= render "list", conversations: @conversations, active_conversation: nil %>
+    </div>
+    <div class="d-none d-md-block">
+      <%= render "list", conversations: @conversations, active_conversation: @conversations.last%>
+    </div>
+  <% else %>
+    <div>Vous n'avez pas encore de message </div>
+  <% end %>
+</div>
