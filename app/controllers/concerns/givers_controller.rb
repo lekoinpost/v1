@@ -18,13 +18,6 @@ class GiversController < ApplicationController
     @givers_gardeners_points = GiverGardenerPoint.where(giver_id: @giver.id)
   end
 
-  def appointments
-    @giver_appointments = Appointment.where(giver: @giver)
-    @upcoming_appointments = @giver_appointments.upcoming.order(date: :asc)
-    @passed_appointments = @giver_appointments.passed.order(date: :desc)
-  end
-
-
   private
 
   def set_giver

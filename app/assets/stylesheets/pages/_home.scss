@@ -1,10 +1,6 @@
 // Specific CSS for your home-page
 
 #home {
-  h1 {
-    font-family: 'Open Sans', sans-serif;
-    margin-top: 140px;
-  }
   h2 {
     color: $red !important;
   }
@@ -14,34 +10,91 @@
   }
   #logo {
     height: 140px;
-    position: absolute;
-    right: 0;
-  }
-  #faq {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    position: absolute; 
-    bottom: 0;
-    left: 8x;
-    right: 8x;
-    width: 100%
-  }
-  
-  #faq div {
-    padding: 8px;
-    background-color: $light-gray;
-    width: 100%
+    margin: 0 auto;
   }
 
+  #home-infos {
+    flex-grow: 1;
+    padding: 16px;
+    position: relative;
+  }
+  #home-hero {
+    background-image: url('home');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-position: 50% 50%;
+  }
+
+}
+
+@media(min-width: 768px) {
+  #home-hero-container {
+    margin: 0 !important;
+    height: 90vh
+  }
+  #home-hero {
+    height: 100% !important;
+  }
+  #home-infos {
+    min-height: 90vh;
+  }
+}
+
+// HOME FAQ 
+#faq {
+  margin-top: 24px;
+}
+
+.faq-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.faq-content {
+  background-color: white !important;
+  padding: 8px;
+}
+.faq-item {
+  margin-top: 12px
+}
+
+.faq-title::before {
+  content: '\25B6'; /* Unicode character for a right-pointing triangle */
+  margin-right: 0.5em;
+}
+
+@media(min-width: 768px) {
+  #faq {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 12px;
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+    padding-right: 12px;
+    margin-top: 0px !important;
+  }
+  .faq-item {
+    position: relative;
+    margin-bottom: 0 !important;
+  }
+  // .faq-content {
+  //   display: none;
+  // }
   .faq-title {
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 33%;
     height: 100%;
+    position: absolute; 
+    bottom: 0
   }
+
   #title-1 {
     height: 120px;
   }
@@ -51,27 +104,13 @@
   #title-3 {
     height: 140px;
   }
-  #home-infos {
-    flex-grow: 1;
-    padding: 16px;
-    min-height: 100vh;
-    position: relative;
+  details[open] > summary {
+    display: none;
   }
-  #home-hero {
-    background-image: url('home');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100%;
-    position: sticky;
-    top: 0;
-    background-position: 50% 50%;
-  }
-  #login-button {
-    width: 150px;
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-  }
+}
 
+#faq summary {
+  padding: 8px;
+  background-color: $light-gray;
+  width: 100%;
 }

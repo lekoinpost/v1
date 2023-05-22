@@ -5,6 +5,18 @@
   border-radius: 3px;
 }
 
+.btn-egg {
+  display: flex;
+  width: 133px;
+  height: 74px;
+  background-color: #1D832C;
+  border-radius: 60% 100% 57% 100%;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  border: none !important;
+}
+
 .devise-button {
   border: none !important;
   background-color: #11ffee00 !important;

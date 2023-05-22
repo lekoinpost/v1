@@ -1,6 +1,6 @@
-<% if appointments %>
+<% if @selected_appointments.present? %>
   <div class="appointments-cards">
-    <% appointments.each do |appointment| %>
+    <% @selected_appointments.each do |appointment| %>
       <div class="row d-flex align-items-stretch mb-3">
 
         <div class="col-12 col-md-6 pe-0"> 
@@ -23,7 +23,8 @@
             </div>
             <div class="d-flex justify-content-center">
               <%= link_to conversation_path(appointment.conversation) do %>
-                <%= image_tag "conversation", id:"conversation-button", class:"move-on-hover", width: 140%>
+                <%# image_tag "conversation", id:"conversation-button", class:"move-on-hover", width: 140%>
+                <small class="btn-egg move-on-hover">Contacter</small>
               <% end %>
             </div>
           </div>
@@ -35,4 +36,6 @@
       
     <% end %>
   </div>
+<% else %>
+  <div class="text-center">Aucun rendez-vous trouvé.</div>
 <% end %>
