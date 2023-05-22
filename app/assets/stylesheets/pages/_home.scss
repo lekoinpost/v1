@@ -34,7 +34,11 @@
 @media(min-width: 768px) {
   #home-hero-container {
     margin: 0 !important;
-    height: 90vh
+    position: relative;
+    top: 0; 
+    bottom: 0;
+    left: 0; 
+    right: 0
   }
   #home-hero {
     height: 100% !important;
@@ -72,40 +76,43 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 12px;
-    position: absolute; 
-    bottom: 0;
+    // position: absolute; 
+    // bottom: 0;
     width: 100%;
     padding-right: 12px;
     margin-top: 0px !important;
   }
   .faq-item {
-    position: relative;
+    // position: relative;
     margin-bottom: 0 !important;
   }
-  // .faq-content {
-  //   display: none;
-  // }
   .faq-title {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 33%;
     height: 100%;
-    position: absolute; 
+    // position: absolute; 
     bottom: 0
   }
 
   #title-1 {
     height: 120px;
+    margin-top: 140px;
   }
   #title-2 {
     height: 190px;
+    margin-top: 70px;
   }
   #title-3 {
     height: 140px;
+    margin-top: 120px;
   }
   details[open] > summary {
     display: none;
+  }
+  .faq-title::before {
+   display: none !important;
   }
 }
 
