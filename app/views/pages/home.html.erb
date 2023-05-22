@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-12 col-md-8">
       <div id="home-infos">
-        <%= image_tag "logo.png", id:"logo" %>
+
+        <div class="d-flex justify-content-center">
+          <%= image_tag "logo.png", id:"logo" %>
+        </div>
         <h1>Transformez vos biodéchets</h1>
 
         <%= render "gardeners/search" %>
@@ -10,34 +13,31 @@
         <h2>Soyez bon avec la planète, <br>elle vous le rendra</h2>
         <div id="faq" data-controller="faq-buttons">
 
-          <div class="faq-item">
-            <div class="faq-title" id="title-1">
+          <details class="faq-item">
+            <summary class="faq-title" id="title-1">
               <h3>Pourquoi ?</h3>
-            </div>
-            <div class="faq-content d-none"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
-          </div>
+            </summary>
+            <div class="faq-content"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
+          </details>
 
-          <div class="faq-item mx-2">
-            <div class="faq-title" id="title-2">
+          <details class="faq-item">
+            <summary class="faq-title" id="title-2">
               <h3>Comment ?</h3>
-            </div>
-            <div class="faq-content d-none"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
-          </div>
+            </summary>
+            <div class="faq-content"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
+          </details>
 
-          <div class="faq-item">
-            <div class="faq-title" id="title-3">
+          <details class="faq-item">
+            <summary class="faq-title" id="title-3">
               <h3>Récompense</h3>
-            </div>
-            <div class="faq-content d-none"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
-          </div>
+            </summary>
+            <div class="faq-content"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
+          </details>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 p-0" id="home-hero-container">
       <div id="home-hero">
-        <%= link_to new_user_session_path do %>
-          <%= image_tag 'new_session.png', id:"login-button" %>
-        <% end %>
       </div>
     </div>
 </div>

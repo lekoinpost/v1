@@ -10,7 +10,15 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  padding: 24px;
+  padding: 32px;
+  height: 100vh;
+}
+
+@media(min-width: 768px) {
+  .navbar-lewagon .navbar-collapse {
+    height: auto !important;
+    padding: 8px !important;
+  }
 }
 
 .navbar-lewagon .navbar-brand img {
@@ -24,6 +32,10 @@
 .navbar .dropdown-toggle::after {
   display: none !important
 }
+
+// .navbar-nav {
+//   align-items: center;
+// }
 
 .navbar .icon {
   width: 20px;

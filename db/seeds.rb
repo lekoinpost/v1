@@ -170,3 +170,19 @@ puts "Create 3 appointments"
     status: "confirmed"
   )
 
+  appointment_5 = Appointment.create(
+    giver_id: giver_1.id,
+    gardener_id: gardener_3.id, 
+    quantity: 3, 
+    compost_type: "biodéchets",
+    date: Date.today + 3
+  )
+
+  appointment_6 = Appointment.create(
+    giver_id: giver_1.id,
+    gardener_id: gardener_3.id, 
+    quantity: 3, 
+    compost_type: "biodéchets",
+    date: Date.today + 5
+  )
+

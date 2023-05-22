@@ -1,0 +1,45 @@
+.simple-calendar {
+  color: black !important;
+  table {
+    width: auto;
+  }
+  .table {
+    --bs-table-color: black !important;
+    margin: 0 auto !important;
+  }
+  .table-striped > tbody > tr:nth-of-type(odd) > *{
+    --bs-table-accent-bg: white !important;
+    color: black !important;
+  }
+  .day, th {
+    height: auto !important;
+    padding: 8px;
+  }
+  table, thead, th, td {
+    border: none !important;
+  }
+  .circle {
+    border-radius: 50%;
+    opacity: 0.7;
+    padding: 8px;
+    color: white
+  }
+
+  .circle-red {
+    background-color: $red;
+  }
+
+  .circle-green {
+    background-color: $green
+  }
+  .calendar-heading, td, th {
+    text-align: center;
+  }
+  .today {
+    background-color: white !important;
+  }
+  .selected {
+    border: 3px solid black;
+  }
+}
+

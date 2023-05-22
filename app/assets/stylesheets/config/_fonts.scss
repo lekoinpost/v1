@@ -1,18 +1,17 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 
 // Define fonts for body and headers
-$body-font: 'Roboto Mono', monospace;
-$headers-font: 'Roboto Mono', monospace;
+$body-font: 'Necto Mono', monospace;
+$headers-font: 'Necto Mono', monospace;
 
 
 
 // To use a font file (.woff) uncomment following lines
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
+@font-face {
+  font-family: "Necto Mono";
+  src: font-url('Necto-Mono.otf');
+  src: font-url('Necto-Mono.woff') format('woff'),
+       font-url('Necto-Mono.woff2') format('woff2')
+}
+$NectoMono: "NectoMono";

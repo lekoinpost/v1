@@ -14,7 +14,11 @@ class Appointment < ApplicationRecord
 
   scope :upcoming, -> { where('date >= ?', Date.today) }
   scope :passed, -> { where('date < ?', Date.today) }
-
+  scope :in_same_month_as, ->(start_date) {
+    where(date: start_date.beginning_of_month..start_date.end_of_month)
+  }
+  scope :filter_by_date, ->(date){ where('date = ?', date)}
+  scope :by_user, ->(user) {where("giver_id = ? OR gardener_id = ?", user.id, user.id) }
 
   def mark_as_confirmed
     self.update_giver_gardener_points
@@ -41,6 +45,10 @@ class Appointment < ApplicationRecord
 
   def create_conversation
     build_conversation.save
+  end
+
+  def start_time
+    self.date 
   end
 
 end
