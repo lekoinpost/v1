@@ -1,6 +1,6 @@
-<% content_for :meta_title, "#{@gardener.name} sur #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_title, "#{@gardener.garden_name} sur #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @gardener.description %>
-<% content_for :meta_image, cl_image_path(@gardener.photo.key) if @gardener.main_image.attached? %>
+<% content_for :meta_image, cl_image_path(@gardener.main_image.key) if @gardener.main_image.attached? %>
 
 <div class="section" id="gardener-show">
   <div class="container-large">
