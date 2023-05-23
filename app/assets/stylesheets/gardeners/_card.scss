@@ -1,8 +1,19 @@
 .gardener-cards {
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 12px;
-  column-gap: 12px
+  grid-gap: 16px;
+}
+
+@media(min-width: 768px) {
+  .gardener-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(min-width: 992px) {
+  .gardener-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 .gardener-card {
