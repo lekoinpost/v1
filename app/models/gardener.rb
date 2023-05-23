@@ -1,5 +1,6 @@
 class Gardener < User
   has_one_attached :main_image
+  has_many :giver_gardener_points, foreign_key: :gardener_id, dependent: :destroy
 
   after_create :set_slug
   after_update :set_slug

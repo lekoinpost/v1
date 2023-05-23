@@ -55,7 +55,7 @@ gardener_3 = User.new(
   description: "Je suis fermé le weekend mais très flexible en semaine",
   address: '2 cours Alsace-Lorraine, Bordeaux',
   type: "Gardener",
-  nb_of_points_for_a_gift: "15", 
+  nb_of_points_for_a_gift: "9", 
   products: ["pommes de terres", "poires", "concombres"]
 )
 main_image = URI.open("https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
@@ -186,3 +186,46 @@ puts "Create 3 appointments"
     date: Date.today + 5
   )
 
+# Create Giver Gardner Points
+
+givers_gardeners_points_1 = GiverGardenerPoint.create(
+  giver_id: giver_1.id,
+  gardener_id: gardener_1.id,
+  nb_of_points: 3
+)
+
+givers_gardeners_points_2 = GiverGardenerPoint.create(
+  giver_id: giver_1.id,
+  gardener_id: gardener_1.id,
+  nb_of_points: 3
+)
+
+givers_gardeners_points_3 = GiverGardenerPoint.create(
+  giver_id: giver_1.id,
+  gardener_id: gardener_2.id,
+  nb_of_points: 5
+)
+
+givers_gardeners_points_4 = GiverGardenerPoint.create(
+  giver_id: giver_2.id,
+  gardener_id: gardener_2.id,
+  nb_of_points: 2
+)
+
+givers_gardeners_points_5 = GiverGardenerPoint.create(
+  giver_id: giver_1.id,
+  gardener_id: gardener_3.id,
+  nb_of_points: 1
+)
+
+givers_gardeners_points_6 = GiverGardenerPoint.create(
+  giver_id: giver_1.id,
+  gardener_id: gardener_3.id,
+  nb_of_points: 8
+)
+
+givers_gardeners_points_7 = GiverGardenerPoint.create(
+  giver_id: giver_1.id,
+  gardener_id: gardener_1.id,
+  nb_of_points: 14
+)
