@@ -1,15 +1,17 @@
 <div class="gardener-card">
   <%= link_to gardener_path(slug: gardener.slug), class:"gardener-infos w-50" do %>
-    <div>
+    <div class="d-flex flex-column justify-content-center h-100">
       <h2><%= gardener.garden_name %></h2>
       <div><%= gardener.first_name %></div>
       <div><%= gardener.last_name%></div>
     </div>
     <div>
-      <div class="d-flex align-items-center mb-2">
-        <%= image_tag "icons/location", width: 30 %>
-        <%= gardener.distance_to(params[:address]) %> km
-      </div>
+      <% if params[:address].present? %>
+        <div class="d-flex align-items-center mb-2">
+          <%= image_tag "icons/location", width: 30 %>
+          <%= gardener.distance_to(params[:address]) %> km
+        </div>
+      <% end %>
       <% if @giver %>
         <div class="d-flex align-items-center">
           <%= image_tag "icons/reward", width: 30 %>
@@ -24,4 +26,3 @@
   </div>
 
 </div>
-
