@@ -1,11 +1,11 @@
 <div class="container-large" id="home">
-  <div class="row d-flex flex-wrap">
+  <div class="row mt-4 d-flex flex-wrap">
     <div class="col-12 col-md-8">
       <div id="home-infos">
 
-        <div class="d-flex justify-content-center">
+        <%# <div class="d-flex justify-content-center">
           <%= image_tag "logo.png", id:"logo" %>
-        </div>
+        <%# </div> %>
         <h1>Transformez vos biodéchets</h1>
 
         <%= render "gardeners/search" %>
@@ -13,23 +13,26 @@
         <h2>Soyez bon avec la planète, <br>elle vous le rendra</h2>
         <div id="faq" data-controller="faq-buttons">
 
-          <details class="faq-item">
-            <summary class="faq-title" id="title-1">
-              <h3>Pourquoi ?</h3>
+          <details>
+            <summary id="summary-1">
+              <h3 class="d-inline">Pourquoi ?</h3>
+              <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="faq-content"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
           </details>
 
-          <details class="faq-item">
-            <summary class="faq-title" id="title-2">
-              <h3>Comment ?</h3>
+          <details>
+            <summary id="summary-2">
+               <h3 class="d-inline">Comment ?</h3>
+               <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="faq-content"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
           </details>
 
-          <details class="faq-item">
-            <summary class="faq-title" id="title-3">
-              <h3>Récompense</h3>
+          <details>
+            <summary id="summary-3">
+              <h3 class="d-inline">Récompense</h3>
+              <i class="fas fa-chevron-down"></i>
             </summary>
             <div class="faq-content"> Nous créons une situation où les potagers locaux ne dépendent plus de l'achat de compost industriel et où vous accumulez des points/jetons au jardin à qui vous donnez vos bio-déchets.</div>
           </details>

@@ -1,7 +1,7 @@
 <%= simple_form_for("", url: gardeners_path(query: params[:query]),
       method: :get, id:"gardener-search") do |f| %>
 
-  <%= image_tag "icons/location.png", id:"location-icon" %>
+  <%= image_tag "icons/location.png", class:"icon" %>
   
   <div class="d-none" id="address-param" data-selected="<%= params[:address] %>"></div>
 
@@ -22,5 +22,13 @@
       placeholder: "renseigner une adresse"
     } %>
 
-  <%= f.submit "rechercher", class: 'btn-light' %>
+ 
+  <div class="d-none d-md-block"> <%= f.submit "Rechercher", class: 'btn-light' %></div>
+
+  <div class="d-md-none">
+    <%= button_tag(type: 'submit', value:"") do %>
+      <%= image_tag "icons/find.png", class:"icon" %>
+    <% end %>
+  </div>
+
 <% end %>
