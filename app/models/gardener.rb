@@ -27,4 +27,11 @@ class Gardener < User
     update_columns(slug: self.garden_name.parameterize)
   end
 
+  def distance_to(address)
+    return nil unless address.present? && latitude.present? && longitude.present?
+    
+    distance = Geocoder::Calculations.distance_between([latitude, longitude], Geocoder.coordinates(address))
+    distance.round(1) # Round the distance to two decimal places
+  end
+
 end

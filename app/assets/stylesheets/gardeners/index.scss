@@ -1,17 +1,3 @@
 @import "card";
 @import "search";
 @import "show";
-
-
-.gardener-cards {
-  display: grid; 
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
-  flex-grow: 1;
-}
-
-@media(min-width: 992px) {
-  .gardener-cards {
-    grid-template-columns: 1fr;
-  }
-}

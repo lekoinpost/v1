@@ -24,8 +24,6 @@ class GardenersController < ApplicationController
       }
     end
 
-
-
   end
 
   def new
