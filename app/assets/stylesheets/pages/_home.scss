@@ -8,10 +8,10 @@
     color: $green !important;
     font-size: 1.4em !important;
   }
-  #logo {
-    height: 140px;
-    margin: 0 auto;
-  }
+  // #logo {
+  //   height: 140px;
+  //   margin: 0 auto;
+  // }
 
   #home-infos {
     flex-grow: 1;
@@ -51,73 +51,47 @@
 // HOME FAQ 
 #faq {
   margin-top: 24px;
-}
-
-.faq-title {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-.faq-content {
-  background-color: white !important;
-  padding: 8px;
-}
-.faq-item {
-  margin-top: 12px
-}
-
-.faq-title::before {
-  content: '\25B6'; /* Unicode character for a right-pointing triangle */
-  margin-right: 0.5em;
-}
-
-@media(min-width: 768px) {
-  #faq {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 12px;
-    // position: absolute; 
-    // bottom: 0;
+  details {
+    margin-top: 12px
+  }
+  summary {
+    padding: 8px;
+    background-color: $light-gray;
     width: 100%;
-    padding-right: 12px;
-    margin-top: 0px !important;
-  }
-  .faq-item {
-    // position: relative;
-    margin-bottom: 0 !important;
-  }
-  .faq-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 33%;
-    height: 100%;
-    // position: absolute; 
-    bottom: 0
+    list-style: none;
+    display: flex !important;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: start;
   }
 
-  #title-1 {
-    height: 120px;
-    margin-top: 140px;
-  }
-  #title-2 {
-    height: 190px;
-    margin-top: 70px;
-  }
-  #title-3 {
-    height: 140px;
-    margin-top: 120px;
-  }
-  details[open] > summary {
+  summary::-webkit-details-marker {
     display: none;
   }
-  .faq-title::before {
-   display: none !important;
+
+  .faq-content {
+    background-color: white !important;
+    padding: 8px;
+  }
+  #summary-1 {
+    max-width: 220px;
+  }
+  #summary-2 {
+    max-width: 280px;
+  }
+  #summary-3 {
+    max-width: 380px;
+  }
+  details[open] > summary{
+    max-width: none !important;
   }
 }
 
-#faq summary {
-  padding: 8px;
-  background-color: $light-gray;
-  width: 100%;
+
+
+
+
+summary.opened i.fa-chevron-down {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in-out;
 }
