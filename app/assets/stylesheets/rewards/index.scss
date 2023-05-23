@@ -1,0 +1,37 @@
+#rewards-image {
+  width: 100%;
+}
+
+.reward-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+}
+
+@media(min-width: 768px) {
+  .reward-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// @media(min-width: 992px) {
+//   .reward-cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }
+
+.reward-card {
+  background-color: $gray;
+  padding: 16px;
+  text-align: center;
+}
+
+
+#reached-rewards .progress-bar {
+  background-color: $red;
+}
+
+
+#pending-rewards .progress-bar {
+  background-color: $green;
+}

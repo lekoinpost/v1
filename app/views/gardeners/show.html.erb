@@ -9,10 +9,12 @@
             <%= image_tag "icons/location", width: 30, class:"me-2" %>
             <%= @gardener.address %>
           </div>
-          <div class="d-flex align-items-center">
-            <%= image_tag "icons/reward", width: 30, class:"me-2" %>
-            XXX / <%= @gardener.nb_of_points_for_a_gift %>
-          </div>
+          <% if current_user.giver? %>
+            <div class="d-flex align-items-center">
+              <%= image_tag "icons/reward", width: 30, class:"me-2" %>
+                <%= current_user.total_points_with(@gardener) %> / <%= @gardener.nb_of_points_for_a_gift %>
+            </div>
+          <% end %>
           <div><%= @gardener.description %></div>
           <h2><%= @gardener.garden_name %></h2>
           <div class="mb-2"><%= @gardener.first_name %> <%= @gardener.last_name%></div>

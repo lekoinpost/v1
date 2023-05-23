@@ -1,9 +1,61 @@
 <div class="section"> 
   <div class="container-large">
 
-    <h2 class="text-center">Mes récompenses</h2>
-    <% @givers_gardeners_points.each do |givers_gardeners_point| %>
+    <% if @reached_rewards.present? %>
 
+      <h2 class="text-center my-4">Vous avez <%= @reached_rewards.size == 1 ? 'une récompense !' : 'des récompenses !'%></h2>
+      <div class="row p-0" id="reached-rewards">
+        <div class="col-4">
+          <%= image_tag "basket_full", id:"rewards-image" %>
+        </div>
+        <div class="col-8">
+          <div class="reward-cards">
+            <% @reached_rewards.each do |gardener, giver_gardener_points| %>
+              <%= link_to gardener_path(slug: gardener.slug) do %>
+                <div class="reward-card">
+                  <% total_points = @giver.total_points_with(gardener) %>
+                  <% points_for_gift = gardener.nb_of_points_for_a_gift %>
+                  <% progress = (total_points.to_f / points_for_gift * 100).to_i %>
+                  
+                  <div><%= gardener.garden_name %></div>
+                  <div><%= "#{total_points} / #{points_for_gift}" %></div>
+                  <div class="progress mt-2" role="progressbar" aria-label="Basic example" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: <%= progress %>%;"></div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
+
+    <% if @pending_rewards.present? %>
+    
+      <h2 class="text-center my-4">Mes points</h2>
+      <div class="row p-0" id="pending-rewards">
+        <div class="col-4">
+          <%= image_tag "basket_empty", id:"rewards-image" %>
+        </div>
+        <div class="col-8">
+          <div class="reward-cards">
+            <% @pending_rewards.each do |gardener, giver_gardener_points| %>
+              <%= link_to gardener_path(slug: gardener.slug) do %>
+                <div class="reward-card">
+                  <% total_points = @giver.total_points_with(gardener) %>
+                  <% points_for_gift = gardener.nb_of_points_for_a_gift %>
+                  <% progress = (total_points.to_f / points_for_gift * 100).to_i %>
+                  
+                  <div><%= gardener.garden_name %></div>
+                  <div><%= "#{total_points} / #{points_for_gift}" %></div>
+                  <div class="progress mt-2" role="progressbar" aria-label="Basic example" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: <%= progress %>%;"></div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>   
   </div>
 </div>
