@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
         render_to_string(partial: "message", locals: {message: @message})
       )
       head :ok
+      UserMailer.with(sender: @message.sender, receiver: @message.receiver, conversation: @conversation).new_message_notification.deliver_now
     else
       render "conversations/show", status: :unprocessable_entity
     end

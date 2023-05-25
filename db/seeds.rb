@@ -229,3 +229,29 @@ givers_gardeners_points_7 = GiverGardenerPoint.create(
   gardener_id: gardener_1.id,
   nb_of_points: 14
 )
+
+# Create 7 conversations
+
+conversation_1 = Conversation.create(
+  appointment_id: appointment_1
+)
+
+conversation_2 = Conversation.create(
+  appointment_id: appointment_2
+)
+
+conversation_3 = Conversation.create(
+  appointment_id: appointment_3
+)
+
+conversation_4 = Conversation.create(
+  appointment_id: appointment_4
+)
+
+conversation_5 = Conversation.create(
+  appointment_id: appointment_5
+)
+
+conversation_6 = Conversation.create(
+  appointment_id: appointment_6
+)
