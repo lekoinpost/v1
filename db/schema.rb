@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_093442) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_202427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,9 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_093442) do
     t.integer "quantity"
     t.string "compost_type"
     t.date "date"
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", default: "pending"
     t.index ["gardener_id"], name: "index_appointments_on_gardener_id"
     t.index ["giver_id"], name: "index_appointments_on_giver_id"
   end
@@ -62,14 +62,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_093442) do
     t.index ["appointment_id"], name: "index_conversations_on_appointment_id"
   end
 
-  create_table "giver_gardener_points", force: :cascade do |t|
+  create_table "gardens", force: :cascade do |t|
+    t.string "garden_name"
+    t.string "slug"
+    t.text "description"
+    t.integer "nb_of_points_for_a_gift"
+    t.string "address"
+    t.string "street"
+    t.string "zipcode"
+    t.string "city"
+    t.string "products", limit: 30, default: [], array: true
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "gardener_id", null: false
+    t.index ["gardener_id"], name: "index_gardens_on_gardener_id"
+  end
+
+  create_table "giver_garden_points", force: :cascade do |t|
+    t.bigint "garden_id", null: false
     t.bigint "giver_id", null: false
     t.integer "nb_of_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gardener_id"], name: "index_giver_gardener_points_on_gardener_id"
-    t.index ["giver_id"], name: "index_giver_gardener_points_on_giver_id"
+    t.index ["garden_id"], name: "index_giver_garden_points_on_garden_id"
+    t.index ["giver_id"], name: "index_giver_garden_points_on_giver_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -94,18 +112,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_093442) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "type"
-    t.string "garden_name"
-    t.string "description"
-    t.integer "nb_of_points_for_a_gift"
-    t.string "street"
-    t.string "zipcode"
-    t.string "city"
-    t.string "slug"
-    t.float "latitude"
-    t.float "longitude"
-    t.string "address"
-    t.string "products", limit: 30, default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -114,8 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_093442) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "users", column: "gardener_id"
   add_foreign_key "appointments", "users", column: "giver_id"
-  add_foreign_key "giver_gardener_points", "users", column: "gardener_id"
-  add_foreign_key "giver_gardener_points", "users", column: "giver_id"
+  add_foreign_key "gardens", "users", column: "gardener_id"
+  add_foreign_key "giver_garden_points", "users", column: "giver_id"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
 end

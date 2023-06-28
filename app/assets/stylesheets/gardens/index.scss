@@ -1,0 +1,11 @@
+@import "card";
+@import "form";
+@import "search";
+@import "show";
+
+.product {
+  border: 2px solid $red;
+  padding: 4px 8px;
+  display: inline-block;
+  margin: 4px;
+}

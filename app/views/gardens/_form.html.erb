@@ -1,0 +1,75 @@
+<div id="garden-form">
+  <%= f.error_notification %>
+
+  <%= f.input :garden_name,
+              autofocus: true,
+              label: "Le nom que je donne à mon jardin : ",
+              wrapper_html: {class:"mt-5"},
+              input_html: { } %>
+
+  <label class="mt-3">L'adresse de mon jardin :</label>
+  <div id="garden-search">
+    <%= image_tag "icons/location.png", class:"icon" %>
+    
+    <div class="d-none" id="address-param" data-selected="<%= @garden.address %>"></div>
+
+    <%= f.input :address, 
+      placeholder: "renseigner une adresse", 
+      label: false, 
+      wrapper_html: {
+        data: {
+          controller: "address-autocomplete", 
+          address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"], 
+          # value: @garden.address
+        },
+        class: "flex-grow-1 mb-0"
+      },
+      input_html: {
+        data: {address_autocomplete_target: "address"}, 
+        class: "d-none", 
+        placeholder: "renseigner une adresse"
+      } %>
+  </div>
+
+  <%= f.input :description,
+              as: :text,
+              label: "Une description de mon jardin : ",
+              wrapper_html: {class:"mt-5"},
+              input_html: { } %>
+  <%= f.input :nb_of_points_for_a_gift,
+              label: "Points à obtenir avant la récompense : ",
+              wrapper_html: {class:"mt-5"},
+              input_html: { } %>
+
+
+  <div data-controller="toggle-garden-products">
+
+    <%= f.input :products,
+      label: "Produits cultivés : ",
+      input_html: { autocomplete: "off", class: "form-control", placeholder: "Entrer un produit", data: { toggle_garden_products_target: "form", action: "keydown.enter->toggle-garden-products#add"}} %>
+
+    <div id="products" class="mt-2" data-toggle-garden-products-target="products">
+      <% @garden.products.each do |product| %>
+        <% if product != "" %>
+          <div class="product" data-action="click->toggle-garden-products#remove" data-value="<%= product%>">
+            <div class="d-flex"><%= product %><i class="fa-solid fa-xmark ms-2"></i></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= hidden_field_tag 'added_products_list[]' %>
+
+    <%= hidden_field_tag 'removed_products_list[]' %>
+
+  </div>
+
+  <label class="mt-4 mb-2">Ajouter une photo</label>
+  <%= f.input :main_image, as: :file, input_html: { class: 'd-none', data: { photo_preview_target: "input", action:"change->photo-preview#displayPreview" }}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger'%>
+  <%= image_tag "", width: 250, class: "hidden", data: { photo_preview_target: "preview" } %>
+
+  <div class="d-flex justify-content-center">
+    <%= f.button :submit, "Valider", class:"btn-egg move-on-hover my-5" %>
+  </div>
+
+</div>

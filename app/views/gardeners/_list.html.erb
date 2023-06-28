@@ -1,9 +1,0 @@
-<div class="gardener-cards">
-  <% @gardeners.each do |gardener| %>
-    <%= render "card", gardener: gardener %>
-  <% end %>
-</div>
-
-<div class='pagy'>
-  <%= pagy_nav(@pagy).html_safe%>
-</div>

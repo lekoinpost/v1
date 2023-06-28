@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   get 'mentions-legales', to: "pages#terms_and_conditions"
 
   # Jardins
-  get 'jardins',        to: "gardeners#index", as: :gardeners
-  get 'jardins/:slug',  to: 'gardeners#show', as: :gardener
-  get 'creer-un-jardin', to: "gardeners#new", as: :new_gardener
+  get 'jardins',        to: "gardens#index", as: :gardens
+  get 'jardins/:slug',  to: 'gardens#show', as: :garden
+  get 'creer-un-jardin', to: "gardens#new", as: :new_garden
+  post 'creer-un-jardin', to: 'gardens#create', as: :create_garden
+  get 'modifier-mon-jardin/:slug', to: "gardens#edit", as: :edit_garden
+  patch 'modifier-mon-jardin/:slug', to: 'gardens#update', as: :update_garden
 
   # Appointments
   post 'appointments', to: "appointments#create", as: :create_appointment

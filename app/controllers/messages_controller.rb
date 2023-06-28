@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.conversation = @conversation
     @message.sender = current_user
-    if current_user.gardener?
+    if current_user.has_a_garden?
       @message.receiver = @conversation.appointment.giver
     else 
       @message.receiver = @conversation.appointment.gardener

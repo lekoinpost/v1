@@ -22,5 +22,11 @@ application.register("flatpickr", FlatpickrController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import PhotoPreviewController from "./photo_preview_controller"
+application.register("photo-preview", PhotoPreviewController)
+
+import ToggleGardenProductsController from "./toggle_garden_products_controller"
+application.register("toggle-garden-products", ToggleGardenProductsController)
+
 import TogglePasswordVisibilityController from "./toggle_password_visibility_controller"
 application.register("toggle-password-visibility", TogglePasswordVisibilityController)
