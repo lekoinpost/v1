@@ -17,6 +17,12 @@
   border: none !important;
 }
 
+.btn-egg:hover {
+  background-color: white !important;
+  color: $green !important;
+  border: 2px solid $green !important;
+}
+
 .devise-button {
   border: none !important;
   background-color: #11ffee00 !important;
@@ -26,4 +32,13 @@
 
 .move-on-hover:hover {
   transform: rotate(10deg)
+}
+
+.upload-photo {
+  border: 1px solid #d3d3d3;
+  padding: 16px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  background: white;
+  border-radius: 2px;
 }

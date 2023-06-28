@@ -34,7 +34,7 @@ class AppointmentsController < ApplicationController
     if @appointment.save
       redirect_to appointments_path, notice: "Votre demande a bien été envoyée."
     else
-      redirect_to gardener_path(slug: @gardener.slug)
+      redirect_to garden_path(slug: @garden.slug)
     end
   end
 

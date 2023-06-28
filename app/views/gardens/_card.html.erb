@@ -1,0 +1,28 @@
+<div class="garden-card">
+  <%= link_to garden_path(slug: garden.slug), class:"garden-infos w-50" do %>
+    <div class="d-flex flex-column justify-content-center h-100">
+      <h2><%= garden.garden_name %></h2>
+      <div><%= garden.gardener.first_name %></div>
+      <div><%= garden.gardener.last_name%></div>
+    </div>
+    <div>
+      <% if params[:address].present? %>
+        <div class="d-flex align-items-center mb-2">
+          <%= image_tag "icons/location", width: 30 %>
+          <%= garden.distance_to(params[:address]) %> km
+        </div>
+      <% end %>
+      <% if @giver %>
+        <div class="d-flex align-items-center">
+          <%= image_tag "icons/reward", width: 30 %>
+          <%= @giver.total_points_with(garden) %> / <%= garden.nb_of_points_for_a_gift %>       
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div class="garden-image w-50" style="background-image: url('<%= cl_image_path garden.main_image.key, crop: :fill %>'); background-size: cover"
+  ><%= link_to "", garden_path(slug: garden.slug), class:"w-100 h-100"%>
+  </div>
+
+</div>

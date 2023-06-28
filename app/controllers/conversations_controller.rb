@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
 
-  before_action :set_user_conversations, only: [:index, :show]
+  before_action :set_user_conversations, only: [:index, :show, :summary_title]
 
   def index
   end

@@ -1,0 +1,10 @@
+<div class="section">
+  <div class="container-small">
+    <h1 class="text-center my-4">Modifier mon jardin</h1>
+    
+    <%= simple_form_for @garden, url: update_garden_path(@garden.slug), method: :patch, html: {data: {controller: "photo-preview"}} do |f| %>
+      <%= render "form", f: f, garden: current_user.garden %>
+    <% end %>
+
+  </div>
+</div>

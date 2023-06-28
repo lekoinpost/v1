@@ -1,0 +1,10 @@
+<div class="section">
+  <div class="container-small">
+    <h1 class="text-center my-4">Créer mon jardin</h1>
+
+      <%= simple_form_for @garden, url: create_garden_path(@garden.slug), method: :post, html: {data: {controller: "photo-preview"}} do |f| %>
+        <%= render "form", f: f, garden: @garden %>
+      <% end %>
+
+  </div>
+</div>

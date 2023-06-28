@@ -1,6 +1,6 @@
 <div>Bonjour <%= @receiver.first_name %>,</div>
 <br>
-<div> Vous avez reçu un nouveau message sur <a href="https://www.lekoinpost.com" target="_blank">Le Koinpost</a> de la part de <%= "#{@sender.first_name} #{@sender.last_name}"%><%= " de #{@sender.garden_name}" if @sender.gardener? %>.</div>
+<div> Vous avez reçu un nouveau message sur <a href="https://www.lekoinpost.com" target="_blank">Le Koinpost</a> de la part de <%= "#{@sender.first_name} #{@sender.last_name}"%><%= " de #{@sender.garden_name}" if @sender.has_a_garden? %>.</div>
 
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-light" style="border-collapse: separate; mso-table-lspace: 0pt; margin-top: 24px; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
     <tbody>

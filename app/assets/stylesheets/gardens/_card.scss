@@ -1,0 +1,42 @@
+.garden-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+}
+
+@media(min-width: 768px) {
+  .garden-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(min-width: 992px) {
+  .garden-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.garden-card {
+  display: flex;
+  min-height: 230px;
+  h2 {
+    font-size: 1.4em !important;
+  }
+}
+
+.garden-card:hover, .reward-card:hover {
+  border: 2px solid $dark
+}
+
+.garden-infos {
+  background-color: $gray;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.garden-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
