@@ -17,6 +17,15 @@
   border: none !important;
 }
 
+.btn-light-red {
+  border: 2px solid $red !important;
+}
+
+.btn-light-red:hover {
+  color: white !important;
+  background-color: $red !important;
+}
+
 .btn-egg:hover {
   background-color: white !important;
   color: $green !important;

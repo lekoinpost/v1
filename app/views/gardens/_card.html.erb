@@ -21,8 +21,13 @@
     </div>
   <% end %>
   
-  <div class="garden-image w-50" style="background-image: url('<%= cl_image_path garden.main_image.key, crop: :fill %>'); background-size: cover"
-  ><%= link_to "", garden_path(slug: garden.slug), class:"w-100 h-100"%>
-  </div>
+  <% if garden.main_image.key.nil? %>
+    <%= image_tag("default.png", class: "garden-image w-50") %>
+  <% else %>
+    <div class="garden-image w-50" style="background-image: url('<%= cl_image_path garden.main_image.key, crop: :fill %>'); background-size: cover">
+      <%= link_to "", garden_path(slug: garden.slug), class:"w-100 h-100"%>
+    </div>
+  <% end %>
+
 
 </div>

@@ -1,0 +1,47 @@
+<div class="row d-flex align-items-stretch mb-3">
+
+  <div class="col-12 col-md-6 pe-0"> 
+    <div class="appointment-infos">
+      <div>
+        <div class="d-flex align-items-center">
+          <%= image_tag "icons/calendar", width: 20, class:"me-2" %>Le <%= appointment.date.strftime('%d/%m/%Y') %>
+        </div>
+        <div>
+          <%= link_to garden_path(slug: appointment.gardener.garden.slug), target:"_blank" do %>
+            <h3><%= appointment.gardener.garden.garden_name %></h3>
+            <div class="mb-2"><%= appointment.gardener.first_name %> <%= appointment.gardener.last_name%></div>
+          <% end %>
+        </div>
+        <hr>
+        <div class="d-flex mb-2">
+          <%= image_tag "icons/location", height: 25, class:"me-2" %><%= appointment.gardener.garden.address %>
+        </div>
+        <div class="d-flex align-items-center mb-2">
+          <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= appointment.quantity %> kg de <%= appointment.compost_type%>
+        </div>
+        <div class="d-flex align-items-center mb-2">
+          <%= image_tag "icons/reward", width: 20, class:"me-2" %>
+          <%= GiverGardenPoint.where(garden: appointment.gardener.garden, giver: appointment.giver)[0].nb_of_points %> / <%= appointment.gardener.garden.nb_of_points_for_a_gift %>
+        </div>
+      </div>
+      
+      <% if appointment.nb_of_unused_rewards > 0 %>
+        <%= link_to giver_rewards_path do %>
+          <div class="d-flex align-items-center mb-2 red">
+            <%= image_tag "icons/gift_red", width: 20, class:"me-3" %>
+            <%= appointment.nb_of_unused_rewards %> <%= appointment.nb_of_unused_rewards == 1 ? "récompense à recevoir" : "récompenses à recevoir" %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="d-flex justify-content-center">
+        <%= link_to conversation_path(appointment.conversation) do %>
+          <%# image_tag "conversation", id:"conversation-button", class:"move-on-hover", width: 140%>
+          <small class="btn-egg move-on-hover">Contact</small>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-12 col-md-6 main-image" style="background-image: url('<%= cl_image_path appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
+  </div>
+</div>
