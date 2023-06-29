@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # Appointments
   post 'appointments', to: "appointments#create", as: :create_appointment
+  post 'appointments/confirm', to: "appointments#mark_as_confirmed", as: :confirm_appointment
   get 'mon-espace/mes-rendez-vous', to: "appointments#index", as: :appointments
 
   # Givers

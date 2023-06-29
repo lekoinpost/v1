@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_202427) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_132343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,7 +83,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_202427) do
   create_table "giver_garden_points", force: :cascade do |t|
     t.bigint "garden_id", null: false
     t.bigint "giver_id", null: false
-    t.integer "nb_of_points"
+    t.integer "nb_of_points", default: 0
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["garden_id"], name: "index_giver_garden_points_on_garden_id"
@@ -100,6 +101,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_202427) do
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["receiver_id"], name: "index_messages_on_receiver_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
+  create_table "rewards", force: :cascade do |t|
+    t.bigint "garden_id", null: false
+    t.bigint "giver_id", null: false
+    t.boolean "used", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["garden_id"], name: "index_rewards_on_garden_id"
+    t.index ["giver_id"], name: "index_rewards_on_giver_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,4 +135,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_202427) do
   add_foreign_key "giver_garden_points", "users", column: "giver_id"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "rewards", "users", column: "giver_id"
 end
