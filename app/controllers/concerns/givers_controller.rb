@@ -14,12 +14,6 @@ class GiversController < ApplicationController
 
   end
 
-  def rewards
-    @rewards = current_user.giver_garden_points.includes(:garden).group_by(&:garden)
-    @pending_rewards = @rewards.select { |_, points| points.sum { |point| point.nb_of_points.to_i } < points.first.garden.nb_of_points_for_a_gift }
-    @reached_rewards = @rewards.select { |_, points| points.sum { |point| point.nb_of_points.to_i } == points.first.garden.nb_of_points_for_a_gift }
-  end
-
   private
 
   def set_giver

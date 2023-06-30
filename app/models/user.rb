@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :conversations, through: :appointments
   has_many :messages
   has_many :giver_garden_points, foreign_key: "giver_id"
-  has_many :rewards, foreign_key: "giver_id"
+  has_many :rewards
 
   def has_a_garden?
     garden.present?

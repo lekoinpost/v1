@@ -36,4 +36,8 @@ class Garden < ApplicationRecord
     distance.round(1) # Round the distance to two decimal places
   end
 
+  def rewards_to_receive
+    Reward.where(garden_id: self, used: false)
+  end
+
 end
