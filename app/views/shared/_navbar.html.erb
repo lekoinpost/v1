@@ -46,8 +46,14 @@
                 <%= image_tag "icons/message", class: "icon" %>
                 <div>Mes messages</div>
               <% end %>
-              <%= link_to giver_rewards_path, class: "dropdown-item d-flex align-items-center" do %>
-                <%= image_tag "icons/reward", class: "icon" %>
+              <% if current_user.has_a_garden? %>
+                <%= link_to rewards_to_give_path, class: "dropdown-item d-flex align-items-center" do %>
+                  <%= image_tag "icons/reward", class: "icon" %>
+                  <div>Récompenser</div>
+                <% end %>
+              <% end %>
+              <%= link_to rewards_to_receive_path, class: "dropdown-item d-flex align-items-center" do %>
+                <%= image_tag "icons/gift", class: "icon" %>
                 <div>Mes récompenses</div>
               <% end %>
               <%= link_to edit_user_registration_path, class: "dropdown-item d-flex align-items-center" do %>
@@ -69,9 +75,17 @@
                 <div>Mes messages</div>
               <% end %>
           </li>
-           <li class="nav-item d-md-none">
-            <%= link_to giver_rewards_path, class: "nav-link d-flex align-items-center" do %>
-              <%= image_tag "icons/reward", class: "icon" %>
+          <% if current_user.has_a_garden? %>
+            <li class="nav-item d-md-none">
+              <%= link_to rewards_to_give_path, class: "nav-link d-flex align-items-center" do %>
+                <%= image_tag "icons/reward", class: "icon" %>
+                <div>Récompenser</div>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="nav-item d-md-none">
+            <%= link_to rewards_to_receive_path, class: "nav-link d-flex align-items-center" do %>
+              <%= image_tag "icons/gift", class: "icon" %>
               <div>Mes récompenses</div>
             <% end %>
           </li>

@@ -1,0 +1,103 @@
+<div class="section"> 
+  <div class="container-large">
+    
+    <div class="reward-page-title">
+      <%= image_tag "icons/reward", width: 40, class:"me-3" %>
+      <h1 class="text-center">Récompenser</h1>
+    </div>
+
+    <div class="tabs">
+      <%= link_to "Récompenses à préparer", rewards_to_give_path, class:"tab red active me-3"%>
+      <%= link_to "Historique", given_rewards_path, class:"tab red inactive"%>
+    </div>
+
+    <% if @rewards_to_give.present? %>
+      <div class="row p-0 mt-5">
+        <div class="col-4">
+          <%= image_tag "basket_full", id:"rewards-image" %>
+        </div>
+        <div class="col-8">
+          <div class="reward-cards">
+            <% @rewards_to_give.each do |(giver_id, gardener_id), count| %>
+              <% giver = User.find(giver_id) %>
+              <% gardener = User.find(gardener_id) %>
+              <% garden = gardener.garden %>
+              <% reward = Reward.find_by(giver_id: giver_id, gardener_id: gardener_id) %>
+              <div class="reward-card">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                  <%= image_tag "icons/user", width: 20, class: "me-2" %><%= giver.first_name.upcase %> <%= giver.last_name.upcase %>
+                </div>
+                <hr>
+                <div class="d-flex align-items-center mb-2 red">
+                  <%= image_tag "icons/gift_red", width: 20, class: "me-3" %>
+                  <div><%= count %> <%= count == 1 ? "Récompense à préparer" : "Récompenses à préparer" %></div>
+                </div>
+                
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="d-flex align-items-center mb-2 btn-light-red p-2" data-bs-toggle="modal" data-bs-target="#confirmRewardModal">
+                    <%= image_tag "icons/like", width: 20, class:"me-2" %>Confirmer
+                  </button>
+                </div>
+
+                <div class="modal fade" id="confirmRewardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <%# <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div> %>
+                      <div class="modal-body text-center">
+                        Confirmez-vous que <%= giver.first_name%> <%= giver.last_name%> a bien reçu ses récompenses ?
+                      </div>
+                      <div class="d-flex justify-content-center pb-2">
+                        <button type="button" data-bs-dismiss="modal"><%= image_tag "icons/false", width: 40, class:"me-2" %></button>
+                        <%= button_to confirm_reward_path(reward: reward), method: :post do %>
+                          <%= image_tag "icons/true", width: 40, class:"me-2" %></button>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    
+    <% if @pending_rewards.present? %>
+      <div class="row p-0 mt-5">
+        <div class="col-4">
+          <%= image_tag "basket_empty", id:"rewards-image" %>
+        </div>
+        <div class="col-8">
+          <div class="reward-cards">
+            
+            <% @pending_rewards.each do |giver, giver_garden_points| %>
+              <% total_points = giver.total_points_with(@user.garden) %>
+              <% points_for_gift = @user.garden.nb_of_points_for_a_gift %>
+              <% progress = (total_points.to_f / points_for_gift * 100).to_i %>
+              <% if total_points > 0 %>
+                
+                  <div class="reward-card">
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                      <%= image_tag "icons/user", width: 20, class: "me-2" %><%= giver.first_name.upcase %> <%= giver.last_name.upcase %>
+                    </div>
+                    <hr>
+                    <div class="text-center"><%= "#{total_points} / #{points_for_gift}" %></div>
+                    <div class="progress mt-2" role="progressbar" aria-label="Basic example" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar" style="width: <%= progress %>%;"></div>
+                    </div>
+                  </div>
+              <% end %>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if !@rewards_to_give.present? && !@pending_rewards.present? %>
+      <div class="my-5 text-center">Vous n'avez pas de récompenses à préparer pour l'instant.</div>
+    <% end %>
+      
+  </div>
+</div>

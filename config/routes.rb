@@ -20,7 +20,15 @@ Rails.application.routes.draw do
 
   # Givers
   get 'mon-compte', to: "givers#edit", as: :giver_edit_profile
-  get 'mon-espace/mes-recompenses', to: "givers#rewards", as: :giver_rewards
+
+  # Rewards
+  get 'mon-compte/recompenser', to: "rewards#rewards_to_give", as: :rewards_to_give
+  get 'mon-compte/recompenser/historique', to: "rewards#given_rewards", as: :given_rewards
+
+  get 'mon-compte/mes-recompenses', to: "rewards#rewards_to_receive", as: :rewards_to_receive
+  get 'mon-compte/mes-recompenses/historique', to: "rewards#received_rewards", as: :received_rewards
+
+  post 'rewards', to: "rewards#mark_as_confirmed", as: :confirm_reward
 
   # Conversations
   get "messagerie", to: "conversations#index", as: :conversations

@@ -26,12 +26,13 @@
   text-align: center;
 }
 
-
-#reached-rewards .progress-bar {
-  background-color: $red;
+.progress-bar {
+  background-color: $green;
 }
 
-
-#pending-rewards .progress-bar {
-  background-color: $green;
+.reward-page-title {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin: 2em 0;
 }

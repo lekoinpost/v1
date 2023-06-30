@@ -42,7 +42,7 @@ class AppointmentsController < ApplicationController
   def mark_as_confirmed
     @appointment.update(status: "confirmed")
     @appointment.update_giver_garden_points
-    flash[:alert] = 'Merci d\'avoir confirmé ce don ! 🎉'
+    flash[:notice] = 'Merci d\'avoir confirmé ce don ! 🎉'
     redirect_back(fallback_location: root_path)
   end
 

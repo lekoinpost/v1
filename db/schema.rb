@@ -104,12 +104,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_132343) do
   end
 
   create_table "rewards", force: :cascade do |t|
-    t.bigint "garden_id", null: false
+    t.bigint "gardener_id", null: false
     t.bigint "giver_id", null: false
     t.boolean "used", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["garden_id"], name: "index_rewards_on_garden_id"
+    t.index ["gardener_id"], name: "index_rewards_on_gardener_id"
     t.index ["giver_id"], name: "index_rewards_on_giver_id"
   end
 
@@ -135,5 +135,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_132343) do
   add_foreign_key "giver_garden_points", "users", column: "giver_id"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "rewards", "users", column: "gardener_id"
   add_foreign_key "rewards", "users", column: "giver_id"
 end

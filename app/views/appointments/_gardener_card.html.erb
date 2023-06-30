@@ -26,10 +26,10 @@
       </div>
       
       <% if appointment.nb_of_unused_rewards > 0 %>
-        <%= link_to giver_rewards_path do %>
+        <%= link_to rewards_to_give_path do %>
           <div class="d-flex align-items-center mb-2 red">
             <%= image_tag "icons/gift_red", width: 20, class:"me-3" %>
-            <%= appointment.nb_of_unused_rewards %> <%= appointment.nb_of_unused_rewards == 1 ? "récompense à recevoir" : "récompenses à recevoir" %>
+            <%= appointment.nb_of_unused_rewards %> <%= appointment.nb_of_unused_rewards == 1 ? "récompense à recevoir !" : "récompenses à recevoir !" %>
           </div>
         <% end %>
       <% end %>
