@@ -68,8 +68,8 @@
       <%= image_tag "basket_empty", class:"basket" %>
       <h3 class="text-center">Récompenses en cours</h3>
     </div>
-    <div class="reward-cards">  
-      <% if @pending_rewards_to_give.present? %>
+    <% if @pending_rewards_to_give.present? %>
+      <div class="reward-cards">  
         <% @pending_rewards_to_give.each do |giver, giver_garden_points| %>
           <% total_points = giver.total_points_with(@user.garden) %>
           <% points_for_gift = @user.garden.nb_of_points_for_a_gift %>
@@ -88,9 +88,9 @@
               </div>
           <% end %>
         <% end %>
-      <% else %>
-        <div>Vous n'avez pas donné de points pour l'instant.</div>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <div class="text-center">Vous n'avez pas donné de récompenses en cours pour l'instant.</div>
+    <% end %>
   </div>
 </div>

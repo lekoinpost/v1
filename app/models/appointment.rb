@@ -35,7 +35,6 @@ class Appointment < ApplicationRecord
   
     giver_gardener_points = GiverGardenPoint.select(:id, :nb_of_points).find_or_create_by(giver_id: self.giver.id, garden_id: self.gardener.garden.id)
 
-
     points = case self.compost_type
             when "biodéchets"
               self.quantity
