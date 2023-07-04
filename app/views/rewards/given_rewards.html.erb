@@ -1,41 +1,39 @@
 <div class="section"> 
   <div class="container-large">
 
-    <div class="reward-page-title">
-      <%= image_tag "icons/reward", width: 40, class:"me-3" %>
-      <h1 class="text-center">Récompenser</h1>
+    <div class="breadcrumbs">
+      <%= image_tag "icons/home" %> > <%= link_to "Mon jardin", garden_path(slug: @user.garden.slug)%> > Récompenser
     </div>
 
     <div class="tabs">
-      <%= link_to "Récompenses à préparer", rewards_to_give_path, class:"tab red inactive me-3"%>
+      <%= link_to "En cours", rewards_to_give_path, class:"tab red inactive me-3"%>
       <%= link_to "Historique", given_rewards_path, class:"tab red active"%>
     </div>
 
+    
+    <div class="reward-title">
+      <%= image_tag "basket_full", class:"basket" %>
+      <h3 class="text-center">Récompenses données</h3>
+      <%= image_tag "icons/true", width: 25, height: 25, class:"ms-2" %>
+    </div>
     <% if @given_rewards.present? %>
-      <div class="row p-0 mt-5">
-        <div class="col-4">
-          <%= image_tag "basket_full", id:"rewards-image" %>
-        </div>
-        <div class="col-8">
-          <div class="reward-cards">
-            <% @given_rewards.each do |(giver_id, gardener_id), count| %>
-              <% giver = User.find(giver_id) %>
-              <% gardener = User.find(gardener_id) %>
-              <% garden = gardener.garden %>
-              <% reward = Reward.find_by(giver_id: giver_id, gardener_id: gardener_id) %>
-              <div class="reward-card">
-                <div class="d-flex justify-content-center align-items-center mb-3">
-                  <%= image_tag "icons/user", width: 20, class: "me-2" %><%= giver.first_name.upcase %> <%= giver.last_name.upcase %>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-center align-items-center mb-2 green">
-                  <%= image_tag "icons/gift_green", width: 20, class: "me-2" %>
-                  <div><%= count %> <%= count == 1 ? "Récompense donnée" : "Récompenses données" %></div>
-                </div>
-              </div>
-            <% end %>
+      <div class="reward-cards">
+        <% @given_rewards.each do |(giver_id, gardener_id), count| %>
+          <% giver = User.find(giver_id) %>
+          <% gardener = User.find(gardener_id) %>
+          <% garden = gardener.garden %>
+          <% reward = Reward.find_by(giver_id: giver_id, gardener_id: gardener_id) %>
+          <div class="reward-card">
+            <div class="d-flex justify-content-center align-items-center mb-3">
+              <%= image_tag "icons/user", width: 20, class: "me-2" %><%= giver.first_name.upcase %> <%= giver.last_name.upcase %>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-center align-items-center mb-2 green">
+              <%= image_tag "icons/gift_green", width: 20, class: "me-2" %>
+              <div><%= count %> <%= count == 1 ? "Récompense donnée" : "Récompenses données" %></div>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     <% else %>
       <div class="my-5 text-center">Vous n'avez pas encore donné de récompenses.</div>

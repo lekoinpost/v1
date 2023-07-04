@@ -3,7 +3,7 @@
     <h1 class="text-center">Mes rendez-vous</h1>
   </div>
 
-  <div class="d-flex justify-content-center" class="tabs">
+  <div class="tabs">
     <%= link_to "A venir", appointments_path, class:"tab red me-3 #{params[:category] == 'passed' ? 'inactive' : 'active'}"%>
     <%= link_to "Passés", appointments_path(category: "passed"), class:"red tab #{params[:category] == 'passed' ?  'active' : 'inactive'}"%>
   </div>
@@ -22,7 +22,7 @@
           <% end %>
         <% end %>
       <% end %>
-      <small class="d-flex justify-content-center my-2"><%= link_to "Tout voir", appointments_path(category: params[:category]), class: "btn-light" %></small>
+      <small class="d-flex justify-content-center"><%= link_to "Tout voir", appointments_path(category: params[:category]), class: "btn-light my-3" %></small>
     </div>
     <div class="col-12 col-md-7 col-lg-8">
       <%= render "list", appointments: @appointments, category: "#{params[:category]}"%>

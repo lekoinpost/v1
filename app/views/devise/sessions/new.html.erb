@@ -1,5 +1,5 @@
 <div class="section devise-section">
-  <div class="container-large">
+  <div class="container-medium">
     
 
     <div class="position-relative">
@@ -9,7 +9,7 @@
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
         <div class="devise-form">
           
-          <h2 class="text-center my-4">Connexion</h2>
+          <h2 class="text-center my-5">Connexion</h2>
           
           <%= f.error_notification %>
 
@@ -18,7 +18,9 @@
                       required: true,
                       label: false,
                       autofocus: true,
-                      input_html: { autocomplete: "email" } %>
+                      input_html: { autocomplete: "email" }, 
+                      wrapper_html: {class: "mb-4"} %>
+          
           <div class="position-relative" data-controller="toggle-password-visibility">
             <%= f.input :password,
                         placeholder: "Mot de passe",
@@ -27,7 +29,9 @@
                         input_html: { autocomplete: "current-password", id:"user-password" } %>
             <div class="password-visibility-button"><i class="far fa-eye-slash"></i></div>
           </div>
-          <small><%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %></small>
+          <div class="mt-2 ms-2">
+            <small><%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %></small>
+          </div>
           <%# f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         
           <div class="d-flex justify-content-center">

@@ -7,7 +7,7 @@ puts 'Cleaning database'
 # Message.destroy_all
 # GiverGardenPoint.destroy_all
 # User.destroy_all
-
+# Reward.destroy_all
 
 puts 'Cleaned database User, Appointment'
 
@@ -260,4 +260,80 @@ conversation_5 = Conversation.create(
 
 conversation_6 = Conversation.create(
   appointment_id: appointment_6
+)
+
+puts "Create Rewards given by Alice"
+
+Reward.create(
+  gardener_id: 1,
+  giver_id: 2, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 1,
+  giver_id: 2, 
+  used: false
+)
+
+Reward.create(
+  gardener_id: 1,
+  giver_id: 3, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 1,
+  giver_id: 3, 
+  used: false
+)
+
+Reward.create(
+  gardener_id: 1,
+  giver_id: 4, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 1,
+  giver_id: 4, 
+  used: false
+)
+
+puts "Create Rewards received by Alice"
+
+Reward.create(
+  gardener_id: 2,
+  giver_id: 1, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 2,
+  giver_id: 1, 
+  used: false
+)
+
+Reward.create(
+  gardener_id: 3,
+  giver_id: 1, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 3,
+  giver_id: 1, 
+  used: false
+)
+
+Reward.create(
+  gardener_id: 4,
+  giver_id: 1, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 5,
+  giver_id: 1, 
+  used: false
 )

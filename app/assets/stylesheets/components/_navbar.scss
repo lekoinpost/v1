@@ -6,6 +6,7 @@
   position: sticky !important;
   top: 0;
   z-index: 1020;
+  padding: 0 !important;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -19,6 +20,10 @@
     height: auto !important;
     padding: 8px !important;
   }
+}
+
+.navbar-brand {
+  padding: 0 !important;
 }
 
 .navbar-lewagon .navbar-brand img {
@@ -44,4 +49,13 @@
 
 .nav-item {
   display: flex;
+}
+
+.breadcrumbs {
+  display: inline-block;
+  margin: 1em 0;
+  img {
+    width: 25px;
+    margin-left: 8px;
+  }
 }

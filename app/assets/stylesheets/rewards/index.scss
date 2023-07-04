@@ -1,5 +1,20 @@
-#rewards-image {
-  width: 100%;
+.reward-title {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+  .basket {
+    width: 100px;
+  }
+}
+
+@media(min-width: 768px) {
+  .reward-title {
+    .basket {
+      width: 200px;
+      margin-left: 2em;
+    }
+  }
 }
 
 .reward-cards {
@@ -14,11 +29,11 @@
   }
 }
 
-// @media(min-width: 992px) {
-//   .reward-cards {
-//     grid-template-columns: 1fr 1fr 1fr;
-//   }
-// }
+@media(min-width: 1200px) {
+  .reward-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
 .reward-card {
   background-color: $gray;
@@ -26,13 +41,9 @@
   text-align: center;
 }
 
+
+
 .progress-bar {
   background-color: $green;
 }
 
-.reward-page-title {
-  display: flex;
-  align-items: center; 
-  justify-content: center;
-  margin: 2em 0;
-}

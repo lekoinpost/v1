@@ -2,32 +2,32 @@
   <%= link_to garden_path(slug: garden.slug), class:"garden-infos w-50" do %>
     <div class="d-flex flex-column justify-content-center h-100">
       <h2><%= garden.garden_name %></h2>
-      <div><%= garden.gardener.first_name %></div>
-      <div><%= garden.gardener.last_name%></div>
+      <div><%= garden.gardener.first_name %> <%= garden.gardener.last_name%></div>
     </div>
     <div>
       <% if params[:address].present? %>
         <div class="d-flex align-items-center mb-2">
-          <%= image_tag "icons/location", width: 30 %>
+          <%= image_tag "icons/location", width: 20, class:"me-2" %>
           <%= garden.distance_to(params[:address]) %> km
         </div>
       <% end %>
-      <% if @giver %>
+      <% if user_signed_in? %>
         <div class="d-flex align-items-center">
-          <%= image_tag "icons/reward", width: 30 %>
-          <%= @giver.total_points_with(garden) %> / <%= garden.nb_of_points_for_a_gift %>       
+          <%= image_tag "icons/reward", width: 20, class:"me-2" %>
+          <%= current_user.total_points_with(garden) %> / <%= garden.nb_of_points_for_a_gift %>       
         </div>
       <% end %>
     </div>
   <% end %>
   
-  <% if garden.main_image.key.nil? %>
-    <%= image_tag("default.png", class: "garden-image w-50") %>
-  <% else %>
-    <div class="garden-image w-50" style="background-image: url('<%= cl_image_path garden.main_image.key, crop: :fill %>'); background-size: cover">
-      <%= link_to "", garden_path(slug: garden.slug), class:"w-100 h-100"%>
-    </div>
+  <%= link_to garden_path(slug: garden.slug), class:"w-50 h-100" do %>
+    <% if garden.main_image.key.nil? %>
+      <%= image_tag("default.png", class: "garden-image") %>
+    <% else %>
+      <div class="garden-image" style="background-image: url('<%= cl_image_path garden.main_image.key, crop: :fill %>'); background-size: cover"></div>
+    <% end %>
   <% end %>
+    
 
 
 </div>

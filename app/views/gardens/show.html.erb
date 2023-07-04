@@ -3,94 +3,108 @@
 <% content_for :meta_image, cl_image_path(@garden.main_image.key) if @garden.main_image.attached? %>
 
 <div class="section" id="garden-show">
-  <div class="container-large">
-    <div class="row d-flex align-items-stretch mb-5">
-      <div class="col-12 col-md-6 main-image-container" style="background-size: cover;">
-        <% if @garden.main_image.key.nil? %>
-          <%= image_tag("default.png", class: "main-image") %>
-        <% else %>
-          <%= cl_image_tag(@garden.main_image.key, alt: @garden.garden_name, class: "main-image") %>
-        <% end %>
-      </div>
 
-      <div class="col-12 col-md-6 d-flex"> 
-        <div class="garden-description d-flex flex-column">
-          <div class="d-flex align-items-center mb-2">
-            <%= image_tag "icons/location", width: 30, class:"me-2" %>
+  <div class="breadcrumbs">
+      <%= image_tag "icons/home" %> > <%= link_to "Les jardins", gardens_path %> > <%= @garden.garden_name %>
+    </div>
+
+  <div class="container-large">
+    
+    <div class="mt-2 mb-5 header">
+      
+      <% if @garden.main_image.key.nil? %>
+        <%= image_tag("default.png", class: "main-image") %>
+      <% else %>
+        <%# cl_image_tag(@garden.main_image.key, alt: @garden.garden_name, class: "main-image") %>
+        <div class="main-image" style="background-image: url('<%= cl_image_path @garden.main_image.key, crop: :fill %>'); background-size: cover"></div>
+      <% end %>
+      
+      <div class="garden-description">
+        <div>
+          <h1><%= @garden.garden_name %></h1>
+          <div class="d-flex align-items-center">
+            <%= image_tag "icons/location", width: 25, class:"me-2" %>
             <%= @garden.address %>
           </div>
           <% if current_user && current_user != @garden.gardener %>
-            <div class="d-flex align-items-center">
-              <%= image_tag "icons/reward", width: 30, class:"me-2" %>
+            <div class="d-flex align-items-center mt-2">
+              <%= image_tag "icons/reward", width: 25, class:"me-2" %>
                 <%= current_user.total_points_with(@garden) %> / <%= @garden.nb_of_points_for_a_gift %>
             </div>
           <% end %>
-          <div><%= @garden.description %></div>
-          <h2><%= @garden.garden_name %></h2>
-          <div class="mb-2"><%= @garden.gardener.first_name %> <%= @garden.gardener.last_name%></div>
-          <div>
-            <% @garden.products.each do |product| %>
-              <% if product != "" %>
-                <div class="product"><%= product %></div>
-              <% end %>
+        </div>
+        <hr>
+        <div class="d-flex mb-2">
+          <%= image_tag "icons/user", height: 25, class:"me-3" %><%= @garden.gardener.first_name  %> <%= @garden.gardener.last_name  %>
+        </div>
+        <div class="d-flex mb-2"><%= @garden.description %></div>
+        <div class="d-flex mb-2">
+          <% @garden.products.each do |product| %>
+            <% if product != "" %>
+              <div class="product"><%= product %></div>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
-      
-
     </div>
-    <% if current_user && current_user!= @garden.gardener %>
-      <%= simple_form_for(:appointment, url: create_appointment_path, method: :post) do |f| %>
-        <h3>
-          <%= f.error_notification %>
-          
-          <%= f.input :giver_id, as: :hidden, input_html: { value: current_user.id } %>
-          
-          <%= f.input :garden_id, as: :hidden, input_html: { value: @garden.id } %>
-          
-          <div data-controller="flatpickr" >
-            <div class="d-flex align-items-center justify-content-center">
-              <div class="me-3">Le </div>
-              <%= f.input :date, as: :string, label: false, input_html: { data: { flatpickr_target: "appointmentTime" }, class:"mt-3" } %> 
-            </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <div>je souhaiterais échanger </div> 
-            
-            <div class="d-flex align-items-center mx-3" data-controller="compost-quantity-spinner">
-                    
-              <div class="spinner-button minus">
-                <i class="fa-solid fa-minus"></i>
-              </div>
-          
-              <%= f.input :quantity, as: :integer, label: false, input_html: {class:"form-control", id:"spinner", value: 1, min: 1} %>
-                
-              <div class="spinner-button plus">
-                <i class="fa-solid fa-plus"></i>
-              </div>
-                  
-                
-            </div>
-            <div> kg de</div>
-          </div>
-          
-          <div class="d-flex align-items-center justify-content-center">
-            <%= f.input :compost_type,
-              as: :radio_buttons,
-              collection_wrapper_tag: 'div',
-              collection_wrapper_class: 'compost-type-wrapper',
-              item_wrapper_class: 'compost-type-item',
-              input_html: {class: 'compost-type-selector'},
-              collection: Appointment::COMPOST_TYPES %>
-          </div>
 
-          <div class="d-flex justify-content-center">
-            <%= button_tag(type: 'submit') do %>
-              <%= image_tag "go.png", class:"devise-button move-on-hover mt-3" %>
-            <% end %>
-          </div>
-        </h3>
+    <% if current_user %>
+      <% if current_user!= @garden.gardener %>
+        <h1 class="text-center">Apporter du compost à ce jardin</h1>
+        <%= simple_form_for(:appointment, url: create_appointment_path, method: :post) do |f| %>
+          <h3>
+            <%= f.error_notification %>
+            
+            <%= f.input :giver_id, as: :hidden, input_html: { value: current_user.id } %>
+            
+            <%= f.input :garden_id, as: :hidden, input_html: { value: @garden.id } %>
+            
+            <div data-controller="flatpickr" >
+              <div class="d-flex align-items-center justify-content-center">
+                <div class="me-3">Le </div>
+                <%= f.input :date, as: :string, label: false, input_html: { data: { flatpickr_target: "appointmentTime" }, class:"mt-3" } %> 
+              </div>
+            <div class="text-center">je souhaiterais échanger </div> 
+              <div class="d-flex align-items-center justify-content-center" data-controller="compost-quantity-spinner">
+                      
+                <div class="spinner-button minus">
+                  <i class="fa-solid fa-minus"></i>
+                </div>
+            
+                <%= f.input :quantity, as: :integer, label: false, input_html: {class:"form-control", id:"spinner", value: 1, min: 1} %>
+                  
+                <div class="spinner-button plus">
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <div class="ms-3"> kg de </div>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-center justify-content-center">
+              <%= f.input :compost_type,
+                as: :radio_buttons,
+                collection_wrapper_tag: 'div',
+                collection_wrapper_class: 'compost-type-wrapper',
+                item_wrapper_class: 'compost-type-item',
+                input_html: {class: 'compost-type-selector'},
+                collection: Appointment::COMPOST_TYPES %>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <%= button_tag(type: 'submit') do %>
+                <%= image_tag "go.png", class:"devise-button move-on-hover mt-3" %>
+              <% end %>
+            </div>
+          </h3>
+        <% end %>
+      <% else %>
+        <div class="d-flex justify-content-center">
+          <%= link_to "Modifier", edit_garden_path(current_user.garden.slug), class: "btn-light" %>
+        </div>
       <% end %>
+    <% else %>
+      <div class="mt-5 text-center">Veuillez vous identifier pour apporter du compost à ce jardin</div>
     <% end %>
   </div>
 </div>
