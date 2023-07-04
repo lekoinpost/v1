@@ -34,6 +34,7 @@ class AppointmentsController < ApplicationController
     @appointment.gardener_id = @garden.id
     if @appointment.save
       redirect_to appointments_path, notice: "Votre demande a bien été envoyée à #{@garden.garden_name}!"
+      UserMailer.with(gardener: @appointment.gardener, giver: @appointment.giver, appointment: @appointment).new_appointment_notification.deliver_now
     else
       redirect_to garden_path(slug: @garden.slug)
     end
@@ -44,6 +45,10 @@ class AppointmentsController < ApplicationController
     @appointment.update_giver_garden_points
     flash[:notice] = 'Merci d\'avoir confirmé ce don ! 🎉'
     redirect_back(fallback_location: root_path)
+
+    @nb_of_points = GiverGardenPoint.find_by(giver_id: @appointment.giver.id, garden_id: @appointment.gardener.garden.id).nb_of_points
+    @nb_of_rewards = Reward.where(giver_id: @appointment.giver.id, gardener_id: @appointment.gardener, used: false).size
+    UserMailer.with(gardener: @appointment.gardener, giver: @appointment.giver, appointment: @appointment, nb_of_points: @nb_of_points, nb_of_rewards: @nb_of_rewards ).confirmed_appointment_notification.deliver_now
   end
 
   private

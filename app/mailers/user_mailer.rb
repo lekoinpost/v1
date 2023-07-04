@@ -9,6 +9,22 @@ class UserMailer < ApplicationMailer
     mail(to: @receiver.email, subject: "Vous avez reçu un nouveau message sur Le Koinpost !")
   end
 
+  def new_appointment_notification
+    @gardener = params[:gardener]
+    @giver = params[:giver]
+    @appointment = params[:appointment]
+    mail(to: @gardener.email, subject: "Vous avez un nouveau rendez-vous sur Le Koinpost !")
+  end
+
+  def confirmed_appointment_notification
+    @gardener = params[:gardener]
+    @giver = params[:giver]
+    @appointment = params[:appointment]
+    @nb_of_points = params[:nb_of_points]
+    @nb_of_rewards = params[:nb_of_rewards]
+    mail(to: @giver.email, subject: "Votre don a été confirmé sur Le Koinpost !")
+  end
+
   private
 
   def add_mailer_images
