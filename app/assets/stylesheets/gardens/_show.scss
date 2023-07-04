@@ -1,8 +1,11 @@
 #garden-show {
   .main-image {
-    min-height: 270px;
-    max-width: 100%;
+    width: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    margin-bottom: 16px;
   }
+
   .garden-description {
     background-color: $gray;
     padding: 12px;
@@ -11,8 +14,23 @@
     justify-content: space-between;
   }
 
-  h2 {
+  h1 {
     color: $red
+  }
+}
+
+@media(min-width: 768px) {
+ 
+  #garden-show {
+    height: 100%;
+    .header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 16px;
+    }
+    .main-image {
+      margin-bottom: 0 !important;
+    }
   }
 }
 
@@ -40,7 +58,7 @@
 }
 
 .compost-type-item {
-  margin: 12px;
+  margin: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,16 +74,24 @@
   display: block;
   cursor: pointer;
   box-sizing: border-box;
-  padding: 143px 12px 12px 12px;
+  padding: 120px 4px 12px 4px;
   border: 1px solid #EAEAEA;
   border-radius: 4px;
   font-size: 23px;
-  height: 189px;
-  width: 200px;
+  height: 173px;
+  width: 156px;
   background-position: center;
   object-fit: cover;
   background-size: cover;
   text-align: center;
+}
+
+@media(min-width: 768px) {
+  .compost-type-selector + label {
+    padding: 143px 12px 12px 12px;
+    height: 189px;
+    width: 200px;
+  }
 }
 
 .compost-type-selector:checked + label {
@@ -88,4 +114,17 @@
 #appointment_compost_type_compost_mûr:checked + label {
   background-image: asset-url("compost_mur_actif.png");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

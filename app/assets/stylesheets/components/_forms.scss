@@ -15,22 +15,24 @@
   color: $dark !important
 }
 
-.form-control::placeholder, .form-control:-ms-input-placeholder, .form-control::-ms-input-placeholder { 
-  color: $dark;
-  opacity: 1;
+#red-splash{
+  display: none;
 }
 
-#red-splash {
-  position: absolute;
-  left: 0;
-  top: 0
-}
+@media(min-width: 576px) {
+  #red-splash {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block
+  }
 
-.devise-form {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 75%
+  .devise-form {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    left: 25%;
+  }
 }
 
 .devise-section {
@@ -41,4 +43,13 @@
   position: absolute;
   top: 6px;
   right: 6px;
+}
+
+.form-control::placeholder { 
+  color: $dark;
+  opacity: 0.8;
+}
+
+.form-control:-ms-input-placeholder, .form-control::-ms-input-placeholder{ /* Internet Explorer 10-11 */
+  color: $dark;
 }

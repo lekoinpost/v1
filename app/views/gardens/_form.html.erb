@@ -14,7 +14,7 @@
     <div class="d-none" id="address-param" data-selected="<%= @garden.address %>"></div>
 
     <%= f.input :address, 
-      placeholder: "renseigner une adresse", 
+      placeholder: "Entrer une adresse", 
       label: false, 
       wrapper_html: {
         data: {
@@ -27,7 +27,7 @@
       input_html: {
         data: {address_autocomplete_target: "address"}, 
         class: "d-none", 
-        placeholder: "renseigner une adresse"
+        placeholder: "Entrer une adresse"
       } %>
   </div>
 
@@ -64,9 +64,16 @@
 
   </div>
 
-  <label class="mt-4 mb-2">Ajouter une photo</label>
-  <%= f.input :main_image, as: :file, input_html: { class: 'd-none', data: { photo_preview_target: "input", action:"change->photo-preview#displayPreview" }}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger'%>
-  <%= image_tag "", width: 250, class: "hidden", data: { photo_preview_target: "preview" } %>
+  <label class="mt-4 mb-2">Photo de mon jardin : </label>
+
+  <div data-controller="photo-preview">
+    <% if !@garden.main_image.key.nil? %>    
+      <%= cl_image_tag(@garden.main_image.key, alt: @garden.garden_name, width: 250, height: 250) %>
+    <% end %>
+    <%= image_tag "", width: 250, height: 250, class: "d-none", data: { photo_preview_target: "preview" } %>
+    <%= f.input :main_image, as: :file, input_html: { class: 'd-none', data: { photo_preview_target: "input", action:"change->photo-preview#displayPreview" }}, label_html: { class: 'upload-photo'}, label: '📷 Choisir une image'%>
+   
+  </div>
 
   <div class="d-flex justify-content-center">
     <%= f.button :submit, "Valider", class:"btn-egg move-on-hover my-5" %>

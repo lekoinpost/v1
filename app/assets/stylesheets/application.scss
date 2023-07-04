@@ -19,11 +19,16 @@
 @import "rewards/index";
 
 .section {
-  padding: 12px 6vw;
+  padding: 12px 5vw;
 }
 
 .container-small {
   max-width: 500px;
+  margin: 0 auto;
+}
+
+.container-medium {
+  max-width: 900px;
   margin: 0 auto;
 }
 

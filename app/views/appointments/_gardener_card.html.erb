@@ -1,6 +1,6 @@
 <div class="row d-flex align-items-stretch mb-3">
 
-  <div class="col-12 col-md-6 pe-0"> 
+  <div class="col-12 col-md-6"> 
     <div class="appointment-infos">
       <div>
         <div class="d-flex align-items-center">
@@ -9,7 +9,9 @@
         <div>
           <%= link_to garden_path(slug: appointment.gardener.garden.slug), target:"_blank" do %>
             <h3><%= appointment.gardener.garden.garden_name %></h3>
-            <div class="mb-2"><%= appointment.gardener.first_name %> <%= appointment.gardener.last_name%></div>
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/user", height: 20, class:"me-2" %><%= appointment.gardener.first_name %> <%= appointment.gardener.last_name%>
+            </div>
           <% end %>
         </div>
         <hr>

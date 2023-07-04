@@ -33,7 +33,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     @appointment.gardener_id = @garden.id
     if @appointment.save
-      redirect_to appointments_path, notice: "Votre demande a bien été envoyée à #{@garden.garden_name} !"
+      redirect_to appointments_path, notice: "Votre demande a bien été envoyée à #{@garden.garden_name}!"
     else
       redirect_to garden_path(slug: @garden.slug)
     end

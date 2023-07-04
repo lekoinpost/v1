@@ -1,7 +1,12 @@
 <div class="section devise-section">
+
+  <div class="breadcrumbs">
+    <%= image_tag "icons/home" %> > Mon compte
+  </div>
+
   <div class="container-small">
 
-    <h2 class="text-center my-4">Mon compte</h2>
+    <h2 class="text-center my-4">Modifier mon compte</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
@@ -33,3 +38,6 @@
 
   </div>
 </div>
+
+
+<%= console %>

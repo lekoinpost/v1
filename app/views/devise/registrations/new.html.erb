@@ -1,5 +1,5 @@
 <div class="section devise-section">
-  <div class="container-large">
+  <div class="container-medium">
   
     <div class="position-relative">
 
@@ -17,19 +17,24 @@
                       required: true,
                       label: false,
                       autofocus: true,
-                      input_html: { autocomplete: "given-name" } %>
+                      input_html: { autocomplete: "given-name" }, 
+                      wrapper_html: {class: "mb-4"} %>
+
           <%= f.input :last_name,
                       placeholder: "Nom",
                       required: true,
                       label: false,
                       autofocus: true,
-                      input_html: { autocomplete: "family-name" } %>
+                      input_html: { autocomplete: "family-name" }, wrapper_html: {class: "mb-4"} %>
+
           <%= f.input :email,
                       placeholder: "Email",
                       required: true,
                       label: false,
                       autofocus: true,
-                      input_html: { autocomplete: "email" } %>
+                      input_html: { autocomplete: "email" }, 
+                      wrapper_html: {class: "mb-4"} %>
+                      
           <div class="position-relative" data-controller="toggle-password-visibility">
             <%= f.input :password,
                         placeholder: "Mot de passe",
@@ -39,7 +44,6 @@
             <div class="password-visibility-button"><i class="far fa-eye-slash"></i></div>
           </div>
     
-          <small><%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %></small>
           <%# f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         
           <div class="d-flex justify-content-center">
@@ -51,7 +55,8 @@
 
           
 
-          <small class="d-flex justify-content-center">Déjà un compte ?<%= link_to "Me connecter", new_session_path(resource_name), class:"ms-2" %></small>
+          <small class="d-flex justify-content-center">Déjà un compte ?<%= link_to "Me connecter", new_session_path(resource_name), class:"ms-2" %><br></small>
+          
 
         </div>
         

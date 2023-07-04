@@ -12,6 +12,7 @@
 }
 
 .mapboxgl-ctrl-geocoder {
+  font-family: 'Necto Mono', monospace;
   max-width: none;
   width: 100%;
   border: none;
@@ -23,9 +24,13 @@
   }
   input {
     padding: 8px !important;
+    font-family: "Necto Mono";
   }
 }
 
+a.mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib-inner {
+  display: none !important;
+}
 
 .mapboxgl-popup {
   max-width: 200px;
