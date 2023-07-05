@@ -1,0 +1,35 @@
+<div class="section">
+  <div class="breadcrumbs">
+    <%= image_tag "icons/home" %> > <%= link_to "Gestion du site", admin_dashboard_path %>
+  </div>
+
+  <div class="container-large">
+    <div class="d-flex align-items-center justify-content-center my-2">
+      <%= image_tag "icons/settings", class: "me-3", width: 30 %>
+      <h2>Rendez-vous confirmés</h2>
+    </div>
+
+    <% if @appointments.present? %>
+      <div id="dashboard-cards">
+        <% @appointments.each do |appointment| %>
+          <div class="dashboard-card">
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/user", height: 20, class:"me-2" %><%= appointment.giver.full_name %>
+            </div>
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/basket", height: 20, class:"me-2" %><%= link_to "#{appointment.gardener.garden.garden_name}", garden_path(slug: appointment.gardener.garden.slug)%>
+            </div>
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/calendar", height: 20, class:"me-2" %>Le <%= appointment.date.strftime('%d/%m/%Y') %>
+            </div>
+            <div class="d-flex align-items-center mb-2">
+              <%= image_tag "icons/reward", width: 20, class:"me-2" %><%= appointment.quantity %> kg de <%= appointment.compost_type%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center">Aucun rendez-vous trouvé</div>
+    <% end %>
+  </div>
+</div>

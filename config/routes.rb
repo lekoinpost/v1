@@ -36,4 +36,9 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  # Admin
+  get "admin/gestion-du-site", to: "admin#dashboard", as: :admin_dashboard
+  get "admin/utilisateurs", to: "admin#users_index", as: :admin_users_index
+  get "admin/rendez-vous-confirmes", to: "admin#confirmed_appointments", as: :admin_confirmed_appointments
+  get "admin/recompenses-confirmees", to: "admin#confirmed_rewards", as: :admin_confirmed_rewards
 end

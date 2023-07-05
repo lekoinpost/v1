@@ -1,0 +1,32 @@
+<div class="section">
+  <div class="breadcrumbs">
+    <%= image_tag "icons/home" %> > <%= link_to "Gestion du site", admin_dashboard_path %>
+  </div>
+
+  <div class="container-large">
+    <div class="d-flex align-items-center justify-content-center my-2">
+      <%= image_tag "icons/settings", class: "me-3", width: 30 %>
+      <h2>Récompenses confirmés</h2>
+    </div>
+
+    <% if @rewards.present? %>
+      <div id="dashboard-cards">
+        <% @rewards.each do |reward| %>
+          <div class="dashboard-card">
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/user", height: 20, class:"me-2" %><%= reward.giver.full_name %>
+            </div>
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/basket", height: 20, class:"me-2" %><%= link_to "#{reward.gardener.garden.garden_name}", garden_path(slug: reward.gardener.garden.slug)%>
+            </div>
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/calendar", height: 20, class:"me-2" %>Le <%= reward.updated_at.strftime('%d/%m/%Y') %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center">Aucun rendez-vous trouvé</div>
+    <% end %>
+  </div>
+</div>
