@@ -1,4 +1,8 @@
-<h2 class="text-center my-4">Ma messagerie</h2>
+<div class="d-flex align-items-center justify-content-center my-3">
+  <%= image_tag "icons/message", class: "me-3", width: 30 %>
+  <h2>Mes messages</h2>
+</div>
+
 <div class="row">
 
   <div class="col-12 col-md-4">
@@ -8,8 +12,8 @@
           <div class="avatar" class="conversation-avatar" style="background-image: url('<%= cl_image_path active_conversation.appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
           </div>
           <div class="conversation-infos">
-            <div class="red"><strong><%= active_conversation.appointment.gardener.garden.garden_name %></strong></div>
-            <div><%= I18n.l active_conversation.appointment.date, format: "%a. %e %b " %></div>
+            <div class="red"><strong><%= @active_conversation.counterpart_user(current_user)%></strong></div>
+            <div><%= image_tag "icons/calendar", width: 20, class:"me-2" %><%= I18n.l active_conversation.appointment.date, format: "%a. %e %b " %></div>
           </div>
         </div>
       </div>
@@ -22,8 +26,8 @@
             </div>
             <div class="conversation-infos">
               <%= link_to conversation_path(conversation) do %>
-                <div class="red"><strong><%= conversation.appointment.gardener.garden.garden_name %></strong></div>
-                <div><%= I18n.l conversation.appointment.date, format: "%a. %e %b " %></div>
+                <div class="red"><strong><%= conversation.counterpart_user(current_user)%></strong></div>
+                <div><%= image_tag "icons/calendar", width: 20, class:"me-2" %><%= I18n.l conversation.appointment.date, format: "%a. %e %b " %></div>
                 <small><em><%= conversation.messages.last.content.truncate(24)%></em></small>
               <% end %>
             </div>
@@ -33,7 +37,7 @@
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-8">
+  <div class="col-12 col-md-8 p-0">
     <div class="<%= 'd-none d-md-block' if action_name == 'index' %>">
       <%= render "card", active_conversation: active_conversation %>
     </div>

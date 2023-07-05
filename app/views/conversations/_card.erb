@@ -10,7 +10,7 @@
         <% if current_date != message.created_at.to_date %>
         <% current_date = message.created_at.to_date %>
         <div class="d-flex justify-content-center">
-          <div class="date"><%= I18n.l current_date, format: "%a. %e %b " %></div>
+          <div class="date"><%= I18n.l(current_date, format: '%a. %e %b %Y', abbr_day_names: I18n.t('date.abbr_day_names_long'))%></div>
         </div>
       <% end %>
         <div class="messages" data-chatroom-subscription-target="messages">
@@ -25,6 +25,7 @@
     %>
       <%= f.input :content,
         label: false,
+        autofocus: true,
         placeholder: "Entrer votre message...",
         wrapper_html: {class: "message-input"}
       %>
