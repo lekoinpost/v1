@@ -1,0 +1,30 @@
+#dashboard-cards {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media(min-width: 576px) {
+  #dashboard-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(min-width: 992px) {
+  #dashboard-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.dashboard-card {
+  background-color: $gray;
+  padding: 12px;
+  text-align: center;
+  .key-figure {
+    font-size: 2em;
+  }
+}
+
+.dashboard-card:hover {
+  border: 2px solid $dark
+}

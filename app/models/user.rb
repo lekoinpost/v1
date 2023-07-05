@@ -26,4 +26,9 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+  def nb_of_confirmed_gifts
+    Appointment.where(giver_id: self.id, status: "confirmed").count
+  end
+
+
 end

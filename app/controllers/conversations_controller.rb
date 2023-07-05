@@ -7,7 +7,11 @@ class ConversationsController < ApplicationController
 
   def show
     @active_conversation = Conversation.find(params[:id])
-    @message = Message.new
+    if @active_conversation.appointment.giver_id == current_user.id || @active_conversation.appointment.gardener_id == current_user.id
+      @message = Message.new
+    else
+      raise
+    end
   end
 
   private

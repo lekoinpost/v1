@@ -1,0 +1,50 @@
+<div class="section">
+  <div class="breadcrumbs">
+    <%= image_tag "icons/home" %> > <%= link_to "Gestion du site", admin_dashboard_path %>
+  </div>
+
+  <div class="container-large">
+    <div class="d-flex align-items-center justify-content-center my-2">
+      <%= image_tag "icons/settings", class: "me-3", width: 30 %>
+      <h2>Liste des utilisateurs</h2>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-sm-8 my-3">
+        <%= form_with url: admin_users_index_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Entrer un prénom ou nom"
+            %>
+
+          <%= button_tag(type: 'submit', value:"") do %>
+            <%= image_tag "icons/find.png", class:"icon", width: 30 %>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+
+    <% if @users.present? %>
+      <div id="dashboard-cards">
+        <% @users.each do |user| %>
+          <div class="dashboard-card">
+            <div class="red"><%= user.full_name.upcase %></div>
+            <small>
+              <div><%= user.email %></div>
+              <div>Depuis le <%= user.created_at.strftime('%d/%m/%Y')%></div>
+              <% if user.nb_of_confirmed_gifts > 0 %>
+                <div><%= user.nb_of_confirmed_gifts%> don(s) confirmé(s)</div>
+              <% else %>
+                <div>Pas encore de don confirmé</div>
+              <% end %>
+            </small>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center">Aucun utilisateur trouvé</div>
+    <% end %>
+  </div>
+</div>

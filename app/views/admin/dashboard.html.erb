@@ -1,0 +1,48 @@
+<div class="section">
+  <div class="container-medium">
+    <div class="d-flex align-items-center justify-content-center my-3">
+      <%= image_tag "icons/settings", class: "me-3", width: 30 %>
+      <h2>Gestion du site</h2>
+    </div>
+
+    <div id="dashboard-cards">
+      <%= link_to admin_users_index_path do %>
+        <div class="dashboard-card">
+          <div class="key-figure"><%= @nb_of_users %></div>
+          <div class="title">Utilisateurs inscrits</div>
+        </div>
+      <% end %>
+
+      <%= link_to gardens_path do %>
+        <div class="dashboard-card">
+          <div class="key-figure"><%= @nb_of_gardens %></div>
+          <div class="title">Jardins inscrits</div>
+        </div>
+      <% end %>
+
+      <%= link_to admin_confirmed_appointments_path do %>
+        <div class="dashboard-card">
+          <div class="key-figure"><%= @nb_of_confirmed_appointments %></div>
+          <div class="title">Rendez-vous confirmés</div>
+        </div>
+      <% end %>
+
+      <%= link_to admin_confirmed_rewards_path do %>
+        <div class="dashboard-card">
+          <div class="key-figure"><%= @nb_of_rewards %></div>
+          <div class="title">Récompenses confirmées</div>
+        </div>
+      <% end %>
+      
+      <div class="dashboard-card">
+        <div class="key-figure"><%= @total_confirmed_compost_mur_quantity %> kg</div>
+        <div class="title">Compost mûr donné</div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="key-figure"><%= @total_confirmed_biodechets_quantity %> kg</div>
+        <div class="title">Biodéchets donnés</div>
+      </div>
+    </div>
+  </div>
+</div>
