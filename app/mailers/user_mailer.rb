@@ -10,19 +10,15 @@ class UserMailer < ApplicationMailer
   end
 
   def new_appointment_notification
-    @gardener = params[:gardener]
-    @giver = params[:giver]
     @appointment = params[:appointment]
-    mail(to: @gardener.email, subject: "Vous avez un nouveau rendez-vous sur Le Koinpost !")
+    mail(to: @appointment.gardener.email, subject: "Vous avez un nouveau rendez-vous sur Le Koinpost !")
   end
 
   def confirmed_appointment_notification
-    @gardener = params[:gardener]
-    @giver = params[:giver]
     @appointment = params[:appointment]
     @nb_of_points = params[:nb_of_points]
     @nb_of_rewards = params[:nb_of_rewards]
-    mail(to: @giver.email, subject: "Votre don a été confirmé sur Le Koinpost !")
+    mail(to: @appointment.giver.email, subject: "Votre don a été confirmé sur Le Koinpost !")
   end
 
   private

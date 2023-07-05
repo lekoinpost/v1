@@ -7,9 +7,6 @@ import { application } from "./application"
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
-import CompostQuantitySpinnerController from "./compost_quantity_spinner_controller"
-application.register("compost-quantity-spinner", CompostQuantitySpinnerController)
-
 import ConversationSubscriptionController from "./conversation_subscription_controller"
 application.register("conversation-subscription", ConversationSubscriptionController)
 
@@ -24,6 +21,9 @@ application.register("map", MapController)
 
 import PhotoPreviewController from "./photo_preview_controller"
 application.register("photo-preview", PhotoPreviewController)
+
+import QuantitySpinnerController from "./quantity_spinner_controller"
+application.register("quantity-spinner", QuantitySpinnerController)
 
 import ToggleGardenProductsController from "./toggle_garden_products_controller"
 application.register("toggle-garden-products", ToggleGardenProductsController)

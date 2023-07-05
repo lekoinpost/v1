@@ -10,8 +10,8 @@ export default class extends Controller {
   connect() {
     flatpickr(this.appointmentTimeTarget, {
       "locale": French, 
-      // altInput: true,
-      // altFormat: "F j, Y"
+      dateFormat: "D. d M. Y", 
+      minDate: "today"
     })
   }
 }

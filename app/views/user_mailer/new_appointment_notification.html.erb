@@ -1,6 +1,6 @@
-<div>Bonjour <%= @gardener.first_name %>,</div>
+<div>Bonjour <%= @appointment.gardener.first_name %>,</div>
 <br>
-<div><%= "#{@giver.first_name} #{@giver.last_name}"%> vient de prendre un rendez-vous pour vous déposer du compost sur <a href="https://www.lekoinpost.com" target="_blank">Le Koinpost</a> :</div>
+<div><%= "#{@appointment.giver.first_name} #{@appointment.giver.last_name}"%> vient de prendre un rendez-vous pour vous déposer du compost sur <a href="https://www.lekoinpost.com" target="_blank">Le Koinpost</a> :</div>
 
 <ul>
   <li>Date: le <%= @appointment.date.strftime('%d/%m/%Y') %></li>

@@ -1,6 +1,5 @@
 class AppointmentsController < ApplicationController
 
-  before_action :set_garden, only: [:create]
   before_action :set_appointment, only: [:mark_as_confirmed]
 
   def index
@@ -31,12 +30,12 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-    @appointment.gardener_id = @garden.id
+    @appointment.date = Date.parse(appointment_params[:date])
     if @appointment.save
-      redirect_to appointments_path, notice: "Votre demande a bien été envoyée à #{@garden.garden_name}!"
-      UserMailer.with(gardener: @appointment.gardener, giver: @appointment.giver, appointment: @appointment).new_appointment_notification.deliver_now
+      redirect_to appointments_path, notice: "Votre demande a bien été envoyée à #{@appointment.gardener.garden.garden_name}!"
+      UserMailer.with(appointment: @appointment).new_appointment_notification.deliver_now
     else
-      redirect_to garden_path(slug: @garden.slug)
+      raise
     end
   end
 
@@ -48,7 +47,7 @@ class AppointmentsController < ApplicationController
 
     @nb_of_points = GiverGardenPoint.find_by(giver_id: @appointment.giver.id, garden_id: @appointment.gardener.garden.id).nb_of_points
     @nb_of_rewards = Reward.where(giver_id: @appointment.giver.id, gardener_id: @appointment.gardener, used: false).size
-    UserMailer.with(gardener: @appointment.gardener, giver: @appointment.giver, appointment: @appointment, nb_of_points: @nb_of_points, nb_of_rewards: @nb_of_rewards ).confirmed_appointment_notification.deliver_now
+    UserMailer.with(appointment: @appointment, nb_of_points: @nb_of_points, nb_of_rewards: @nb_of_rewards ).confirmed_appointment_notification.deliver_now
   end
 
   private
@@ -59,10 +58,6 @@ class AppointmentsController < ApplicationController
 
   def set_appointment 
     @appointment = Appointment.find(params[:appointment])
-  end
-
-  def set_garden
-    @garden = Garden.find(params[:appointment][:garden_id])
   end
 
 end

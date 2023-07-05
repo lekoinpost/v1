@@ -37,6 +37,8 @@
       <div class="my-5 text-center">Vous n'avez pas de récompenses à venir pour l'instant. <br><%= link_to "Apportez votre compost à un jardin !", gardens_path %></div>
     <% end %>
 
+    <hr class="mt-5">
+
     <div class="reward-title mt-5">
       <%= image_tag "basket_empty", class:"basket" %>
       <h3 class="text-center">Mes points reçus</h3>
@@ -66,7 +68,7 @@
         <% end %>
       </div>
     <% else %>
-      <div>Vous n'avez pas encore de points reçus</div>
+      <div class="text-center">Vous n'avez pas de points pour le moment.</div>
     <% end %>
 
   </div>

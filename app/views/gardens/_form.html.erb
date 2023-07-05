@@ -36,13 +36,30 @@
               label: "Une description de mon jardin : ",
               wrapper_html: {class:"mt-5"},
               input_html: { } %>
-  <%= f.input :nb_of_points_for_a_gift,
-              label: "Points à obtenir avant la récompense : ",
-              wrapper_html: {class:"mt-5"},
-              input_html: { } %>
 
+  <label class="mt-4">Points à obtenir pour avoir une récompense : </label>
 
-  <div data-controller="toggle-garden-products">
+  <div class="d-flex align-items-center justify-content-center" data-controller="quantity-spinner">
+                      
+    <div class="spinner-button minus">
+      <i class="fa-solid fa-minus"></i>
+    </div>
+
+    <%= f.input :nb_of_points_for_a_gift, as: :integer, label: false, input_html: {class:"form-control", id:"spinner", value: 1, min: 1} %>
+      
+    <div class="spinner-button plus">
+      <i class="fa-solid fa-plus"></i>
+    </div>
+
+  </div>
+  <small class="opacity-50"><i class="fa-solid fa-basket-shopping me-2"></i>Barème de récompenses:
+    <ul>
+      <li>1 kg de biodechets = 1 point</li>
+      <li>1 kg de compost mur = 3 points</li>
+    </ul>
+  </small>
+
+  <div data-controller="toggle-garden-products" class="mt-4">
 
     <%= f.input :products,
       label: "Produits cultivés : ",

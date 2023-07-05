@@ -22,7 +22,7 @@ module RewardsHelper
   end
   
   def set_rewards_to_give
-    @rewards_to_give = Reward.by_gardener(@user.garden)
+    @rewards_to_give = Reward.by_gardener(@user)
                                 .where(used: false)
                                 .includes(:giver, :gardener)
                                 .group(:giver_id, :gardener_id)
@@ -35,7 +35,7 @@ module RewardsHelper
   end
 
   def set_given_rewards
-    @given_rewards = Reward.by_gardener(@user.garden)
+    @given_rewards = Reward.by_gardener(@user)
                                 .where(used: true)
                                 .includes(:giver, :gardener)
                                 .group(:giver_id, :gardener_id)
