@@ -6,7 +6,6 @@ export default class extends Controller {
   // Declare our two targets
   static targets = ["input", "preview"];
   connect(){
-    console.log("Helloe")
   }
 
   // Code this callback function

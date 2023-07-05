@@ -66,9 +66,25 @@ puts "Create 7 users"
   )
   user_7.save!
 
+  user_8 = User.new(
+    first_name: "Henri", 
+    last_name: "Herr", 
+    email: "henri@mail.com", 
+    password: 'azerty'
+  )
+  user_8.save!
+
+  user_9 = User.new(
+    first_name: "Isabelle", 
+    last_name: "Iss", 
+    email: "isabelle@mail.com", 
+    password: 'azerty'
+  )
+  user_9.save!
+
 puts "Created 7 users"
 
-puts "Create 5 gardens"
+puts "Create 6 gardens"
 
 garden_1 = Garden.new(
   gardener_id: user_1.id,
@@ -129,6 +145,19 @@ garden_5 = Garden.new(
 main_image = URI.open("https://plus.unsplash.com/premium_photo-1678371209978-8a88c13c7da9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
 garden_5.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
 garden_5.save!
+
+garden_6 = Garden.new(
+  gardener_id: user_8.id,
+  garden_name: "Chez Henri",
+  description: "Je cherche du compost mûr pour tomates et mes pommes",
+  address: '22 rue Sainte Catherine, Bordeaux',
+  nb_of_points_for_a_gift: "10", 
+  products: ["chataignes", "champignons", "fraises"]
+)
+main_image = URI.open("https://plus.unsplash.com/premium_photo-1678371209978-8a88c13c7da9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
+garden_6.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
+garden_6.save!
+
 
 puts "Created 5 gardens"
 

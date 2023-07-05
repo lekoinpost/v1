@@ -57,7 +57,7 @@ class Appointment < ApplicationRecord
     # Si une récompense est atteinte
     while giver_gardener_points.nb_of_points >= self.gardener.garden.nb_of_points_for_a_gift
       # Créer une récompense
-      Reward.create(giver_id: self.giver.id, gardener_id: self.gardener.garden.id)
+      Reward.create(giver_id: self.giver.id, gardener_id: self.gardener.id)
       # Retirer le points utilisés
       lost_points = self.gardener.garden.nb_of_points_for_a_gift
       new_quantity = giver_gardener_points.nb_of_points  - lost_points

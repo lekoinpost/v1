@@ -1,13 +1,13 @@
-<div>Bonjour <%= @giver.first_name %>,</div>
+<div>Bonjour <%= @appointment.giver.first_name %>,</div>
 <br>
-<div><%= "#{@gardener.garden.garden_name}"%> vient de confirmer votre dépôt de compost sur <a href="https://www.lekoinpost.com" target="_blank">Le Koinpost</a> :</div>
+<div><%= "#{@appointment.gardener.garden.garden_name}"%> vient de confirmer votre dépôt de compost sur <a href="https://www.lekoinpost.com" target="_blank">Le Koinpost</a> :</div>
 
 <ul>
-  <li>Vos points : <%= @nb_of_points %> / <%= @gardener.garden.nb_of_points_for_a_gift %></li>
-  <% if @nb_of_rewards == 0 %>
+  <li>Vos points : <%= @nb_of_points %> / <%= @appointment.gardener.garden.nb_of_points_for_a_gift %></li>
+  <% if @nb_of_rewards == 1 %>
     <li>1 Récompense obtenue !</li>
   <% elsif @nb_of_rewards > 1 %>
-    <li>1 Récompenses obtenues !</li>
+    <li><%= @nb_of_rewards %> Récompenses obtenues !</li>
   <% end %>
 </ul>
 
