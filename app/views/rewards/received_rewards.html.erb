@@ -19,10 +19,12 @@
         <% @received_rewards.each do |gardener, count| %>
           <%= link_to garden_path(slug: gardener.garden.slug) do %>
             <div class="reward-card">
-              <div class="d-flex justify-content-center align-items-center mb-2">
-                <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= gardener.garden.garden_name.upcase %>
+              <div>
+                <div class="d-flex justify-content-center align-items-center mb-2">
+                  <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= gardener.garden.garden_name.upcase %>
+                </div>
+                <small class="text-center mb-2"><%= gardener.garden.address %></small>
               </div>
-              <small class="text-center mb-2"><%= gardener.garden.address %></small>
               <hr>
               <div class="d-flex justify-content-center align-items-center mb-2 green">
                 <%= image_tag "icons/gift_green", width: 20, class:"me-3" %>

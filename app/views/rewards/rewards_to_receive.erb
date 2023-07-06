@@ -20,12 +20,14 @@
         <% @rewards_to_receive.each do |gardener, count| %>
           <%= link_to garden_path(slug: gardener.garden.slug) do %>
             <div class="reward-card">
-              <div class="d-flex justify-content-center align-items-center mb-2">
-                  <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= gardener.garden.garden_name.upcase %>
+              <div>
+                <div class="d-flex justify-content-center align-items-center mb-2">
+                    <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= gardener.garden.garden_name.upcase %>
+                </div>
+                <small class="mb-2 text-center"><%= gardener.garden.address %></small>
               </div>
-              <small class="mb-2 text-center"><%= gardener.garden.address %></small>
               <hr>
-                <div class="d-flex align-items-center justify-content-center mb-2 red">
+              <div class="d-flex align-items-center justify-content-center mb-2 red">
                 <%= image_tag "icons/gift_red", width: 20, class:"me-3" %>
                 <div><%= count%> <%= count == 1 ? "Récompense à recevoir !" : "Récompenses à recevoir !"%></div>
               </div>
@@ -53,14 +55,18 @@
           <% if total_points > 0 %>
             <%= link_to garden_path(slug: garden.slug) do %>
               <div class="reward-card">
-                <div class="d-flex justify-content-center align-items-center mb-2">
-                  <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= garden.garden_name.upcase %>
+                <div>
+                  <div class="d-flex justify-content-center align-items-center mb-2">
+                    <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= garden.garden_name.upcase %>
+                  </div>
+                  <small class="mb-2"><%= garden.address %></small>
                 </div>
-                <small class="mb-2"><%= garden.address %></small>
                 <hr>
-                <div class="text-center"><%= "#{total_points} / #{points_for_gift}" %></div>
-                <div class="progress mt-2" role="progressbar" aria-label="Basic example" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress-bar" style="width: <%= progress %>%;"></div>
+                <div>
+                  <div class="text-center"><%= "#{total_points} / #{points_for_gift}" %></div>
+                  <div class="progress mt-2" role="progressbar" aria-label="Basic example" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: <%= progress %>%;"></div>
+                  </div>
                 </div>
               </div>
             <% end %>

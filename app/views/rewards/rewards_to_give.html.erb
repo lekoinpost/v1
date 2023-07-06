@@ -81,9 +81,11 @@
                   <%= image_tag "icons/user", width: 20, class: "me-2" %><%= giver.first_name.upcase %> <%= giver.last_name.upcase %>
                 </div>
                 <hr>
-                <div class="text-center"><%= "#{total_points} / #{points_for_gift}" %></div>
-                <div class="progress mt-2" role="progressbar" aria-label="Basic example" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress-bar" style="width: <%= progress %>%;"></div>
+                <div>
+                  <div class="text-center"><%= "#{total_points} / #{points_for_gift}" %></div>
+                  <div class="progress mt-2" role="progressbar" aria-label="Basic example" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: <%= progress %>%;"></div>
+                  </div>
                 </div>
               </div>
           <% end %>
