@@ -11,8 +11,14 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/lekoinpost/cljlfxcpd008q01qw5rhg94rz"
+      style: "mapbox://styles/lekoinpost/cljlfxcpd008q01qw5rhg94rz", 
+      language: 'fr', 
+      localIdeographFontFamily: 'Necto Mono'
     })
+
+    const nav = new mapboxgl.NavigationControl();
+    this.map.addControl(nav);
+
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
   }

@@ -38,6 +38,14 @@ a.mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib-inner {
 
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: "Open Sans", sans-serif;
 }
 
+.mapboxgl-popup, .info-window {
+  width: 180px;
+  min-height: 200px;
+  border-radius: 15px;
+  font-size: 1.05em !important;
+  img {
+  width: 160px;
+  }
+}
