@@ -9,7 +9,47 @@
       <h2>Rendez-vous confirmés</h2>
     </div>
 
+    <%= form_with url: admin_confirmed_appointments_path, method: :get do %>
+      <div class="row d-md-flex align-items-end my-5", data-controller="tom-select" >
+        
+        <div class="col-12 col-md-5 mb-4">
+          <div class="d-flex align-items-center mb-2">
+            <%= image_tag "icons/basket", height: 20, class: "me-2" %>Jardin : 
+          </div>
+          <%= select_tag :garden, 
+            options_from_collection_for_select(Garden.all, :id, :garden_name, params[:garden]), 
+            include_blank: true,
+            placeholder: "Sélectionnr un jardin",
+            class: "select"%>
+        </div>
+
+        <div class="col-12 col-md-5 mb-4">
+          <div class="d-flex align-items-center mb-2">
+            <%= image_tag "icons/user", height: 20, class: "me-2" %>Utilisateur : 
+          </div>
+          <%= select_tag :giver, 
+            options_from_collection_for_select(Giver.all, :id, :full_name, params[:giver]), 
+            include_blank: true, 
+            class: "select" %>
+        </div>
+        
+        <div class="col-12 col-md-2 mb-2">
+          
+          <div class="d-flex align-items-end justify-content-center">
+            <div class="d-md-none">
+              <%= submit_tag "Rechercher", class: 'btn-light' %>
+            </div>
+
+            <%= button_tag(type: 'submit', value:"", class:"d-none d-md-block") do %>
+              <%= image_tag "icons/find.png", class:"icon btn-light", width: 60 %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <% if @appointments.present? %>
+      <h5 class="my-3"><%= @appointments.count%> rendez-vous trouvé(s) : </h5>
       <div id="dashboard-cards">
         <% @appointments.each do |appointment| %>
           <div class="dashboard-card">

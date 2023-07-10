@@ -24,6 +24,13 @@ class AdminController < ApplicationController
 
   def confirmed_appointments
     @appointments = Appointment.where(status: "confirmed").order(date: :desc)
+    if params[:garden].present?
+      @appointments = @appointments.joins(gardener: :garden).where("gardens.id = ?", params[:garden])
+    end
+  
+    if params[:giver].present?
+      @appointments = @appointments.where(giver_id: params[:giver])
+    end
   end
 
   def confirmed_rewards
