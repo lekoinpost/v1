@@ -3,6 +3,11 @@
 @import "search";
 @import "show";
 
+#products {
+  display: flex;
+  flex-wrap: wrap
+}
+
 .product {
   border: 2px solid $red;
   padding: 4px 8px;
