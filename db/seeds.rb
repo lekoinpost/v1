@@ -293,82 +293,82 @@ givers_gardeners_points_6 = GiverGardenPoint.create(
 puts "Create Rewards for Alice (Giver)"
 
 Reward.create(
-  gardener_id: 2,
-  giver_id: 1, 
-  used: true
-)
-
-Reward.create(
-  gardener_id: 2,
-  giver_id: 1, 
+  gardener_id: 3,
+  giver_id: 2, 
   used: true
 )
 
 Reward.create(
   gardener_id: 3,
-  giver_id: 1, 
+  giver_id: 2, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 3,
+  giver_id: 2, 
   used: false
 )
 
 Reward.create(
   gardener_id: 4,
-  giver_id: 1, 
+  giver_id: 2, 
   used: true
 )
 
 Reward.create(
   gardener_id: 5,
-  giver_id: 1, 
+  giver_id: 2, 
   used: false
 )
 
 Reward.create(
   gardener_id: 5,
-  giver_id: 1, 
+  giver_id: 2, 
   used: true
 )
 
 puts "Create Rewards for Le Potager de Bob (Garden)"
 
 Reward.create(
-  gardener_id: 2,
-  giver_id: 3, 
-  used: true
-)
-
-Reward.create(
-  gardener_id: 2,
-  giver_id: 3, 
-  used: false
-)
-
-Reward.create(
-  gardener_id: 2,
+  gardener_id: 3,
   giver_id: 4, 
   used: true
 )
 
 Reward.create(
-  gardener_id: 2,
-  giver_id: 4, 
-  used: true
-)
-
-Reward.create(
-  gardener_id: 2,
+  gardener_id: 3,
   giver_id: 4, 
   used: false
 )
 
 Reward.create(
-  gardener_id: 2,
+  gardener_id: 3,
   giver_id: 5, 
   used: true
 )
 
 Reward.create(
-  gardener_id: 2,
+  gardener_id: 3,
+  giver_id: 5, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 3,
+  giver_id: 5, 
+  used: false
+)
+
+Reward.create(
+  gardener_id: 3,
   giver_id: 6, 
+  used: true
+)
+
+Reward.create(
+  gardener_id: 3,
+  giver_id: 7, 
   used: false
 )
 

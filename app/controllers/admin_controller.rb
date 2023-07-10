@@ -10,8 +10,6 @@ class AdminController < ApplicationController
 
     @total_confirmed_compost_mur_quantity = Appointment.where(status: "confirmed", compost_type: "compost mûr").sum(:quantity)
     @total_confirmed_biodechets_quantity = Appointment.where(status: "confirmed", compost_type: "biodéchets").sum(:quantity)
-
-
   end
 
   def users_index
@@ -35,6 +33,13 @@ class AdminController < ApplicationController
 
   def confirmed_rewards
     @rewards = Reward.where(used: true).order(updated_at: :desc)
+    if params[:garden].present?
+      @rewards = @rewards.joins(gardener: :garden).where("gardens.id = ?", params[:garden])
+    end
+  
+    if params[:giver].present?
+      @rewards = @rewards.where(giver_id: params[:giver])
+    end
   end
 
   private 

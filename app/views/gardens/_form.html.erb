@@ -65,7 +65,7 @@
       label: "Produits cultivés : ",
       input_html: { autocomplete: "off", class: "form-control", placeholder: "Entrer un produit", data: { toggle_garden_products_target: "form", action: "keydown.enter->toggle-garden-products#add"}} %>
 
-    <div id="products" class="mt-2" data-toggle-garden-products-target="products">
+    <div id="products" class="d-flex flew-wrap mt-2" data-toggle-garden-products-target="products">
       <% @garden.products.each do |product| %>
         <% if product != "" %>
           <div class="product" data-action="click->toggle-garden-products#remove" data-value="<%= product%>">
