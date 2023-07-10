@@ -3,7 +3,7 @@ class UserMailerPreview < ActionMailer::Preview
 
   def new_message_notification
     receiver = User.find(2) 
-    sender = User.first
+    sender = User.find(3)
     conversation = Conversation.first
     UserMailer.with(receiver: receiver, sender: sender, conversation: conversation).new_message_notification
   end

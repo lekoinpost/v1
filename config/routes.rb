@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # Appointments
   post 'appointments', to: "appointments#create", as: :create_appointment
   post 'appointments/confirm', to: "appointments#mark_as_confirmed", as: :confirm_appointment
-  get 'mon-espace/mes-rendez-vous', to: "appointments#index", as: :appointments
+  get 'mon-compte/mes-rendez-vous', to: "appointments#index", as: :appointments
 
   # Givers
   get 'mon-compte', to: "givers#edit", as: :giver_edit_profile
@@ -41,4 +41,11 @@ Rails.application.routes.draw do
   get "admin/utilisateurs", to: "admin#users_index", as: :admin_users_index
   get "admin/rendez-vous-confirmes", to: "admin#confirmed_appointments", as: :admin_confirmed_appointments
   get "admin/recompenses-confirmees", to: "admin#confirmed_rewards", as: :admin_confirmed_rewards
+
+
+  # SEO
+  get '/robots.:format', to: "pages#robots"
+  get 'sitemap.xml', to: 'sitemaps#show', as: :sitemap, format: :xml
+
+  
 end
