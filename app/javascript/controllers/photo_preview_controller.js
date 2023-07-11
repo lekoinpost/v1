@@ -10,7 +10,6 @@ export default class extends Controller {
 
   // Code this callback function
   displayPreview(event) {
-    console.log("DISPLAY !!")
     const reader = new FileReader();
     reader.onload = (event) => {
       this.previewTarget.src = event.currentTarget.result;
