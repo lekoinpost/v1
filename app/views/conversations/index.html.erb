@@ -4,7 +4,7 @@
       <%= render "list", conversations: @conversations, active_conversation: nil %>
     </div>
     <div class="d-none d-md-block">
-      <%= render "list", conversations: @conversations, active_conversation: @conversations.last%>
+      <%= render "list", conversations: @conversations, active_conversation: @conversations.first%>
     </div>
   <% else %>
     <div class="d-flex align-items-center justify-content-center my-3">
@@ -14,3 +14,8 @@
     <div class="text-center">Vous n'avez pas encore de message. </div>
   <% end %>
 </div>
+
+
+
+
+<%= console %>

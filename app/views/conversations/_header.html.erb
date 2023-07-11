@@ -1,0 +1,15 @@
+<div class="conversation-header <%= 'active' if active == true %>">
+  <% if conversation.appointment.gardener.garden.main_image.key.nil? %>
+    <%= image_tag("default.png", class: "avatar") %>
+  <% else %>
+    <div class="avatar" class="conversation-avatar" style="background-image: url('<%= cl_image_path conversation.appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
+    </div>
+  <% end %>
+  <div class="conversation-infos">
+    <%= link_to conversation_path(conversation) do %>
+      <div class="red"><strong><%= conversation.counterpart_user(current_user)%></strong></div>
+      <div><%= image_tag "icons/calendar", width: 20, class:"me-2" %><%= I18n.l conversation.appointment.date, format: "%a. %e %b " %></div>
+      <small><em><%= conversation.messages.present? ? conversation.messages.last.content.truncate(24) : "..."%></em></small>
+    <% end %>
+  </div>
+</div> 

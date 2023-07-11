@@ -15,7 +15,6 @@
       <% if @garden.main_image.key.nil? %>
         <%= image_tag("default.png", class: "main-image") %>
       <% else %>
-        <%# cl_image_tag(@garden.main_image.key, alt: @garden.garden_name, class: "main-image") %>
         <div class="main-image" style="background-image: url('<%= cl_image_path @garden.main_image.key, crop: :fill %>'); background-size: cover"></div>
       <% end %>
       

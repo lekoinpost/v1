@@ -8,16 +8,10 @@
     padding: 12px 12px 4px 12px;
     margin-bottom: 16px
   }
-  .date {
-    font-size: 0.9em;
-    padding: 4px 8px;
-    border-radius: 10px;
-    background-color: white;
-    margin-bottom: 16px;
-  }
   .time {
-    font-size: 0.9em;
+    font-size: 0.8em;
     text-align: right;
+    color: $green
   }
   .message {
     max-width: 75%;

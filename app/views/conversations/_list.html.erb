@@ -5,12 +5,16 @@
 
 <div class="row">
 
-  <div class="col-12 col-md-4">
+  <div class="col-12 col-lg-4">
     <% if action_name == "show" %>
-      <div class="d-md-none">
+      <div class="d-lg-none">
         <div class="conversation-card active">
-          <div class="avatar" class="conversation-avatar" style="background-image: url('<%= cl_image_path active_conversation.appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
-          </div>
+          <% if active_conversation.appointment.gardener.garden.main_image.key.nil? %>
+            <%= image_tag("default.png", class: "avatar") %>
+          <% else %>
+            <div class="avatar conversation-avatar" style="background-image: url('<%= cl_image_path active_conversation.appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
+            </div>
+          <% end %>
           <div class="conversation-infos">
             <div class="red"><strong><%= @active_conversation.counterpart_user(current_user)%></strong></div>
             <div><%= image_tag "icons/calendar", width: 20, class:"me-2" %><%= I18n.l active_conversation.appointment.date, format: "%a. %e %b " %></div>
@@ -18,27 +22,17 @@
         </div>
       </div>
     <% end %>
-    <div class="<%= 'd-none d-md-block' if action_name == 'show' %>">
-      <div class="conversations-cards">
+    <div class="<%= 'd-none d-lg-block' if action_name == 'show' %>">
+      <div class="conversations-headers">
+        <%= render "header", conversation: @active_conversation, active: true %>
         <% @conversations.each do |conversation| %>
-          <div class="conversation-card <%= conversation == active_conversation ? 'active' : '' %>">
-            <div class="avatar" class="conversation-avatar" style="background-image: url('<%= cl_image_path conversation.appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
-            </div>
-            <div class="conversation-infos">
-              <%= link_to conversation_path(conversation) do %>
-                <div class="red"><strong><%= conversation.counterpart_user(current_user)%></strong></div>
-                <div><%= image_tag "icons/calendar", width: 20, class:"me-2" %><%= I18n.l conversation.appointment.date, format: "%a. %e %b " %></div>
-                <small><em><%= conversation.messages.last.content.truncate(24)%></em></small>
-              <% end %>
-            </div>
-
-          </div> 
+          <%= render "header", conversation: conversation, active: false %>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-8 p-0">
-    <div class="<%= 'd-none d-md-block' if action_name == 'index' %>">
+  <div class="col-12 col-lg-8 p-0">
+    <div class="<%= 'd-none d-lg-block' if action_name == 'index' %>">
       <%= render "card", active_conversation: active_conversation %>
     </div>
   </div>

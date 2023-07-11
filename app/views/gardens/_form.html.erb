@@ -3,6 +3,7 @@
 
   <%= f.input :garden_name,
               autofocus: true,
+              error: "Merci de saisir le nom de votre jardin.",
               label: "Le nom que je donne à mon jardin : ",
               wrapper_html: {class:"mt-5"},
               input_html: { } %>
@@ -15,6 +16,7 @@
 
     <%= f.input :address, 
       placeholder: "Entrer une adresse", 
+      error: "Merci de saisir une adresse valide.",
       label: false, 
       wrapper_html: {
         data: {
@@ -34,6 +36,7 @@
   <%= f.input :description,
               as: :text,
               label: "Une description de mon jardin : ",
+              error: "Merci de saisir une description. Max. 149 caractères.",
               wrapper_html: {class:"mt-5"},
               input_html: { } %>
 
@@ -74,6 +77,7 @@
         <% end %>
       <% end %>
     </div>
+    <small class="opacity-50"><i class="fa-solid fa-circle-info me-2"></i>Entrer un produit et tapez sur "entrée"</small>
 
     <%= hidden_field_tag 'added_products_list[]' %>
 

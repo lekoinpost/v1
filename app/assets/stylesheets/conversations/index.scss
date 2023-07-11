@@ -1,11 +1,11 @@
 @import "show";
 
-.conversations-cards  {
+.conversations-headers  {
   max-width: 500px;
   margin: 0 auto;
 }
 
-.conversation-card {
+.conversation-header {
   margin-bottom: 24px;
   display: flex;
   width: 100%;
@@ -35,7 +35,7 @@
   .conversation-container{
     padding: 12px 5vw;
   }
-  .conversation-card{
+  .conversation-header{
     &.active {
       position: unset !important;
     }

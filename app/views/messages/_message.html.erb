@@ -3,7 +3,7 @@
     <strong><%= message.sender.first_name %></strong>
     <div>
       <div><%= message.content %></div>
-      <div class="time"><%= message.created_at.strftime("%k:%M") %></div>
+      <div class="time">Le <%= l(message.created_at, format: "%-d %b") %> à <%= l(message.created_at, format: "%kh%M") %></div>
     </div>
   </div>
 </div>

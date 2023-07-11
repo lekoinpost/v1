@@ -5,20 +5,11 @@
   >
 
     <div class="messages" data-conversation-subscription-target="messages">
-      <% current_date = nil %>
-      <% active_conversation.messages.each do |message| %>
-        <% if current_date != message.created_at.to_date %>
-        <% current_date = message.created_at.to_date %>
-        <div class="d-flex justify-content-center">
-          <div class="date"><%= I18n.l(current_date, format: '%a. %e %b %Y', abbr_day_names: I18n.t('date.abbr_day_names_long'))%></div>
-        </div>
-      <% end %>
-        <div class="messages" data-chatroom-subscription-target="messages">
-          <% active_conversation.messages.each do |message| %>
-            <%= render "messages/message", message: message %>
-          <% end %>
-        </div>
-      <% end %>
+      <div class="messages" data-chatroom-subscription-target="messages">
+        <% active_conversation.messages.each do |message| %>
+          <%= render "messages/message", message: message %>
+        <% end %>
+      </div>
     </div>
 
     <%= simple_form_for(:message, url: conversation_messages_path(active_conversation), method: :post, html: { data: { action: "turbo:submit-end->conversation-subscription#resetForm" }, class: "message-input-container" }) do |f|
