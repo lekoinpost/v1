@@ -6,7 +6,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @active_conversation = Conversation.find(params[:id])
+    set_active_conversation
     if @active_conversation.appointment.giver_id == current_user.id || @active_conversation.appointment.gardener_id == current_user.id
       @message = Message.new
     else
@@ -17,7 +17,15 @@ class ConversationsController < ApplicationController
   private
   
   def set_user_conversations
-    @conversations = Conversation.involving_user(current_user).with_messages
+    @conversations = Conversation.involving_user(current_user).with_messages.sort_by { |c| c.messages.last.created_at }.reverse
+    if @active_conversation.present?
+      @conversations = (@conversations << @active_conversation).uniq
+    end
+    
+  end
+
+  def set_active_conversation
+    @active_conversation = Appointment.find(params[:id]).conversation
   end
 
 end
