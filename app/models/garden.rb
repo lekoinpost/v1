@@ -11,6 +11,7 @@ class Garden < ApplicationRecord
 
   validates :garden_name, :address, :description, :nb_of_points_for_a_gift, presence: true
 
+  validates :description, length: { maximum: 149 }
   serialize :products, Array
   attribute :products, :string, default: [], array: true
 
