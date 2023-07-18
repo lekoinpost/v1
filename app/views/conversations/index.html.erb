@@ -1,16 +1,16 @@
 <div class="conversation-container">
-  <% if @conversations.present? %>
-    <div class="d-md-none">
-      <%= render "list", conversations: @conversations, active_conversation: nil %>
-    </div>
-    <div class="d-none d-md-block">
-      <%= render "list", conversations: @conversations, active_conversation: @conversations.first%>
-    </div>
-  <% else %>
+  <% if @conversations.empty? %>
     <div class="d-flex align-items-center justify-content-center my-3">
       <%= image_tag "icons/message", class: "me-3", width: 40 %>
       <h1>Mes messages</h1>
     </div>
     <div class="text-center">Vous n'avez pas encore de message. </div>
+  <% else %>
+    <div class="d-md-none">
+      <%= render "list", conversations: @conversations, active_conversation: nil %>
+    </div>
+    <div class="d-none d-md-block">
+      <%= render "list", conversations: @conversations, active_conversation: @active_conversation%>
+    </div>
   <% end %>
 </div>

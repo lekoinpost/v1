@@ -16,7 +16,7 @@
             </div>
           <% end %>
           <div class="conversation-infos">
-            <div class="red"><strong><%= @active_conversation.counterpart_user(current_user)%></strong></div>
+            <div class="red"><strong><%= active_conversation.counterpart_user(current_user)%></strong></div>
             <div><%= image_tag "icons/calendar", width: 20, class:"me-2" %><%= I18n.l active_conversation.appointment.date, format: "%a. %e %b " %></div>
           </div>
         </div>
@@ -33,7 +33,7 @@
   </div>
   <div class="col-12 col-lg-8 p-0">
     <div class="<%= 'd-none d-lg-block' if action_name == 'index' %>">
-      <%= render "card", active_conversation: active_conversation %>
+      <%= render "card", active_conversation: @active_conversation %>
     </div>
   </div>
 </div>
