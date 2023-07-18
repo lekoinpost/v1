@@ -1,5 +1,5 @@
 <div class="conversation-container">
-  <% if @conversations.empty? %>
+  <% if @conversations.empty? && @active_conversation.nil? %>
     <div class="d-flex align-items-center justify-content-center my-3">
       <%= image_tag "icons/message", class: "me-3", width: 40 %>
       <h1>Mes messages</h1>
@@ -14,3 +14,5 @@
     </div>
   <% end %>
 </div>
+
+<%= console %>
