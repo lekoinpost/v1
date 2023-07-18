@@ -4,7 +4,9 @@ class ConversationsController < ApplicationController
 
   def index
     @active_conversation = @conversations.last
-    @conversations = @conversations[0..-2]
+    if !@active_conversation.nil?
+      @conversations = @conversations[0..-2]
+    end
   end
 
   def show
