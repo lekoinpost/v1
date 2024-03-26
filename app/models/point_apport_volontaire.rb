@@ -1,0 +1,2 @@
+class PointApportVolontaire < ApplicationRecord
+end
