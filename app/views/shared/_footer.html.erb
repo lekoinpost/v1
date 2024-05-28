@@ -3,5 +3,16 @@
     <hr>
     <small> Copyright Le Koinpost 2023</small><br>
     <small><%= link_to "Mentions légales", mentions_legales_path %></small>
+    <div class="d-flex justify-content-center mt-1">
+      <%= link_to "https://www.instagram.com/lekoinpost/", target:"_blank", style:"text-decoration: none" do %>
+        <%= image_tag "instagram.png", alt:"logo",  width: 25, height:25, border: 0%>
+      <% end%>
+      <%= link_to "https://www.facebook.com/profile.php?id=61559857058307", target:"_blank" do %>
+        <%= image_tag "facebook.png", alt:"logo",  width: 25, height:25, border: 0, class:"mx-2"%>
+      <% end %>
+      <%= link_to "https://www.linkedin.com/company/le-koinpost/about/", target:"_blank", style:"text-decoration: none" do %>
+        <%= image_tag "linkedin.png", alt:"logo",  width: 25, height:25, border: 0%>
+      <% end%>
+    </div>
   </div>
 </div>

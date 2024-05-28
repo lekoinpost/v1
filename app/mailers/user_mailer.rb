@@ -25,9 +25,9 @@ class UserMailer < ApplicationMailer
 
   def add_mailer_images
     attachments.inline["logo.png"] = File.read("#{Rails.root}/app/assets/images/logo.png")
-    # attachments.inline["instagram.png"] = File.read("#{Rails.root}/app/assets/images/instagram.png")
-    # attachments.inline["facebook.png"] = File.read("#{Rails.root}/app/assets/images/facebook.png")
-    # attachments.inline["twitter.png"] = File.read("#{Rails.root}/app/assets/images/twitter.png")
+    attachments.inline["instagram.png"] = File.read("#{Rails.root}/app/assets/images/instagram.png")
+    attachments.inline["facebook.png"] = File.read("#{Rails.root}/app/assets/images/facebook.png")
+    attachments.inline["linkedin.png"] = File.read("#{Rails.root}/app/assets/images/linkedin.png")
   end
 
 end
