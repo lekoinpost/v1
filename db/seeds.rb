@@ -85,67 +85,67 @@ user_9 = User.new(
 )
 user_9.save!
 
-# puts "Create 5 gardens"
+puts "Create 5 gardens"
 
-# garden_2 = Garden.new(
-#   gardener_id: user_2.id,
-#   garden_name: "Le potager de Bob",
-#   description: "Un projet associatif mené par les 'Amis de Bob', pour une végétalisation des bureaux",
-#   address: '3 place de la Victoire, 33000 Bordeaux',
-#   nb_of_points_for_a_gift: "10", 
-#   products: ["potirons", "kiwis", "choux-fleur"]
-# )
-# main_image = URI.open("https://images.unsplash.com/photo-1557296691-edb10ad8da28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y29tcG9zdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60")
-# garden_2.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
-# garden_2.save!
+garden_2 = Garden.new(
+  gardener_id: user_2.id,
+  garden_name: "Le potager de Bob",
+  description: "Un projet associatif mené par les 'Amis de Bob', pour une végétalisation des bureaux",
+  address: '3 place de la Victoire, 33000 Bordeaux',
+  nb_of_points_for_a_gift: "10", 
+  products: ["potirons", "kiwis", "choux-fleur"]
+)
+main_image = URI.open("https://images.unsplash.com/photo-1557296691-edb10ad8da28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y29tcG9zdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60")
+garden_2.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
+garden_2.save!
 
-# garden_3 = Garden.new(
-#   gardener_id: user_3.id,
-#   garden_name: "Le verger de Charlie",
-#   description: "Un espace collaboratif au service du bien-être et de la nature, en plein coeur du centre-ville",
-#   address: '2 cours Alsace-Lorraine, 33000 Bordeaux',
-#   nb_of_points_for_a_gift: "9", 
-#   products: ["pommes de terres", "poires", "concombres"]
-# )
-# main_image = URI.open("https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
-# garden_3.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
-# garden_3.save!
+garden_3 = Garden.new(
+  gardener_id: user_3.id,
+  garden_name: "Le verger de Charlie",
+  description: "Un espace collaboratif au service du bien-être et de la nature, en plein coeur du centre-ville",
+  address: '2 cours Alsace-Lorraine, 33000 Bordeaux',
+  nb_of_points_for_a_gift: "9", 
+  products: ["pommes de terres", "poires", "concombres"]
+)
+main_image = URI.open("https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
+garden_3.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
+garden_3.save!
 
-# garden_4 = Garden.new(
-#   gardener_id: user_4.id,
-#   garden_name: "David le jardinier",
-#   description: "Au coeur de l'éco-quartier rénové en 2017, avec 3 ruches, 2 potagers et 3 vergers",
-#   address: '3 du Loup, 33 000 Bordeaux',
-#   nb_of_points_for_a_gift: "30", 
-#   products: ["laitues", "asperges", "betteraves"]
-# )
-# main_image = URI.open("https://images.unsplash.com/photo-1536703219213-0223580c76b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
-# garden_4.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
-# garden_4.save!
+garden_4 = Garden.new(
+  gardener_id: user_4.id,
+  garden_name: "David le jardinier",
+  description: "Au coeur de l'éco-quartier rénové en 2017, avec 3 ruches, 2 potagers et 3 vergers",
+  address: '3 du Loup, 33 000 Bordeaux',
+  nb_of_points_for_a_gift: "30", 
+  products: ["laitues", "asperges", "betteraves"]
+)
+main_image = URI.open("https://images.unsplash.com/photo-1536703219213-0223580c76b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
+garden_4.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
+garden_4.save!
 
-# garden_5 = Garden.new(
-#   gardener_id: user_5.id,
-#   garden_name: "Le jardin d'Emilie",
-#   description: "Une friche en permaculture entièrement rénovée, dans une ancienne gare ferrovière. A découvrir sans tarder !",
-#   address: '22 rue Sainte Catherine, 33000 Bordeaux',
-#   nb_of_points_for_a_gift: "10", 
-#   products: ["chataignes", "champignons", "fraises"]
-# )
-# main_image = URI.open("https://plus.unsplash.com/premium_photo-1678371209978-8a88c13c7da9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
-# garden_5.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
-# garden_5.save!
+garden_5 = Garden.new(
+  gardener_id: user_5.id,
+  garden_name: "Le jardin d'Emilie",
+  description: "Une friche en permaculture entièrement rénovée, dans une ancienne gare ferrovière. A découvrir sans tarder !",
+  address: '22 rue Sainte Catherine, 33000 Bordeaux',
+  nb_of_points_for_a_gift: "10", 
+  products: ["chataignes", "champignons", "fraises"]
+)
+main_image = URI.open("https://plus.unsplash.com/premium_photo-1678371209978-8a88c13c7da9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
+garden_5.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
+garden_5.save!
 
-# garden_6 = Garden.new(
-#   gardener_id: user_8.id,
-#   garden_name: "Chez Henri",
-#   description: "Un restaurant avec des salariés en réinsertion professionnelle, avec une cuisine bio, locale et de saison, au coeur d'un grand jardin.",
-#   address: '22 rue Sainte Catherine, 33000 Bordeaux',
-#   nb_of_points_for_a_gift: "10", 
-#   products: ["chataignes", "champignons", "fraises"]
-# )
-# main_image = URI.open("https://plus.unsplash.com/premium_photo-1678371209978-8a88c13c7da9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
-# garden_6.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
-# garden_6.save!
+garden_6 = Garden.new(
+  gardener_id: user_8.id,
+  garden_name: "Chez Henri",
+  description: "Un restaurant avec des salariés en réinsertion professionnelle, avec une cuisine bio, locale et de saison, au coeur d'un grand jardin.",
+  address: '22 rue Sainte Catherine, 33000 Bordeaux',
+  nb_of_points_for_a_gift: "10", 
+  products: ["chataignes", "champignons", "fraises"]
+)
+main_image = URI.open("https://plus.unsplash.com/premium_photo-1678371209978-8a88c13c7da9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvbXBvc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
+garden_6.main_image.attach(io: main_image, filename: 'main_image.jpeg', content_type: 'image/png')
+garden_6.save!
 
 puts "Create Appointments for Alice (Giver)"
 
