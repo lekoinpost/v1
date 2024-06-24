@@ -29,14 +29,19 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    @garden = Garden.where(gardener_id: appointment_params[:gardener_id]).first
     @appointment = Appointment.new(appointment_params)
-    @appointment.date = Date.parse(appointment_params[:date])
+    if appointment_params[:date].present?
+      @appointment.date = Date.parse(appointment_params[:date])
+    end
     if @appointment.save
       redirect_to appointments_path, notice: "Votre demande a bien été envoyée à #{@appointment.gardener.garden.garden_name}!"
       UserMailer.with(appointment: @appointment).new_appointment_notification.deliver_now
     else
-      raise
+      redirect_to url_for(controller: 'gardens', action: 'show', slug: @garden.slug, error: "Merci de sélectionner une date et un type de compost.", anchor: 'new-appointment')
+
     end
+
   end
 
   def mark_as_confirmed
