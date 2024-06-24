@@ -3,6 +3,9 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+}
+
+.alert-info {
   border: 2px solid $green !important;
   background-color: #EEFBF0 !important;
 }
@@ -10,5 +13,5 @@
 .alert-warning {
   --bs-alert-color:$red !important;
   --bs-alert-bg: white !important;
-  --bs-alert-border-color: $red !important;
+  border: 2px solid $red !important;
 }

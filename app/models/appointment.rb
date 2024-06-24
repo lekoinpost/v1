@@ -6,7 +6,14 @@ class Appointment < ApplicationRecord
 
   after_create :set_giver_garden_points, :create_conversation
 
-  validates :date, :quantity, :compost_type, presence: true
+  validates :quantity, presence: true
+
+  # validates :date, presence: { message: "Merci de saisir une date." }
+  # validates :compost_type, presence: { message: "Merci de saisir un type de compost." }
+
+  validates :date, presence: true
+  validates :compost_type, presence: true
+
   
   COMPOST_TYPES = ["biodéchets", "compost mûr"]
 
