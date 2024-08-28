@@ -53,3 +53,12 @@
 .form-control:-ms-input-placeholder, .form-control::-ms-input-placeholder{ /* Internet Explorer 10-11 */
   color: $dark;
 }
+
+
+.form-label {
+  margin-bottom: 0 !important;
+}
+
+.img-fluid {
+  max-height: 70vh !important;
+}

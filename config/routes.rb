@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  get 'contacts/create'
+  get 'contacts/thanks'
   devise_for :users
 
   #Static
   root to: "pages#home"
+  get 'faq', to: "pages#faq"
   get 'mentions-legales', to: "pages#terms_and_conditions"
 
   # Jardins
@@ -42,6 +46,10 @@ Rails.application.routes.draw do
   get "admin/rendez-vous-confirmes", to: "admin#confirmed_appointments", as: :admin_confirmed_appointments
   get "admin/recompenses-confirmees", to: "admin#confirmed_rewards", as: :admin_confirmed_rewards
 
+  # Contact
+  get "contact", to: "contacts#new", as: :new_contact
+  post "contact", to: "contacts#create", as: :create_contact
+  get "merci-pour-votre-message", to: "contacts#thanks"
 
   # SEO
   get '/robots.:format', to: "pages#robots"

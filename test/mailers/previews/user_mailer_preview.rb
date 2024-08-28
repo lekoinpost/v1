@@ -18,7 +18,6 @@ class UserMailerPreview < ActionMailer::Preview
     nb_of_points = 3
     nb_of_rewards = 2
     UserMailer.with(appointment: appointment, nb_of_points: nb_of_points, nb_of_rewards: nb_of_rewards).confirmed_appointment_notification
-    
   end
 
 end

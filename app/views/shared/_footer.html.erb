@@ -1,18 +1,36 @@
 <div class="section footer bg-white">
-  <div class="container-large text-center">
+  <div class="container-large">
     <hr>
-    <small> Copyright Le Koinpost 2023</small><br>
-    <small><%= link_to "Mentions légales", mentions_legales_path %></small>
-    <div class="d-flex justify-content-center mt-1">
-      <%= link_to "https://www.instagram.com/lekoinpost/", target:"_blank", style:"text-decoration: none" do %>
-        <%= image_tag "instagram.png", alt:"logo",  width: 25, height:25, border: 0%>
-      <% end%>
-      <%= link_to "https://www.facebook.com/profile.php?id=61559857058307", target:"_blank" do %>
-        <%= image_tag "facebook.png", alt:"logo",  width: 25, height:25, border: 0, class:"mx-2"%>
-      <% end %>
-      <%= link_to "https://www.linkedin.com/company/le-koinpost/about/", target:"_blank", style:"text-decoration: none" do %>
-        <%= image_tag "linkedin.png", alt:"logo",  width: 25, height:25, border: 0%>
-      <% end%>
+    <div class="row mt-1">
+      
+      
+      <div class="col-12 col-md-4 mb-1">
+        <div class="d-flex d-md-block justify-content-center">
+          <div><%= link_to "CONTACT", new_contact_path, class:"me-2"  %></div>
+          <div><%= link_to "FAQ", faq_path %></div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-md-4 mb-2">
+        <div class="d-flex justify-content-center">
+          <%= link_to "https://www.instagram.com/lekoinpost/", target:"_blank", style:"text-decoration: none" do %>
+            <%= image_tag "instagram.png", alt:"logo",  width: 25, height:25, border: 0%>
+          <% end%>
+          <%= link_to "https://www.facebook.com/profile.php?id=61559857058307", target:"_blank" do %>
+            <%= image_tag "facebook.png", alt:"logo",  width: 25, height:25, border: 0, class:"mx-2"%>
+          <% end %>
+          <%= link_to "https://www.linkedin.com/company/le-koinpost/about/", target:"_blank", style:"text-decoration: none" do %>
+            <%= image_tag "linkedin.png", alt:"logo",  width: 25, height:25, border: 0%>
+          <% end%>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 text-center">
+        <small> Copyright Le Koinpost 2023</small><br>
+        <small><%= link_to "Mentions légales", mentions_legales_path %></small>
+      </div>
+    </div>
+    <div class="text-center">
+      
     </div>
   </div>
 </div>

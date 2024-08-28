@@ -21,6 +21,13 @@ class UserMailer < ApplicationMailer
     mail(to: @appointment.giver.email, subject: "Votre don a été confirmé sur Le Koinpost !")
   end
 
+  def send_contact_notification
+    @contact = params[:contact]
+    # TO DO : update this email address to lekoinpost2023@gmail.com
+    mail(to: "noemie.pierart@gmail.com", subject: "Vous avez reçu un nouveau message sur le Koinpost !" )
+  end
+
+
   private
 
   def add_mailer_images
