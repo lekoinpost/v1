@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :terms_and_conditions, :robots ]
+  skip_before_action :authenticate_user!, only: [ :home, :terms_and_conditions, :robots, :faq, :faq_for_gardens ]
 
   def home
   end
@@ -17,6 +17,12 @@ class PagesController < ApplicationController
       Sitemap: '#{root_url}sitemap.xml'"
 
     render plain: robots, layout: false, content_type: "text/plain"
+  end
+
+  def faq
+  end
+
+  def faq_for_gardens
   end
 
 end

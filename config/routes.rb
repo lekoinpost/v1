@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   #Static
   root to: "pages#home"
   get 'faq', to: "pages#faq"
+  get 'faq-jardins', to: "pages#faq_for_gardens"
   get 'mentions-legales', to: "pages#terms_and_conditions"
 
   # Jardins
