@@ -80,7 +80,7 @@ class GardensController < ApplicationController
   end
 
   def garden_params
-    params.require(:garden).permit(:garden_name, :description, :address, :street, :zipcode, :city, :nb_of_points_for_a_gift, :main_image, products_list: [])
+    params.require(:garden).permit(:garden_name, :description, :address, :street, :zipcode, :city, :nb_of_points_for_a_gift, :main_image, :opening_hours, products_list: [])
   end
 
   def set_products
