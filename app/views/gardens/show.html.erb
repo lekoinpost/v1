@@ -44,6 +44,11 @@
             <% end %>
           <% end %>
         </div>
+        <% if @garden.opening_hours.present? %>
+          <hr>
+          <div><strong>Horaires d'ouverture: </strong></div>
+          <%= @garden.opening_hours %>
+        <% end %>
       </div>
     </div>
 
