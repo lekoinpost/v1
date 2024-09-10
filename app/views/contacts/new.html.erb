@@ -13,6 +13,9 @@
                 <div class="mb-4"><%= f.input :email, label: "Email" %></div>
                 <div class="mb-4"><%= f.input :content, label: "Votre message" %></div>
                 
+                <%= recaptcha_tags %>
+
+
                 <div class="d-flex justify-content-center">
                     <%= f.submit "Envoyer", class:"btn-egg my-4"%>
                 </div>

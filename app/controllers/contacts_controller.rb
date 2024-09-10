@@ -1,5 +1,8 @@
 class ContactsController < ApplicationController
   skip_before_action :authenticate_user!
+  include Recaptcha::Adapters::ViewMethods
+  include Recaptcha::Adapters::ControllerMethods 
+
 
   def new
     @contact = Contact.new
@@ -7,11 +10,12 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    if @contact.save
+    if verify_recaptcha(model: @contact) && @contact.save
       redirect_to contacts_thanks_path
       UserMailer.with(contact: @contact).send_contact_notification.deliver_now
     else
-     render :new
+      flash.now[:alert] = 'Merci de confirmer que vous n\'êtes pas un robot.'
+      render :new
     end
   end
 

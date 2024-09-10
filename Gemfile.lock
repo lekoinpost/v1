@@ -221,6 +221,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    recaptcha (5.17.0)
     redis (4.8.1)
     regexp_parser (2.8.0)
     reline (0.3.3)
@@ -318,6 +319,7 @@ DEPENDENCIES
   postmark-rails
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  recaptcha (~> 5.17)
   redis (~> 4.0)
   sassc-rails
   selenium-webdriver
@@ -334,4 +336,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.3.19
+   2.5.16
