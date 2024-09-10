@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <% if @active_conversation.appointment.gardener.garden.status ==  %>
+    <% if @active_conversation.appointment.gardener.garden.status == "active" %>
 
       <%= simple_form_for(:message, url: conversation_messages_path(active_conversation), method: :post, html: { data: { action: "turbo:submit-end->conversation-subscription#resetForm" }, class: "message-input-container" }) do |f|
       %>
