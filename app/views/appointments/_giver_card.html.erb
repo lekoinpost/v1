@@ -10,72 +10,80 @@
           <%= image_tag "icons/user", height: 25, class:"me-3 py-1" %><%= appointment.giver.first_name  %> <%= appointment.giver.last_name  %>
         </div>
         <hr>
-        <div class="d-flex align-items-center mb-2">
-          <%= image_tag "icons/basket", width: 20, class:"me-3" %><%= appointment.quantity %> L de <%= appointment.compost_type%>
-        </div>
-        <div class="d-flex align-items-center mb-2">
-          <%= image_tag "icons/reward", width: 20, class:"me-3" %>
-          <%= GiverGardenPoint.where(garden: appointment.gardener.garden, giver: appointment.giver)[0].nb_of_points %> / <%= appointment.gardener.garden.nb_of_points_for_a_gift %>
-        </div>
-        <% if appointment.passed? %>
-          <% if appointment.status == "pending" %>
-            
-            <button type="button" class="d-flex align-items-center mb-2 btn-light-red p-2" data-bs-toggle="modal" data-bs-target="#confirmAppointmentModal">
-              <%= image_tag "icons/like", width: 20, class:"me-2" %>Confirmer
-            </button>
+        <% if appointment.gardener.garden.status == "active" %>
+          <div class="d-flex align-items-center mb-2">
+            <%= image_tag "icons/basket", width: 20, class:"me-3" %><%= appointment.quantity %> L de <%= appointment.compost_type%>
+          </div>
+          
+          <div class="d-flex align-items-center mb-2">
+            <%= image_tag "icons/reward", width: 20, class:"me-3" %>
+            <%= GiverGardenPoint.where(garden: appointment.gardener.garden, giver: appointment.giver)[0].nb_of_points %> / <%= appointment.gardener.garden.nb_of_points_for_a_gift %>
+          </div>
+          <% if appointment.passed? %>
+            <% if appointment.status == "pending" %>
+              
+              <button type="button" class="d-flex align-items-center mb-2 btn-light-red p-2" data-bs-toggle="modal" data-bs-target="#confirmAppointmentModal">
+                <%= image_tag "icons/like", width: 20, class:"me-2" %>Confirmer
+              </button>
 
-            <div class="modal fade" id="confirmAppointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <%# <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div> %>
-                  <div class="modal-body text-center">
-                    Avez-vous bien reçu ce compost ?
-                  </div>
-                  <div class="d-flex justify-content-center pb-2">
-                    <button type="button" data-bs-dismiss="modal"><%= image_tag "icons/false", width: 40, class:"me-2" %></button>
-                    <%= button_to confirm_appointment_path(appointment: appointment), method: :post do %>
-                      <%= image_tag "icons/true", width: 40, class:"me-2" %></button>
-                    <% end %>
+              <div class="modal fade" id="confirmAppointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <%# <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> %>
+                    <div class="modal-body text-center">
+                      Avez-vous bien reçu ce compost ?
+                    </div>
+                    <div class="d-flex justify-content-center pb-2">
+                      <button type="button" data-bs-dismiss="modal"><%= image_tag "icons/false", width: 40, class:"me-2" %></button>
+                      <%= button_to confirm_appointment_path(appointment: appointment), method: :post do %>
+                        <%= image_tag "icons/true", width: 40, class:"me-2" %></button>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-          <% else %>
-            <div class="d-flex align-items-center mb-2">
-              <%= image_tag "icons/true", width: 20, class:"me-3" %>
-              Don confirmé
-            </div>
+            <% else %>
+              <div class="d-flex align-items-center mb-2">
+                <%= image_tag "icons/true", width: 20, class:"me-3" %>
+                Don confirmé
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if appointment.nb_of_unused_rewards > 0 %>
-          <%= link_to rewards_to_give_path do %>
-            <div class="d-flex align-items-center mb-2 red">
-              <%= image_tag "icons/gift_red", width: 20, class:"me-3" %>
-              <%= appointment.nb_of_unused_rewards %> récompenses à lui donner !
-            </div>
+          <% if appointment.nb_of_unused_rewards > 0 %>
+            <%= link_to rewards_to_give_path do %>
+              <div class="d-flex align-items-center mb-2 red">
+                <%= image_tag "icons/gift_red", width: 20, class:"me-3" %>
+                <%= appointment.nb_of_unused_rewards %> récompenses à lui donner !
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-      
-      <div class="d-flex justify-content-center">
-        <%= link_to conversation_path(appointment.conversation) do %>
-          <%# image_tag "conversation", id:"conversation-button", class:"move-on-hover", width: 140%>
-          <small class="btn-egg move-on-hover">Contact</small>
+          </div>
+        
+          <div class="d-flex justify-content-center">
+            <%= link_to conversation_path(appointment.conversation) do %>
+              <%# image_tag "conversation", id:"conversation-button", class:"move-on-hover", width: 140%>
+              <small class="btn-egg move-on-hover">Contact</small>
+            <% end %>
+          </div>
+        
+        <% else %>
+          <div class="red"><i class="fa-solid fa-triangle-exclamation me-2"></i>Ce jardin a été désactivé !</div>
         <% end %>
       </div>
     </div>
   </div>
-  
-  <% if appointment.gardener.garden.main_image.key.nil? %>
-    <div class="col-12 col-md-6 main-image">
-      <%= image_tag("default.png", class: "garden-image") %>
-    </div>
-  <% else %>
-    <div class="col-12 col-md-6 main-image" style="background-image: url('<%= cl_image_path appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
-  <% end %>
+    <% if appointment.gardener.garden.main_image.key.nil? %>
+      <div class="col-12 col-md-6 main-image">
+        <%= image_tag("default.png", class: "garden-image") %>
+      </div>
+    <% else %>
+      <div class="col-12 col-md-6 main-image" style="background-image: url('<%= cl_image_path appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
+    <% end %>
   </div>
 </div>
+
+<%= console %>

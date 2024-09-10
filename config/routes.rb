@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'creer-un-jardin', to: 'gardens#create', as: :create_garden
   get 'modifier-mon-jardin/:slug', to: "gardens#edit", as: :edit_garden
   patch 'modifier-mon-jardin/:slug', to: 'gardens#update', as: :update_garden
+  post 'modifier-le-statut/:slug', to: "gardens#toggle_status", as: :toggle_garden_status
 
   # Appointments
   post 'appointments', to: "appointments#create", as: :create_appointment
