@@ -15,6 +15,8 @@ class Garden < ApplicationRecord
   serialize :products, Array
   attribute :products, :string, default: [], array: true
 
+  enum status: { active: 'active', inactive: 'inactive' }
+
   scope :by_address, lambda { |address|
     if address.present?
       Garden.near(

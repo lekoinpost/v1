@@ -36,10 +36,14 @@
 }
 
 .reward-card {
-  background-color: $gray;
   padding: 16px;
   text-align: center;
   height: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.reward-card .active {
+  background-color: $gray;
 }
 
 

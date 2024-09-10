@@ -1,68 +1,59 @@
-<% if current_user %>
-    <% if current_user!= @garden.gardener %>
-    <h1 class="text-center green" id="new-appointment">Apporter du compost à ce jardin</h1>
-    <%= simple_form_for(:appointment, url: create_appointment_path, method: :post) do |f| %>
-        
-        <%= f.input :giver_id, as: :hidden, input_html: { value: current_user.id } %>
-        <%= f.input :gardener_id, as: :hidden, input_html: { value: @garden.gardener.id } %>
-        
-        <h3 data-controller="flatpickr" >
-            <div class="d-flex align-items-center justify-content-center">
-            <div class="">Le </div>
-            <%= f.input :date, 
-                    as: :string, 
-                    required: true, 
-                    label: false, 
-                    input_html: { data: { flatpickr_target: "appointmentTime" } } 
-            %> 
-            </div>
-        </h3>
+<h1 class="text-center green" id="new-appointment">Apporter du compost à ce jardin</h1>
+<%= simple_form_for(:appointment, url: create_appointment_path, method: :post) do |f| %>
+    
+    <%= f.input :giver_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.input :gardener_id, as: :hidden, input_html: { value: @garden.gardener.id } %>
+    
+    <h3 data-controller="flatpickr" >
+        <div class="d-flex align-items-center justify-content-center">
+        <div class="">Le </div>
+        <%= f.input :date, 
+                as: :string, 
+                required: true, 
+                label: false, 
+                input_html: { data: { flatpickr_target: "appointmentTime" } } 
+        %> 
+        </div>
+    </h3>
 
 
-        <h3 class="text-center">je souhaiterais échanger </h3> 
-            <h3 class="d-flex align-items-center justify-content-center" data-controller="quantity-spinner">
-                    
-            <div class="spinner-button minus">
-                <i class="fa-solid fa-minus"></i>
-            </div>
-        
-            <%= f.input :quantity, as: :integer, label: false, input_html: {class:"form-control", id:"spinner", value: 1, min: 1} %>
+    <h3 class="text-center">je souhaiterais échanger </h3> 
+        <h3 class="d-flex align-items-center justify-content-center" data-controller="quantity-spinner">
                 
-            <div class="spinner-button plus">
-                <i class="fa-solid fa-plus"></i>
-            </div>
+        <div class="spinner-button minus">
+            <i class="fa-solid fa-minus"></i>
+        </div>
+    
+        <%= f.input :quantity, as: :integer, label: false, input_html: {class:"form-control", id:"spinner", value: 1, min: 1} %>
+            
+        <div class="spinner-button plus">
+            <i class="fa-solid fa-plus"></i>
+        </div>
 
-            <div class="ms-3"> L de </div>
-            </div>
-            </h3>
-
-        <h3 class="d-flex align-items-center justify-content-center">
-            <%= f.input :compost_type,
-            required: true,
-            as: :radio_buttons,
-            collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'compost-type-wrapper',
-            item_wrapper_class: 'compost-type-item',
-            input_html: {class: 'compost-type-selector'},
-            collection: Appointment::COMPOST_TYPES %>
-        </h3>
-
-         <% if params[:error].present? %>
-            <small class="small red d-flex justify-content-center"><%= params[:error] %></small>
-        <% end %>
-
-        <div class="d-flex justify-content-center">
-            <%= button_tag(type: 'submit', data: { turbo: false }) do %>
-                <%= image_tag "go.png", class:"devise-button move-on-hover mt-3" %>
-            <% end %>
+        <div class="ms-3"> L de </div>
         </div>
         </h3>
+
+    <h3 class="d-flex align-items-center justify-content-center">
+        <%= f.input :compost_type,
+        required: true,
+        as: :radio_buttons,
+        collection_wrapper_tag: 'div',
+        collection_wrapper_class: 'compost-type-wrapper',
+        item_wrapper_class: 'compost-type-item',
+        input_html: {class: 'compost-type-selector'},
+        collection: Appointment::COMPOST_TYPES %>
+    </h3>
+
+    <% if params[:error].present? %>
+        <small class="small red d-flex justify-content-center"><%= params[:error] %></small>
     <% end %>
-    <% else %>
+
     <div class="d-flex justify-content-center">
-        <%= link_to "Modifier", edit_garden_path(current_user.garden.slug), class: "btn-light" %>
+        <%= button_tag(type: 'submit', data: { turbo: false }) do %>
+            <%= image_tag "go.png", class:"devise-button move-on-hover mt-3" %>
+        <% end %>
     </div>
-    <% end %>
-<% else %>
-    <div class="mt-5 text-center">Veuillez vous identifier pour apporter du compost à ce jardin</div>
+    </h3>
 <% end %>
+    

@@ -1,10 +1,10 @@
 class GardensController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [ :index, :show,  ]
-  before_action :set_garden, only: [:create, :edit, :update, :show]
+  before_action :set_garden, only: [:create, :edit, :update, :show, :destroy, :toggle_status]
 
   def index
-    scope = Garden.all
+    scope = Garden.all.where(status: "active")
     if params[:address].present?
       scope = scope.by_address(params[:address])
     end
@@ -69,6 +69,19 @@ class GardensController < ApplicationController
     @appointment = Appointment.new
   end
 
+  def toggle_status
+    if @garden.status == "active"
+      @garden.update(status: "inactive")
+      flash[:notice] = 'Votre jardin a bien été désactivé ! Il n\'est désormais plus visible. 🎉'
+      redirect_to edit_garden_path(slug: @garden.slug), status: :see_other
+    else 
+      @garden.update(status: "active")
+      flash[:notice] = 'Votre jardin a bien été activé ! Il est désormais visible en ligne. 🎉'
+      redirect_to garden_path(slug: @garden.slug)
+    end
+   
+  end
+
   private
 
   def set_garden
@@ -80,7 +93,7 @@ class GardensController < ApplicationController
   end
 
   def garden_params
-    params.require(:garden).permit(:garden_name, :description, :address, :street, :zipcode, :city, :nb_of_points_for_a_gift, :main_image, :opening_hours, products_list: [])
+    params.require(:garden).permit(:garden_name, :description, :address, :street, :zipcode, :city, :nb_of_points_for_a_gift, :main_image, :opening_hours, :status, products_list: [])
   end
 
   def set_products

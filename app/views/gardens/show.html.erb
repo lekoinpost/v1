@@ -1,4 +1,4 @@
-<% content_for :meta_title, "#{@garden.garden_name} sur #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_title, "#{@garden.garden_name} sur Le Koinpost" %>
 <% content_for :meta_description, @garden.description %>
 <% content_for :meta_image, cl_image_path(@garden.main_image.key) if @garden.main_image.attached? %>
 
@@ -11,7 +11,7 @@
   <div class="container-large">
     
     <div class="mt-2 mb-5 header">
-      
+    
       <% if @garden.main_image.key.nil? %>
         <%= image_tag("default.png", class: "main-image") %>
       <% else %>
@@ -25,33 +25,51 @@
             <%= image_tag "icons/location", width: 25, class:"me-2" %>
             <%= @garden.address %>
           </div>
-          <% if current_user && current_user != @garden.gardener %>
-            <div class="d-flex align-items-center mt-2">
-              <%= image_tag "icons/reward", width: 25, class:"me-2" %>
-                <%= current_user.total_points_with(@garden) %> / <%= @garden.nb_of_points_for_a_gift %>
-            </div>
-          <% end %>
-        </div>
-        <hr>
-        <div class="d-flex mb-2">
-          <%= image_tag "icons/user", height: 25, class:"me-3" %><%= @garden.gardener.first_name  %> <%= @garden.gardener.last_name  %>
-        </div>
-        <div class="d-flex mb-2"><%= @garden.description %></div>
-        <div class="d-flex flex-wrap mb-2">
-          <% @garden.products.each do |product| %>
-            <% if product != "" %>
-              <div class="product"><%= product %></div>
+          <% if @garden.status == "active" %>
+          
+            <% if current_user && current_user != @garden.gardener %>
+              <div class="d-flex align-items-center mt-2">
+                <%= image_tag "icons/reward", width: 25, class:"me-2" %>
+                  <%= current_user.total_points_with(@garden) %> / <%= @garden.nb_of_points_for_a_gift %>
+              </div>
             <% end %>
+            </div>
+            <hr>
+            <div class="d-flex mb-2">
+              <%= image_tag "icons/user", height: 25, class:"me-3" %><%= @garden.gardener.first_name  %> <%= @garden.gardener.last_name  %>
+            </div>
+            <div class="d-flex mb-2"><%= @garden.description %></div>
+            <div class="d-flex flex-wrap mb-2">
+              <% @garden.products.each do |product| %>
+                <% if product != "" %>
+                  <div class="product"><%= product %></div>
+                <% end %>
+              <% end %>
+            </div>
+            <% if @garden.opening_hours.present? %>
+              <hr>
+              <div><strong>Horaires d'ouverture: </strong></div>
+              <%= @garden.opening_hours %>
+            <% end %>
+          <% else %>
+            <div class="my-3">Ce jardin a été désactivé.</div>
           <% end %>
-        </div>
-        <% if @garden.opening_hours.present? %>
-          <hr>
-          <div><strong>Horaires d'ouverture: </strong></div>
-          <%= @garden.opening_hours %>
-        <% end %>
       </div>
     </div>
+    </div>
+    <% if current_user %>
+      <% if current_user!= @garden.gardener && @garden.status == "active"%>
+        <%= render "appointments/form" %>
+      <% elsif current_user == @garden.gardener%>
+        <div class="d-flex justify-content-center">
+            <%= link_to edit_garden_path(current_user.garden.slug), class: "btn-light me-3" do %>
+              <%= image_tag "icons/edit", class: "icon me-2" %>Modifier
+            <% end %>
+        </div>
+      <% end %>
+    <% elsif @garden.status == "active" %>
+      <div class="mt-5 text-center">Veuillez vous identifier pour apporter du compost à ce jardin</div>
+    <% end %>
 
-    <%= render "appointments/form" %>
   </div>
 </div>

@@ -19,7 +19,7 @@
       <div class="reward-cards">
         <% @rewards_to_receive.each do |gardener, count| %>
           <%= link_to garden_path(slug: gardener.garden.slug) do %>
-            <div class="reward-card">
+            <div class="reward-card <%= gardener.garden.status != "active" ? "bg-gray-1": ""%>">
               <div>
                 <div class="d-flex justify-content-center align-items-center mb-2">
                     <%= image_tag "icons/basket", width: 20, class:"me-2" %><%= gardener.garden.garden_name.upcase %>
@@ -31,6 +31,9 @@
                 <%= image_tag "icons/gift_red", width: 20, class:"me-3" %>
                 <div><%= count%> <%= count == 1 ? "Récompense à recevoir !" : "Récompenses à recevoir !"%></div>
               </div>
+              <% if gardener.garden.status != "active" %>
+                <div>Ce jardin a été désactivé ! </div>
+              <% end %>
             </div>
           <% end %>
         <% end %>

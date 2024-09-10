@@ -12,20 +12,24 @@
       </div>
     </div>
 
-    <%= simple_form_for(:message, url: conversation_messages_path(active_conversation), method: :post, html: { data: { action: "turbo:submit-end->conversation-subscription#resetForm" }, class: "message-input-container" }) do |f|
-    %>
-      <%= f.input :content,
-        label: false,
-        autofocus: true,
-        placeholder: "Entrer votre message...",
-        wrapper_html: {class: "message-input"}
+    <% if @active_conversation.appointment.gardener.garden.status ==  %>
+
+      <%= simple_form_for(:message, url: conversation_messages_path(active_conversation), method: :post, html: { data: { action: "turbo:submit-end->conversation-subscription#resetForm" }, class: "message-input-container" }) do |f|
       %>
+        <%= f.input :content,
+          label: false,
+          autofocus: true,
+          placeholder: "Entrer votre message...",
+          wrapper_html: {class: "message-input"}
+        %>
 
-      <%= button_tag(type: 'submit', value:"") do %>
-        <%= image_tag "icons/send.png", class:"send-btn" %>
+        <%= button_tag(type: 'submit', value:"") do %>
+          <%= image_tag "icons/send.png", class:"send-btn" %>
+        <% end %>
+
       <% end %>
-
-
+    <% else %>
+      <div>Ce jardin a été désactivé, vous ne pouvez plus lui envoyer de messages.</div>
     <% end %>
 
   </div>

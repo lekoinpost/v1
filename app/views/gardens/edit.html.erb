@@ -8,7 +8,33 @@
     <div class="bg-white p-3">
 
         <h1 class="text-center my-4">Modifier mon jardin</h1>
-        
+
+          <% if @garden.status != "active" %>
+          
+            <small class="red"><i class="fa-regular fa-circle-xmark me-2"></i>Votre jardin est actuellement désactivé.</small>
+            
+            <div>
+              <%= link_to toggle_garden_status_path(slug: @garden.slug), 
+                    class: "p-0",
+                    data: {
+                      turbo_method: "post",
+                      turbo_confirm: "Etes-vous sûr(e) de vouloir activer votre jardin? Il sera désormais visible en ligne !"} do %>
+                      <small><i class="fa-solid fa-toggle-on me-2"></i>ACTIVER MON JARDIN</small>
+              <% end %>
+            </div>
+          <% else %>
+            <small class="green"><i class="fa-regular fa-circle-check me-2"></i>Votre jardin est actuellement activé.</small>
+            <div>
+              <%= link_to toggle_garden_status_path(slug: @garden.slug), 
+                    class: "p-0",
+                    data: {
+                      turbo_method: "post",
+                      turbo_confirm: "Etes-vous sûr(e) de vouloir désactiver votre jardin? Il ne sera plus visible en ligne !"} do %>
+                <small><i class="fa-solid fa-toggle-off me-2"></i>DESACTIVER MON JARDIN</small>
+              <% end %>
+            </div>
+          <% end %>
+          <hr>
         <%= simple_form_for @garden, url: update_garden_path(@garden.slug), method: :patch do |f| %>
           <%= render "form", f: f, garden: current_user.garden %>
         <% end %>
