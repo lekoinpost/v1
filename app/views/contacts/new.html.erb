@@ -1,25 +1,35 @@
 <div class="section">
-  <div class="container-medium">
+    <div class="container">
   
-    <div class="row">
-        <div class="d-none d-lg-block col-12 col-lg-6">
-            <%= image_tag "contact", class:"img-fluid max-vh-75" %>
-        </div>
-        <div class="col-12 col-lg-6">
-            <h1 class="text-center mb-3">Nous contacter</h1>
-            <%= simple_form_for(@contact, url: create_contact_path) do |f| %>
-                <div class="mb-4"><%= f.input :first_name, label: "Prénom" %></div>
-                <div class="mb-4"><%= f.input :last_name, label: "Nom" %></div>
-                <div class="mb-4"><%= f.input :email, label: "Email" %></div>
-                <div class="mb-4"><%= f.input :content, label: "Votre message" %></div>
-                
-                <%= recaptcha_tags %>
+        <div class="row">
+            <div class="d-none d-lg-block col-12 col-lg-6 img-fluid" style="background-image: url(<%= asset_path 'contact.jpg'%>">
+            </div>
+            <div class="col-12 col-lg-6 px-4">
+                <h1 class="text-center mb-3">Nous contacter</h1>
+                <%= simple_form_for(@contact, url: create_contact_path) do |f| %>
+                    <div class="mb-4"><%= f.input :first_name, label: "Prénom", required: true, error: "Merci de saisir votre prénom." %></div>
+                    <div class="mb-4"><%= f.input :last_name, label: "Nom", required: true, error: "Merci de saisir votre nom." %></div>
+                    <div class="mb-4"><%= f.input :email, label: "Email", required: true, error: "Merci de saisir votre email." %></div>
+                    <div class="mb-4"><%= f.input :content, label: "Votre message", input_html: { style: "min-height: 200px"}, required: true, error: "Merci de saisir votre message." %></div>
+                    
+                <div class="recaptcha-container">
+                        <%= recaptcha_tags %>
+
+                        <!-- Display the reCAPTCHA error message if it exists -->
+                        <% if @contact.errors[:recaptcha].present? %>
+                        <div class="recaptcha-error" style="color: red;">
+                            <%= @contact.errors[:recaptcha].first %>
+                        </div>
+                        <% end %>
+                    </div>
 
 
-                <div class="d-flex justify-content-center">
-                    <%= f.submit "Envoyer", class:"btn-egg my-4"%>
-                </div>
-            <% end %>
+
+                    <div class="d-flex justify-content-center">
+                        <%= f.submit "Envoyer", class:"btn-egg my-4"%>
+                    </div>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>
