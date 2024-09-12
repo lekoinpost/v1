@@ -23,7 +23,7 @@ class UserMailer < ApplicationMailer
 
   def send_contact_notification
     @contact = params[:contact]
-    mail(to: "lekoinpost2023@gmail.com", subject: "Vous avez reçu un nouveau message sur le Koinpost !" )
+    mail(to: "hello@lekoinpost.com", subject: "Vous avez reçu un nouveau message sur le Koinpost !" )
   end
 
 
