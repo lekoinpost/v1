@@ -10,12 +10,18 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    if verify_recaptcha(model: @contact) && @contact.save
-      redirect_to contacts_thanks_path
-      UserMailer.with(contact: @contact).send_contact_notification.deliver_now
+    if @contact.valid?
+      if verify_recaptcha(model: @contact) 
+        @contact.save
+        redirect_to contacts_thanks_path
+      else 
+        @contact.errors.add(:recaptcha, "Merci de confirmer que vous n'êtes pas un robot.") unless verify_recaptcha
+        flash.now[:alert] = 'Merci de bien compléter le formulaire RECAPTCHA.'
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash.now[:alert] = 'Merci de confirmer que vous n\'êtes pas un robot.'
-      render :new
+      flash.now[:alert] = 'Merci de bien compléter le formulaire.'
+      render :new, status: :unprocessable_entity
     end
   end
 
