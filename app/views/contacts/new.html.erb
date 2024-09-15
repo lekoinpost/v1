@@ -13,15 +13,15 @@
                     <div class="mb-4"><%= f.input :content, label: "Votre message", input_html: { style: "min-height: 200px"}, required: true, error: "Merci de saisir votre message." %></div>
                     
                 <div class="recaptcha-container">
-                        <%= recaptcha_tags %>
+                    <%= recaptcha_tags %>
 
-                        <!-- Display the reCAPTCHA error message if it exists -->
-                        <% if @contact.errors[:recaptcha].present? %>
-                        <div class="recaptcha-error" style="color: red;">
-                            <%= @contact.errors[:recaptcha].first %>
-                        </div>
-                        <% end %>
+                    <!-- Display the reCAPTCHA error message if it exists -->
+                    <% if @contact.errors[:recaptcha].present? %>
+                    <div class="recaptcha-error" style="color: red;">
+                        <%= @contact.errors[:recaptcha].first %>
                     </div>
+                    <% end %>
+                </div>
 
 
 

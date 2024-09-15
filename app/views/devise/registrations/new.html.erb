@@ -45,7 +45,12 @@
           </div>
     
           <%# f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-        
+
+          <div class="recaptcha-container mt-2">
+            <%= recaptcha_tags %>
+            <small class="red"><%= flash[:recaptcha_error] %></small>
+          </div>
+
           <div class="d-flex justify-content-center">
             <%= f.submit "M'inscrire", class:"btn-egg my-4"%>
             <%# button_tag(type: 'submit', value:"") do %>
