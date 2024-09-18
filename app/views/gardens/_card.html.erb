@@ -1,5 +1,5 @@
 <div class="garden-card">
-  <%= link_to garden_path(slug: garden.slug), class:"garden-infos w-50" do %>
+  <%= link_to garden_path(slug: garden.slug), data: { turbo: false }, class:"garden-infos w-50" do %>
     <div class="d-flex flex-column justify-content-center h-100">
       <h2><%= garden.garden_name %></h2>
       <div><%= garden.gardener.first_name %> <%= garden.gardener.last_name%></div>
@@ -20,7 +20,7 @@
     </div>
   <% end %>
   
-  <%= link_to garden_path(slug: garden.slug), class:"w-50 h-100" do %>
+  <%= link_to garden_path(slug: garden.slug), data: { turbo: false }, class:"w-50 h-100" do %>
     <% if garden.main_image.key.nil? %>
       <%= image_tag("default.png", class: "garden-image") %>
     <% else %>
