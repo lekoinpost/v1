@@ -12,6 +12,7 @@ fr:
     abbr_day_names_long: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
     abbr_day_names: [D, L, Ma, Me, J, V, S]
     abbr_month_names:
+    - 
     - jan.
     - fév.
     - mars
