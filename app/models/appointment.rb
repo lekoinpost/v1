@@ -40,37 +40,38 @@ class Appointment < ApplicationRecord
   end
 
   def update_giver_garden_points
-
-    # Barème de récompenses :
-    # 1kg de biodechets = 1 point
-    # 1kg de compost mur = 3 points
-  
     giver_gardener_points = GiverGardenPoint.find_or_create_by(
       giver_id: self.giver.id,
       garden_id: self.gardener.garden.id
     )
-
-    points = case self.compost_type
-            when "biodéchets"
-              self.quantity
-            when "compost mûr"
-              self.quantity * 3
-            else
-              0
-            end
-
-    giver_gardener_points.increment!(:nb_of_points, points)
-    # Si une récompense est atteinte
-    while giver_gardener_points.nb_of_points >= self.gardener.garden.nb_of_points_for_a_gift
-      # Créer une récompense
-      Reward.create(giver_id: self.giver.id, gardener_id: self.gardener.id)
-      # Retirer le points utilisés
-      lost_points = self.gardener.garden.nb_of_points_for_a_gift
-      new_quantity = giver_gardener_points.nb_of_points  - lost_points
-      giver_gardener_points.update(nb_of_points: new_quantity)
+  
+    giver_gardener_points.with_lock do
+      points = case self.compost_type
+              when "biodéchets"
+                self.quantity
+              when "compost mûr"
+                self.quantity * 3
+              else
+                0
+              end
+  
+      giver_gardener_points.increment!(:nb_of_points, points)
+  
+      create_reached_rewards(giver_gardener_points)
     end
-    
   end
+  
+  def create_reached_rewards(giver_gardener_points)
+    gift_threshold = self.gardener.garden.nb_of_points_for_a_gift.to_i
+    return if gift_threshold <= 0  # Prevent infinite loop
+  
+    while giver_gardener_points.nb_of_points >= gift_threshold
+      Reward.create!(giver_id: self.giver.id, gardener_id: self.gardener.id)
+  
+      giver_gardener_points.update!(nb_of_points: giver_gardener_points.nb_of_points - gift_threshold)
+    end
+  end
+  
 
   def create_conversation
     build_conversation.save
