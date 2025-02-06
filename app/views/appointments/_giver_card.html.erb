@@ -76,12 +76,11 @@
       </div>
     </div>
   </div>
-    <% if appointment.gardener.garden.main_image.key.nil? %>
-      <div class="col-12 col-md-6 main-image">
-        <%= image_tag("default.png", class: "garden-image") %>
-      </div>
-    <% else %>
-      <div class="col-12 col-md-6 main-image" style="background-image: url('<%= cl_image_path appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
-    <% end %>
-  </div>
+  <% if appointment.gardener.garden.main_image.key.nil? %>
+    <div class="col-12 col-md-6 main-image">
+      <%= image_tag("default.png", class: "garden-image") %>
+    </div>
+  <% else %>
+    <div class="col-12 col-md-6 main-image" style="background-image: url('<%= cl_image_path appointment.gardener.garden.main_image.key, crop: :fill %>'); background-size: cover">
+  <% end %>
 </div>
