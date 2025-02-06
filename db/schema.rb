@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_05_151150) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_06_151545) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -99,6 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_151150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["garden_id"], name: "index_giver_garden_points_on_garden_id"
+    t.index ["giver_id", "garden_id"], name: "index_giver_garden_points_on_giver_id_and_garden_id", unique: true
     t.index ["giver_id"], name: "index_giver_garden_points_on_giver_id"
   end
 
