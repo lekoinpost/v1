@@ -33,12 +33,23 @@
       } %>
   </div>
 
-  <%= f.input :description,
+  <div data-controller="charcount" data-charcount-max-value="500">
+    <%= f.input :description,
               as: :text,
               label: "Une description de mon jardin : ",
-              error: "Merci de saisir une description. Max. 149 caractères.",
-              wrapper_html: {class:"mt-5"},
-              input_html: { } %>
+              error: "Merci de saisir une description. Max. 500 caractères.",
+              wrapper_html: { class: "mt-5" },
+              input_html: {
+                data: {
+                  action: "input->charcount#update",
+                  charcount_target: "input"
+                }
+    } %>
+    <div data-charcount-target="counter" class="text-sm opacity-50 text-end">
+      0 / 500 caractères
+    </div>
+  </div>
+
 
   <label class="mt-4">Points à obtenir pour avoir une récompense : </label>
 
