@@ -1,8 +1,29 @@
 <div id="message-<%= message.id %>" class="<%= message.sender == current_user ? 'sent-message' : 'received-message'%>">
-  <div class="message">
+  <div class="message-card">
     <strong><%= message.sender.first_name %></strong>
     <div>
       <div><%= message.content %></div>
+
+      <% if message.attachments.attached? %>
+        <div class="attachments">
+          <% message.attachments.each do |attachment| %>
+            <div class="attachment">
+              <% if attachment.content_type.start_with?('image') %>
+                <%= link_to url_for(attachment), target: "_blank", data: { turbo: false }  do %>
+                  <%= image_tag attachment, class: "attachment-preview w-100" %>
+                <% end %>
+              <% else %>
+                <div class="d-flex">
+                  <%= link_to url_for(attachment), class: "form-control my-2 w-auto", target: "_blank" do %>
+                    <i class="fa-solid fa-download me-2"></i>Télécharger: <%= attachment.filename %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
       <div class="time">Le <%= l(message.created_at, format: "%-d %b") %> à <%= l(message.created_at, format: "%kh%M") %></div>
     </div>
   </div>

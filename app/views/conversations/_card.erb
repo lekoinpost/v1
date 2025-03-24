@@ -1,3 +1,4 @@
+
 <% if active_conversation %>
   <div class="conversation"
     data-controller="conversation-subscription"
@@ -14,18 +15,56 @@
 
     <% if @active_conversation.appointment.gardener.garden.status == "active" %>
 
-      <%= simple_form_for(:message, url: conversation_messages_path(active_conversation), method: :post, html: { data: { action: "turbo:submit-end->conversation-subscription#resetForm" }, class: "message-input-container" }) do |f|
-      %>
-        <%= f.input :content,
-          label: false,
-          autofocus: true,
-          placeholder: "Entrer votre message...",
-          wrapper_html: {class: "message-input"}
-        %>
+      <%= simple_form_for(:message,
+        url: conversation_messages_path(active_conversation),
+        method: :post,
+        html: {
+          class: "message-input-container",
+          data: {
+            action: "submit->conversation-subscription#validateFormBeforeSubmit turbo:submit-end->conversation-subscription#resetForm"
+          },
+          novalidate: true
+        }) do |f| %>
 
-        <%= button_tag(type: 'submit', value:"") do %>
-          <%= image_tag "icons/send.png", class:"send-btn" %>
-        <% end %>
+        <div data-conversation-subscription-target="attachmentPreview" class="attachment-preview-container d-flex justify-content-center gap-2 flex-wrap mb-2"></div>
+
+        <div class="d-flex align-items-end pb-2 w-100">
+
+          <%= f.file_field :attachments,
+            multiple: true,
+            id: "message_attachments",
+            class: "d-none",
+            data: {
+              action: "change->conversation-subscription#displayAttachmentPreview change->conversation-subscription#updateSubmitButtonState",
+              "conversation-subscription-target": "fileInput"
+            } %>
+
+          <label for="message_attachments" class="" style="cursor: pointer;">
+            <%= image_tag "icons/clip.png", alt: "Ajouter un fichier", class:"form-control", width: 40, height: 40 %>
+          </label>
+
+          <%= f.input :content,
+            label: false,
+            autofocus: true,
+            placeholder: "Entrer votre message...",
+            input_html: {
+              id: "message_content",
+              class: "form-control",
+              data: {
+                action: "input->conversation-subscription#updateSubmitButtonState",
+                "conversation-subscription-target": "messageInput"
+              }
+            },
+            wrapper_html: { class: "message-input ms-2" } %>
+          
+          <%= button_tag(type: 'submit',
+            value: "",
+            data: { "conversation-subscription-target": "submitButton" },
+            disabled: true) do %>
+            <%= image_tag "icons/send.png", class: "form-control", width: 40, height: 40 %>
+          <% end %>
+        
+        </div>
 
       <% end %>
     <% else %>
