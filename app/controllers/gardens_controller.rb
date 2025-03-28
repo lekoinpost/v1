@@ -4,18 +4,16 @@ class GardensController < ApplicationController
   before_action :set_garden, only: [:create, :edit, :update, :show, :destroy, :toggle_status]
 
   def index
-    scope = Garden.all.where(status: "active")
-    if params[:address].present?
-      scope = scope.by_address(params[:address])
-    end
-    @pagy, @gardens = pagy_array(scope, items: 9, locale: :fr)
+    scope = Garden.where(status: "active")
+    scope = scope.by_address(params[:address]) if params[:address].present?
+    @pagy, @gardens = pagy(scope, items: 9, locale: :fr)
 
     respond_to do |format|
       format.html
       format.text { render partial: 'list.html', locals: { gardens: @gardens } }
     end
 
-    @markers = scope.geocoded.map do |garden|
+    @markers = @gardens.select(&:geocoded?).map do |garden|
       {
         lat: garden.latitude,
         lng: garden.longitude, 
