@@ -18,13 +18,10 @@ class Garden < ApplicationRecord
   enum status: { active: 'active', inactive: 'inactive' }
 
   scope :by_address, lambda { |address|
-    if address.present?
-      Garden.near(
-        Geocoder.search(address).first.coordinates,
-        20,
-        order: :distance
-      )
-    end
+    next if address.blank?
+  
+    coordinates = Geocoder.search(address).first&.coordinates
+    coordinates ? near(coordinates, 20, order: :distance) : all
   }
 
   def set_slug
