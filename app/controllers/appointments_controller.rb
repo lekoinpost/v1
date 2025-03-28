@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
 
-  before_action :set_appointment, only: [:mark_as_confirmed]
+  before_action :set_appointment, only: [:mark_as_confirmed, :mark_as_refused]
 
   def index
     if params[:date]
@@ -55,6 +55,11 @@ class AppointmentsController < ApplicationController
     @nb_of_points = GiverGardenPoint.find_by(giver_id: @appointment.giver.id, garden_id: @appointment.gardener.garden.id).nb_of_points
     @nb_of_rewards = Reward.where(giver_id: @appointment.giver.id, gardener_id: @appointment.gardener, used: false).size
     UserMailer.with(appointment: @appointment, nb_of_points: @nb_of_points, nb_of_rewards: @nb_of_rewards ).confirmed_appointment_notification.deliver_now
+  end
+
+  def mark_as_refused
+    @appointment.update(status: "refused")
+    redirect_back(fallback_location: root_path)
   end
 
   private
