@@ -40,7 +40,7 @@
             } %>
 
           <label for="message_attachments" class="" style="cursor: pointer;">
-            <%= image_tag "icons/clip.png", alt: "Ajouter un fichier", class:"form-control", width: 40, height: 40 %>
+            <%= image_tag "icons/clip.png", alt: "Ajouter un fichier", class:"form-control chat-icon", width: 40, height: 40 %>
           </label>
 
           <%= f.input :content,
@@ -61,7 +61,7 @@
             value: "",
             data: { "conversation-subscription-target": "submitButton" },
             disabled: true) do %>
-            <%= image_tag "icons/send.png", class: "form-control", width: 40, height: 40 %>
+            <%= image_tag "icons/send.png", class: "form-control chat-icon", width: 40, height: 40 %>
           <% end %>
         
         </div>
