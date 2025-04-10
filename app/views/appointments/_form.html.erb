@@ -1,4 +1,4 @@
-<h1 class="text-center green" id="new-appointment">Apporter du compost à ce jardin</h1>
+<h1 class="text-center green" id="new-appointment">Apporter du compost à ce composteur / PAV</h1>
 <%= simple_form_for(:appointment, url: create_appointment_path, method: :post) do |f| %>
     
     <%= f.input :giver_id, as: :hidden, input_html: { value: current_user.id } %>

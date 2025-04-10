@@ -2,7 +2,7 @@
   <div class="container-large">
     
     <div class="breadcrumbs">
-      <%= image_tag "icons/home" %> > <%= link_to "Mon jardin", garden_path(slug: @user.garden.slug)%> > Récompenser
+      <%= image_tag "icons/home" %> > <%= link_to "Mon composteur / PAV", garden_path(slug: @user.garden.slug)%> > Récompenser
     </div>
 
     <div class="tabs">
@@ -96,7 +96,7 @@
         <div class="text-center">Vous n'avez pas donné de récompenses en cours pour l'instant.</div>
       <% end %>
     <% else %>
-      <div class="text-center">Votre jardin est désactivé !</div>
+      <div class="text-center">Votre lieu est désactivé !</div>
     <% end %>
   </div>
 </div>

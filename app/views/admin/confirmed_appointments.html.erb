@@ -14,12 +14,12 @@
         
         <div class="col-12 col-md-5 mb-4">
           <div class="d-flex align-items-center mb-2">
-            <%= image_tag "icons/basket", height: 20, class: "me-2" %>Jardin : 
+            <%= image_tag "icons/basket", height: 20, class: "me-2" %>Composteur / PAV : 
           </div>
           <%= select_tag :garden, 
             options_from_collection_for_select(Garden.all, :id, :garden_name, params[:garden]), 
             include_blank: true,
-            placeholder: "Sélectionnr un jardin",
+            placeholder: "Sélectionnr un composteur ou PAV",
             class: "select"%>
         </div>
 
