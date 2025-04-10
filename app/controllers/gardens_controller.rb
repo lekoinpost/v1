@@ -56,7 +56,7 @@ class GardensController < ApplicationController
     @garden.set_slug
     set_products
     if @garden.save
-      flash[:notice] = 'Votre jardin a bien été modifié 🎉'
+      flash[:notice] = 'Votre composteur / PAV a bien été modifié 🎉'
       redirect_to session[:previous_url] || garden_path(slug: @garden.slug)
     else
       render "edit", status: :unprocessable_entity
@@ -70,11 +70,11 @@ class GardensController < ApplicationController
   def toggle_status
     if @garden.status == "active"
       @garden.update(status: "inactive")
-      flash[:notice] = 'Votre jardin a bien été désactivé ! Il n\'est désormais plus visible. 🎉'
+      flash[:notice] = 'Votre composteur / PAV a bien été désactivé ! Il n\'est désormais plus visible. 🎉'
       redirect_to edit_garden_path(slug: @garden.slug), status: :see_other
     else 
       @garden.update(status: "active")
-      flash[:notice] = 'Votre jardin a bien été activé ! Il est désormais visible en ligne. 🎉'
+      flash[:notice] = 'Votre composteur / PAV a bien été activé ! Il est désormais visible en ligne. 🎉'
       redirect_to garden_path(slug: @garden.slug)
     end
    

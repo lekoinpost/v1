@@ -13,21 +13,21 @@
         <li class="nav-item">
           <%= link_to gardens_path, class: "nav-link d-flex align-items-center me-2" do %>
             <%= image_tag "icons/find.png", class:"icon" %>
-            <div>Trouver un jardin</div>
+            <div>Trouver un composteur ou PAV</div>
           <% end %>
         </li>
         <% if user_signed_in? && current_user.has_a_garden? %>
           <li class="nav-item">
             <%= link_to edit_garden_path(current_user.garden.slug), class: "nav-link d-flex align-items-center me-2" do %>
               <%= image_tag "icons/add", class:"icon" %>
-              <div>Modifier mon jardin</div>
+              <div>Modifier mon composteur ou PAV</div>
             <% end %>
           </li>
         <% else %>
           <li class="nav-item">
             <%= link_to new_garden_path, class: "nav-link d-flex align-items-center me-2" do %>
               <%= image_tag "icons/add", class:"icon" %>
-              <div>Créer mon jardin</div>
+              <div>Créer mon composteur ou PAV</div>
             <% end %>
           </li>
         <% end %>

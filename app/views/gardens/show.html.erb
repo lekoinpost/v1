@@ -5,7 +5,7 @@
 <div class="section" id="garden-show">
 
   <div class="breadcrumbs">
-      <%= image_tag "icons/home" %> > <%= link_to "Les jardins", gardens_path %> > <%= @garden.garden_name %>
+      <%= image_tag "icons/home" %> > <%= link_to "Les composteurs / PAV", gardens_path %> > <%= @garden.garden_name %>
     </div>
 
   <div class="container-large">
@@ -52,7 +52,7 @@
               <%= @garden.opening_hours %>
             <% end %>
           <% else %>
-            <div class="my-3">Ce jardin a été désactivé.</div>
+            <div class="my-3">Ce composteur / PAV a été désactivé.</div>
           <% end %>
       </div>
     </div>
