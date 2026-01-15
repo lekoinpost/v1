@@ -1,16 +1,25 @@
 class GardensController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [ :index, :show,  ]
-  before_action :set_garden, only: [:create, :edit, :update, :show, :destroy, :toggle_status]
+  before_action :set_garden, only: [:edit, :update, :show, :destroy, :toggle_status]
 
   def index
     scope = Garden.where(status: "active")
-    scope = scope.by_address(params[:address]) if params[:address].present?
+    
+    if params[:address].present?
+      @search_coordinates = Geocoder.coordinates(params[:address])
+
+      if @search_coordinates
+        scope = scope.near(@search_coordinates, 20, order: :distance)
+        @distance_search = true
+      end
+    end
+
     @pagy, @gardens = pagy(scope, items: 9, locale: :fr)
 
     respond_to do |format|
       format.html
-      format.text { render partial: 'list.html', locals: { gardens: @gardens } }
+      format.text { render partial: 'list', locals: { gardens: @gardens } }
     end
 
     @markers = @gardens.select(&:geocoded?).map do |garden|
@@ -34,7 +43,6 @@ class GardensController < ApplicationController
   def create
     @garden = Garden.new(garden_params)
     current_user.garden = @garden
-    @garden.set_slug
     set_products
     
     respond_to do |format|
@@ -53,7 +61,6 @@ class GardensController < ApplicationController
 
   def update
     @garden.update(garden_params)
-    @garden.set_slug
     set_products
     if @garden.save
       flash[:notice] = 'Votre composteur / PAV a bien été modifié 🎉'
