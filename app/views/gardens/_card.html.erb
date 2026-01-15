@@ -5,10 +5,10 @@
       <div><%= garden.gardener.first_name %> <%= garden.gardener.last_name%></div>
     </div>
     <div>
-      <% if params[:address].present? %>
+      <% if defined?(garden.distance) && garden.distance.present? %>
         <div class="d-flex align-items-center mb-2">
           <%= image_tag "icons/location", width: 20, class:"me-2" %>
-          <%= garden.distance_to(params[:address]) %> km
+          <%= garden.distance.round(1) %> km
         </div>
       <% end %>
       <% if user_signed_in? %>
