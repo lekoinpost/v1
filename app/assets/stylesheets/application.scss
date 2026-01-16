@@ -21,6 +21,23 @@
 @import "rewards/index";
 @import "contacts/index";
 
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; 
+  overflow-x: hidden;
+  width: 100%
+}
+
 .section {
   padding: 12px 5vw;
 }
