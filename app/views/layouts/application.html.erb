@@ -35,15 +35,36 @@
     <%# Favicon %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
 
-
-
   </head>
 
   <body>
     <%= render "shared/navbar"%>
     <%= render "shared/flashes" %>
-
+  
     <%= yield %>
     <%= render "shared/footer"%>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <script>
+      window.turnstileSuccess = function () {
+        const submit = document.querySelector("form input[type='submit'], form button[type='submit']");
+        if (!submit) return;
+
+        submit.disabled = false;
+        submit.style.backgroundColor = "";
+        submit.style.cursor = "";
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const submit = document.querySelector("form input[type='submit'], form button[type='submit']");
+        if (!submit) return;
+        console.log("hello")
+        submit.disabled = true;
+        submit.style.backgroundColor = "#ccc";
+        submit.style.cursor = "not-allowed";
+      });
+    </script>
+
   </body>
 </html>
