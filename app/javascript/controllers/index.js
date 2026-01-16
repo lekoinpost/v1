@@ -35,4 +35,4 @@ import TogglePasswordVisibilityController from "./toggle_password_visibility_con
 application.register("toggle-password-visibility", TogglePasswordVisibilityController)
 
 import TomSelectController from "./tom_select_controller"
-application.register("tom-select", TomSelectController)
+application.register("tom-select", TomSelectController) 

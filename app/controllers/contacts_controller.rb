@@ -1,8 +1,5 @@
 class ContactsController < ApplicationController
   skip_before_action :authenticate_user!
-  include Recaptcha::Adapters::ViewMethods
-  include Recaptcha::Adapters::ControllerMethods 
-
 
   def new
     @contact = Contact.new
@@ -10,17 +7,9 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    if @contact.valid?
-      if verify_recaptcha(model: @contact) 
-        @contact.save
-        redirect_to contacts_thanks_path
-      else 
-        @contact.errors.add(:recaptcha, "Merci de confirmer que vous n'êtes pas un robot.") unless verify_recaptcha
-        flash.now[:alert] = 'Merci de bien compléter le formulaire RECAPTCHA.'
-        render :new, status: :unprocessable_entity
-      end
+    if @contact.save
+      redirect_to merci_pour_votre_message_path
     else
-      flash.now[:alert] = 'Merci de bien compléter le formulaire.'
       render :new, status: :unprocessable_entity
     end
   end

@@ -59,7 +59,6 @@ gem "cloudinary"
 gem "pagy", "~> 5.6"
 gem "simple_calendar", "~> 2.4"
 gem 'postmark-rails'
-gem 'recaptcha', '~> 5.17'
 gem 'rack-attack'
 
 group :development, :test do
