@@ -47,24 +47,30 @@
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
     <script>
-      window.turnstileSuccess = function () {
-        const submit = document.querySelector("form input[type='submit'], form button[type='submit']");
+    // This function is called by Turnstile when the user completes the captcha
+    window.turnstileSuccess = function (token) {
+      document.querySelectorAll("form.turnstile").forEach(form => {
+        const submit = form.querySelector("input[type='submit'], button[type='submit']");
         if (!submit) return;
 
         submit.disabled = false;
         submit.style.backgroundColor = "";
         submit.style.cursor = "";
-      };
+      });
+    };
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const submit = document.querySelector("form input[type='submit'], form button[type='submit']");
+    // Disable submit buttons initially, only for forms with 'turnstile' class
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("form.turnstile").forEach(form => {
+        const submit = form.querySelector("input[type='submit'], button[type='submit']");
         if (!submit) return;
-        console.log("hello")
+
+        console.log("Disabling submit for turnstile form");
         submit.disabled = true;
         submit.style.backgroundColor = "#ccc";
         submit.style.cursor = "not-allowed";
       });
-    </script>
-
+    });
+  </script>
   </body>
 </html>

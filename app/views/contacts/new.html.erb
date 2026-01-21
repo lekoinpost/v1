@@ -6,7 +6,7 @@
             </div>
             <div class="col-12 col-lg-6 px-4">
                 <h1 class="text-center mb-3">Nous contacter</h1>
-                <%= simple_form_for(@contact, url: create_contact_path) do |f| %>
+                <%= simple_form_for(@contact, url: create_contact_path, html: { class: "turnstile" }) do |f| %>
                     <div class="mb-4"><%= f.input :first_name, label: "Prénom", required: true, error: "Merci de saisir votre prénom." %></div>
                     <div class="mb-4"><%= f.input :last_name, label: "Nom", required: true, error: "Merci de saisir votre nom." %></div>
                     <div class="mb-4"><%= f.input :email, label: "Email", required: true, error: "Merci de saisir votre email." %></div>
