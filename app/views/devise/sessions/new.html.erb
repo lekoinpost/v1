@@ -5,7 +5,7 @@
 
       <%= image_tag "red_splash.png", id: "red-splash" %>
 
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }, html: { class: "turnstile" }) do |f| %>
         <div class="devise-form">
           
           <h2 class="text-center my-5">Connexion</h2>
